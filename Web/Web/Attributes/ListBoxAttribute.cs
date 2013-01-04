@@ -1,17 +1,15 @@
-using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
-using Autofac;
 
-namespace Budget.Attributes {
-    public class ListBoxAttribute : Attribute, IMetadataAttribute {
+namespace Web.Attributes {
+    public class ListBoxAttribute : BaseMetadataAttribute {
         protected virtual List<SelectListItem> SelectListItems { get; private set; }
 
         public ListBoxAttribute() {
             SelectListItems = new List<SelectListItem>();
         }
 
-        public void Process(ModelMetadata modelMetadata) {
+        public override void Process(ModelMetadata modelMetadata) {
             modelMetadata.TemplateHint = "ListBox";
 
             var selectListItems = SelectListItems;
@@ -19,7 +17,5 @@ namespace Budget.Attributes {
 
             modelMetadata.AdditionalValues.Add("Items", selectListItems);
         }
-
-        public IComponentContext Container { get; set; }
     }
 }

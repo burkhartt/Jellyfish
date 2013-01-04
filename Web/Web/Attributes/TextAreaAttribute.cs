@@ -1,5 +1,4 @@
 using System.Web.Mvc;
-using Budget.Attributes;
 
 namespace Web.Attributes {
     public class TextAreaAttribute : BaseMetadataAttribute {

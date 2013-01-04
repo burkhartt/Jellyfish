@@ -1,9 +1,10 @@
 ﻿using System.Web.Mvc;
+using Web.Models;
 
 namespace Web.Controllers {
-    public class HomeController : Controller {
+    public class LoginController : Controller {
         public ActionResult Index() {
-            return View();
+            return View(new LoginModel());
         }
     }
 }

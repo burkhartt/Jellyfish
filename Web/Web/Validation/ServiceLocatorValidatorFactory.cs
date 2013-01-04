@@ -19,15 +19,19 @@ namespace Web.Validation {
             }
         }
 
-        public IValidator CreateInstance(Type validatorType) { return container.Resolve(validatorType) as IValidator; }
-
-        public IValidator<T> GetValidator<T>() { return (IValidator<T>)GetValidator(typeof(T)); }
+        public IValidator<T> GetValidator<T>() {
+            return (IValidator<T>) GetValidator(typeof (T));
+        }
 
         public IValidator GetValidator(Type type) {
             if (validatorMap.ContainsKey(type.Name)) {
-                return (IValidator)container.Resolve(validatorMap[type.Name]);
+                return (IValidator) container.Resolve(validatorMap[type.Name]);
             }
             return null;
+        }
+
+        public IValidator CreateInstance(Type validatorType) {
+            return container.Resolve(validatorType) as IValidator;
         }
     }
 }
