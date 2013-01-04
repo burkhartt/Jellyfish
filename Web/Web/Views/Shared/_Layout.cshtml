@@ -1,0 +1,30 @@
+﻿@using System.Web.Mvc.Html
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>@ViewBag.Title</title>
+        <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />        
+        <link href='http://fonts.googleapis.com/css?family=Anaheim' rel='stylesheet' type='text/css'>
+
+        <script id="scriptInit" type="text/javascript">
+            $(document).ready(function () {
+                $("#success").fadeIn("slow").delay(1000).fadeOut("slow");
+            });
+        </script>
+
+    </head>
+
+    <body>
+        <div class="top-container">
+            <div class="container">            
+                <div class="top-menu">                                            
+                    <span>Goal Setter</span>
+                    <ul>
+                        <li>@Html.ActionLink("Create Account", "Create", "Account")</li>
+                    </ul>
+                </div>
+                @RenderBody()
+            </div>
+        </div>
+    </body>
+</html>

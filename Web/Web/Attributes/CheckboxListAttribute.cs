@@ -2,20 +2,20 @@ using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
 using Autofac;
+using Budget.Attributes;
 
-namespace Budget.Attributes {
-    public class CheckboxListAttribute : Attribute, IMetadataAttribute {
+namespace Web.Attributes {
+    public class CheckboxListAttribute : BaseMetadataAttribute {
         protected virtual List<SelectListItem> SelectListItems { get; private set; }
 
         public CheckboxListAttribute() {
             SelectListItems = new List<SelectListItem>();
         }
 
-        public void Process(ModelMetadata modelMetadata) {
+        public override void Process(ModelMetadata modelMetadata) {
             modelMetadata.TemplateHint = "CheckboxList";
             modelMetadata.AdditionalValues.Add("Items", SelectListItems);            
+            base.Process(modelMetadata);
         }
-
-        public IComponentContext Container { get; set; }
-    }
+    }    
 }

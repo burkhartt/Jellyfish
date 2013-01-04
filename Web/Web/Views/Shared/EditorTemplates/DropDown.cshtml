@@ -1,0 +1,13 @@
+﻿@model string
+
+
+@{
+    var selectListItems = (IEnumerable<SelectListItem>) ViewData.ModelMetadata.AdditionalValues["Items"];
+}
+@Html.DropDownListFor(x => Model, selectListItems)
+
+<script id="scriptInit" type="text/javascript">
+    $(document).ready(function () {
+        $("#@ViewData.TemplateInfo.HtmlFieldPrefix").wijdropdown();
+    });
+</script>

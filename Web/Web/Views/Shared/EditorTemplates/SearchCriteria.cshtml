@@ -1,0 +1,23 @@
+﻿@model Budget.Models.SearchCriteria
+           
+@using (Html.BeginForm((string) Url.RequestContext.RouteData.Values["action"], (string)Url.RequestContext.RouteData.Values["controller"], FormMethod.Get)) {
+    <div id="search-criteria">
+        <table width="100%">
+            <tr>
+                <td>@Html.LabelFor(x => x.StartDate)</td>
+                <td>@Html.LabelFor(x => x.EndDate)</td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.EditorFor(x => x.StartDate)
+                </td>
+                <td>
+                    @Html.EditorFor(x => x.EndDate)    
+                </td>
+                <td>
+                    <input type="submit" value="Search" />
+                </td>
+            </tr>
+        </table>        
+    </div>
+}

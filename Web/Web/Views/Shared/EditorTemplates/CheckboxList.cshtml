@@ -1,0 +1,24 @@
+﻿@model List<string>
+
+@functions {
+
+    private bool WasSelectedInPostback(string value) {
+        var result = HttpContext.Current.Request.Form[ViewData.TemplateInfo.HtmlFieldPrefix];
+        if (result == null) {
+            return false;
+        }
+        return result.Split(',').Any(x => x == value);
+    }
+
+}
+
+@Html.ValidationMessageFor(x => x)
+@Html.LabelForModel()
+<div class="checkbox-list">    
+    @foreach (var item in (IEnumerable<SelectListItem>) ViewData.ModelMetadata.AdditionalValues["Items"]) {
+        <div>
+            <input type="checkbox" name="@ViewData.TemplateInfo.HtmlFieldPrefix" value="@item.Value" @(item.Selected || WasSelectedInPostback(@item.Value) ? "checked=\"checked\"" : "") />
+            <label for="@ViewData.TemplateInfo.HtmlFieldPrefix">@item.Text</label>
+        </div>
+    }
+</div>

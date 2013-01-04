@@ -1,0 +1,13 @@
+﻿@model List<string>
+
+@helper GetValue() { @Html.LabelFor(x => x) }
+
+
+@GetValue()
+
+<div class="list-box">
+    @foreach (var item in (IEnumerable<SelectListItem>)ViewData.ModelMetadata.AdditionalValues["Items"]) {
+        <input type="checkbox" name="@ViewData.TemplateInfo.HtmlFieldPrefix" value="@item.Value" @(item.Selected ? "checked=\"checked\"" : "") />
+        <label for="@ViewData.TemplateInfo.HtmlFieldPrefix">@item.Text</label>
+    }
+</div>

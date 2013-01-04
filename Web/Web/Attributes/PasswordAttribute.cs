@@ -1,13 +1,10 @@
-using System;
 using System.Web.Mvc;
-using Autofac;
+using Budget.Attributes;
 
-namespace Budget.Attributes {
-    public class PasswordAttribute : Attribute, IMetadataAttribute {
-        public void Process(ModelMetadata modelMetadata) {
+namespace Web.Attributes {
+    public class PasswordAttribute : BaseMetadataAttribute {
+        public override void Process(ModelMetadata modelMetadata) {
             modelMetadata.TemplateHint = "Password";
         }
-
-        public IComponentContext Container { get; set; }
     }
 }

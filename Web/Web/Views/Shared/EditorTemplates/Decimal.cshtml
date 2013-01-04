@@ -1,0 +1,15 @@
+﻿@model decimal
+
+@Html.TextBoxFor(x => x, new { @class = "decimal" })
+
+<script type="text/javascript">
+    $(function () {
+        $("#@ViewData.TemplateInfo.HtmlFieldPrefix").wijinputnumber(
+        {
+            type: 'currency',
+            minValue: 0,
+            decimalPlaces: 2,
+            showSpinner: false
+        });
+    });
+</script>
