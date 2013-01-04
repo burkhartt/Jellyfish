@@ -19,7 +19,7 @@ namespace Web.Controllers {
             if (!ModelState.IsValid) {
                 return View(model);
             }
-
+            repository.Create(model);
             return RedirectToAction("Index", "Home", new { SuccessMessage = typeof(T).Name + " created" });
         }
 

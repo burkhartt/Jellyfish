@@ -11,6 +11,7 @@ using Budget;
 using FluentValidation;
 using FluentValidation.Mvc;
 using Web.Filters;
+using Web.Repositories;
 using Web.Validation;
 
 namespace Web {
@@ -55,6 +56,7 @@ namespace Web {
             builder.RegisterControllers(Assembly.GetExecutingAssembly()).InjectActionInvoker();
             builder.RegisterFilterProvider();
 
+            builder.RegisterGeneric(typeof (Repository<>)).As(typeof(IRepository<>)).SingleInstance();
             builder.RegisterType<SuccessMessageFilter>().As<IActionFilter>();
 
             builder.RegisterType<ServiceLocatorValidatorFactory>().As<IValidatorFactory>();
