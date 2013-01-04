@@ -22,8 +22,12 @@
                     <ul>
                         <li>@Html.ActionLink("Create Account", "Create", "Account")</li>
                         <li>@Html.ActionLink("Sign In", "Index", "Login")</li>
+                        <li>@Html.ActionLink("New Goal", "Create", "Goals")</li>
                     </ul>
                 </div>
+                
+                @Html.DisplayFor(x => TempData["SuccessMessage"])
+
                 @RenderBody()
             </div>
         </div>

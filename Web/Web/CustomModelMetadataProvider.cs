@@ -16,8 +16,7 @@ namespace Web {
 
         protected override ModelMetadata CreateMetadata(IEnumerable<Attribute> attributes, Type containerType,
                                                         Func<object> modelAccessor, Type modelType, string propertyName) {
-            var modelMetadata = base.CreateMetadata(attributes, containerType, modelAccessor, modelType,
-                                                              propertyName);
+            var modelMetadata = base.CreateMetadata(attributes, containerType, modelAccessor, modelType, propertyName);
 
             var r = new Regex(@"
                 (?<=[A-Z])(?=[A-Z][a-z]) |
@@ -26,18 +25,13 @@ namespace Web {
             if (!string.IsNullOrEmpty(modelMetadata.PropertyName)) {
                 modelMetadata.DisplayName = r.Replace(modelMetadata.PropertyName, " ");
             }
-
+            
             attributes.OfType<IMetadataAttribute>().ToList().ForEach(x => {
                 x.Container = componentContext;
                 x.Process(modelMetadata);
             });
 
             return modelMetadata;
-        }
-
-        public override ModelMetadata GetMetadataForType(Func<object> modelAccessor, Type modelType) {
-            int a = 3;
-            return base.GetMetadataForType(modelAccessor, modelType);
         }
     }
 }
