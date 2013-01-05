@@ -10,7 +10,11 @@ using Autofac.Integration.Mvc;
 using Budget;
 using FluentValidation;
 using FluentValidation.Mvc;
+using Web.Controllers;
+using Web.Events;
+using Web.Events.Entity;
 using Web.Filters;
+using Web.Models;
 using Web.Repositories;
 using Web.Validation;
 
@@ -57,6 +61,11 @@ namespace Web {
             builder.RegisterFilterProvider();
 
             builder.RegisterGeneric(typeof (Repository<>)).As(typeof(IRepository<>)).SingleInstance();
+            builder.RegisterGeneric(typeof (EventBus<>)).As(typeof (IEventBus<>)).SingleInstance();
+
+            //builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly()).AsClosedTypesOf(typeof(IEventHandler<>));
+            builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly()).AsImplementedInterfaces();
+
             builder.RegisterType<SuccessMessageFilter>().As<IActionFilter>();
 
             builder.RegisterType<ServiceLocatorValidatorFactory>().As<IValidatorFactory>();
