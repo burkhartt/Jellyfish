@@ -1,5 +1,5 @@
 ﻿namespace Web.Events {
-    public interface IEventHandler<in T> where T : IEvent {
+    public interface IHandleEvents<in T> where T : IEvent {
         void Handle(T @event);
     }
 }

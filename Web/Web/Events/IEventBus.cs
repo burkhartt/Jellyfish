@@ -20,48 +20,36 @@ namespace Web.Events {
         }
 
         public void Send(IEvent @event) {
-            //var implementorMethods =
-            //    componentContext.ComponentRegistry.Registrations.Where(x => x.Services.OfType<TypedService>().Any(y => {
-            //        var type = y.ServiceType;
-            //        if (!type.IsInterface || !type.IsGenericType || !type.IsConstructedGenericType || type.GetGenericTypeDefinition() != typeof (IEventHandler<>)) {
-            //            return false;
-            //        }
-
-            //        return type.GetGenericArguments().Any(z => z == @event.GetType());
-            //    })).ToList();
-
-            //foreach (var blah in implementorMethods) {
-            //    dynamic handler = componentContext.Resolve(blah.Services.First().GetType());                
-            //    handler.Handle(@event);
-            //}
-
             foreach (var registration in componentContext.ComponentRegistry.Registrations) {
                 foreach (var service in registration.Services.OfType<TypedService>()) {
                     var type = service.ServiceType;
                     if (!type.IsInterface || !type.IsGenericType || !type.IsConstructedGenericType ||
-                        type.GetGenericTypeDefinition() != typeof (IEventHandler<>)) {
+                        type.GetGenericTypeDefinition() != typeof (IHandleEvents<>)) {
                         continue;
                     }
 
                     var method = type.GetMethod("Handle");
-                    var handler = componentContext.ResolveComponent(registration, new List<Parameter>());
-                    method.Invoke(handler, new[] {@event});
+
+                    if (method.GetParameters().Any(x => x.ParameterType == @event.GetType())) {
+                        var handler = componentContext.ResolveComponent(registration, new List<Parameter>());
+                        method.Invoke(handler, new[] {@event});
+                    }
                 }
             }
         }
     }
 
-    public class Junk : IEventHandler<EntityCreatedEvent<Goal>> {
-        public void Handle(EntityCreatedEvent<Goal> @event) {
+    public abstract class GenericDenormalizer<T> : IHandleEvents<EntityCreatedEvent<T>>,
+                                                   IHandleEvents<EntityUpdatedEvent<T>>,
+                                                   IHandleEvents<EntityDeletedEvent<T>> where T : IEntity {
+        public virtual void Handle(EntityCreatedEvent<T> @event) {
             var a = 3;
         }
+
+        public virtual void Handle(EntityDeletedEvent<T> @event) {}
+        public virtual void Handle(EntityUpdatedEvent<T> @event) {}
     }
 
-    public class MoreJunk : IEventHandler<EntityCreatedEvent<Goal>>
-    {
-        public void Handle(EntityCreatedEvent<Goal> @event)
-        {
-            var a = 3;
-        }
+    public class GoalDenormalizer : GenericDenormalizer<Goal> {        
     }
 }

@@ -141,7 +141,7 @@
     <Compile Include="Events\Entity\EntityUpdatedEvent.cs" />
     <Compile Include="Events\IEvent.cs" />
     <Compile Include="Events\IEventBus.cs" />
-    <Compile Include="Events\IEventHandler.cs" />
+    <Compile Include="Events\IHandleEvents.cs" />
     <Compile Include="Filters\SuccessMessageFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

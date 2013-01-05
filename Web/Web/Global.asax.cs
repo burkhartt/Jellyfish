@@ -63,7 +63,6 @@ namespace Web {
             builder.RegisterGeneric(typeof (Repository<>)).As(typeof(IRepository<>)).SingleInstance();
             builder.RegisterGeneric(typeof (EventBus<>)).As(typeof (IEventBus<>)).SingleInstance();
 
-            //builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly()).AsClosedTypesOf(typeof(IEventHandler<>));
             builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly()).AsImplementedInterfaces();
 
             builder.RegisterType<SuccessMessageFilter>().As<IActionFilter>();
