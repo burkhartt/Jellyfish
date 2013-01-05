@@ -56,6 +56,18 @@
       <HintPath>..\packages\FluentValidation.MVC4.3.4.6.0\lib\Net40\FluentValidation.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MongoDB.Bson">
+      <HintPath>..\packages\mongocsharpdriver.1.6.1\lib\net35\MongoDB.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver">
+      <HintPath>..\packages\mongocsharpdriver.1.6.1\lib\net35\MongoDB.Driver.dll</HintPath>
+    </Reference>
+    <Reference Include="Simple.Data">
+      <HintPath>..\packages\Simple.Data.Core.0.18.3.1\lib\net40\Simple.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Simple.Data.MongoDB">
+      <HintPath>..\packages\Simple.Data.MongoDB.0.18.0\lib\net40\Simple.Data.MongoDB.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -136,6 +148,9 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="CustomModelMetadataProvider.cs" />
+    <Compile Include="Database\IDatabase.cs" />
+    <Compile Include="Denormalizers\GenericDenormalizer.cs" />
+    <Compile Include="Denormalizers\GoalDenormalizer.cs" />
     <Compile Include="Events\Entity\EntityCreatedEvent.cs" />
     <Compile Include="Events\Entity\EntityDeletedEvent.cs" />
     <Compile Include="Events\Entity\EntityUpdatedEvent.cs" />
@@ -213,6 +228,7 @@
     <Content Include="Views\Shared\Create.cshtml" />
     <Content Include="Views\Shared\Partials\Form.cshtml" />
     <Content Include="Views\Shared\Update.cshtml" />
+    <Content Include="Views\Crud\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -7,12 +7,17 @@ using Web.Repositories;
 
 namespace Web.Controllers {
     public class CrudController<T> : Controller where T : IEntity, new() {
-        private readonly IEventBus<T> eventBus;
+        private readonly IEventBus eventBus;
         private readonly IRepository<T> repository;
 
-        public CrudController(IEventBus<T> eventBus, IRepository<T> repository) {
+        public CrudController(IEventBus eventBus, IRepository<T> repository) {
             this.eventBus = eventBus;
             this.repository = repository;
+        }
+
+        public ViewResult Index() {
+            var all = repository.All();
+            return View();
         }
 
         public ViewResult Create() {            

@@ -1,8 +1,11 @@
-﻿using Web.Controllers;
-using Web.Models;
+﻿using Web.Models;
 
 namespace Web.Events.Entity {
     public class EntityUpdatedEvent<T> : IEvent where T : IEntity {
-        public EntityUpdatedEvent(IEntity model) {}
+        public EntityUpdatedEvent(T entity) {
+            Entity = entity;
+        }
+
+        public T Entity { get; private set; }
     }
 }

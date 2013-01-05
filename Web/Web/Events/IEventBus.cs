@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Autofac;
 using Autofac.Core;
-using Web.Controllers;
-using Web.Events.Entity;
-using Web.Models;
 
 namespace Web.Events {
-    public interface IEventBus<T> {
+    public interface IEventBus {
         void Send(IEvent @event);
     }
 
-    public class EventBus<T> : IEventBus<T> {
+    public class EventBus : IEventBus {
         private readonly IComponentContext componentContext;
 
         public EventBus(IComponentContext componentContext) {
@@ -37,19 +33,5 @@ namespace Web.Events {
                 }
             }
         }
-    }
-
-    public abstract class GenericDenormalizer<T> : IHandleEvents<EntityCreatedEvent<T>>,
-                                                   IHandleEvents<EntityUpdatedEvent<T>>,
-                                                   IHandleEvents<EntityDeletedEvent<T>> where T : IEntity {
-        public virtual void Handle(EntityCreatedEvent<T> @event) {
-            var a = 3;
-        }
-
-        public virtual void Handle(EntityDeletedEvent<T> @event) {}
-        public virtual void Handle(EntityUpdatedEvent<T> @event) {}
-    }
-
-    public class GoalDenormalizer : GenericDenormalizer<Goal> {        
     }
 }
