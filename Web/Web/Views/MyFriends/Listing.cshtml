@@ -1,0 +1,7 @@
+﻿@model IEnumerable<Web.Models.Account>
+
+<ul>
+@foreach (var account in Model) {
+    <li>@account.Id - @account.FullName</li>
+}
+</ul>

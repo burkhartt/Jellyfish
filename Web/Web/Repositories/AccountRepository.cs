@@ -16,17 +16,8 @@ namespace Web.Repositories {
             database.GetTheDatabase().Account.Insert(account);
         }
 
-        public void AddFriend(Guid id, Guid friendId) {
-            var account = FindById(id);
-            var listOfFriends = new List<Guid>();
-
-            if (account.Friends != null) {
-                listOfFriends = account.Friends.ToList();
-            }
-            
-            listOfFriends.Add(friendId);
-            account.Friends = listOfFriends.ToArray();
-            database.GetTheDatabase().Account.Update(account);
+        public Account GetByEmailAddressAndPassword(string emailAddress, string password) {
+            return database.GetTheDatabase().Account.FindByEmailAddressAndPassword(EmailAddress: emailAddress, Password: password);
         }
     }
 }

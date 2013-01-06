@@ -18,7 +18,7 @@ namespace Web.Repositories {
             this.database = database;
         }
 
-        public T FindById(Guid id) {
+        public virtual T FindById(Guid id) {
             return database.GetTheDatabase()[TableName()].FindById(id);
         }
 

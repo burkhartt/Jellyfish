@@ -6,6 +6,7 @@ using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using System.Web.Script.Serialization;
 using System.Web.Security;
 using Autofac;
 using Autofac.Integration.Mvc;
@@ -16,6 +17,7 @@ using Web.Database;
 using Web.Email;
 using Web.Events;
 using Web.Filters;
+using Web.Models;
 using Web.Repositories;
 using Web.Validation;
 
@@ -49,40 +51,32 @@ namespace Web {
         }
 
         protected void Application_AuthenticateRequest(object sender, EventArgs e) {
-            // Extract the forms authentication cookie
             var cookieName = FormsAuthentication.FormsCookieName;
             var authCookie = Context.Request.Cookies[cookieName];
 
             if (null == authCookie) {
-                // There is no authentication cookie.
                 return;
             }
 
-            FormsAuthenticationTicket authTicket = null;
+            FormsAuthenticationTicket authTicket;
             try {
                 authTicket = FormsAuthentication.Decrypt(authCookie.Value);
             }
-            catch (Exception ex) {
-                // Log exception details (omitted for simplicity)
+            catch (Exception) {
                 return;
             }
 
             if (null == authTicket) {
-                // Cookie failed to decrypt.
                 return;
             }
 
-            // When the ticket was created, the UserData property was assigned a
-            // pipe delimited string of role names.
-            var roles = authTicket.UserData.Split(new[] {'|'});
+            var serializer = new JavaScriptSerializer();
+            
+            var account = serializer.Deserialize<Account>(authTicket.UserData);
 
-            // Create an Identity object
+            // Create an Principal object
             var id = new FormsIdentity(authTicket);
-
-            // This principal will flow throughout the request.
-            var principal = new GenericPrincipal(id, roles);
-            // Attach the new principal object to the current HttpContext object
-            Context.User = principal;
+            Context.User = new Principal(id, account);
         }
 
         private void RegisterIoC() {
@@ -101,6 +95,7 @@ namespace Web {
             builder.RegisterGeneric(typeof (Repository<>)).As(typeof (IRepository<>)).SingleInstance();
             builder.RegisterType(typeof (EventBus)).As(typeof (IEventBus)).SingleInstance();
             builder.RegisterType(typeof (Database.Database)).As(typeof (IDatabase)).SingleInstance();
+            builder.RegisterType(typeof (FriendRepository)).As(typeof (IFriendRepository));
 
             builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly()).Where(t => t.Name.EndsWith("Denormalizer")).AsImplementedInterfaces();
 
@@ -126,7 +121,7 @@ namespace Web {
             ModelMetadataProviders.Current = Container.Resolve<DataAnnotationsModelMetadataProvider>();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(Container));
         }
-    }
+    }    
 
     public static class ActionFilterInjection {
         /// <summary>

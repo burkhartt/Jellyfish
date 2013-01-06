@@ -6,7 +6,7 @@ using Web.Models;
 using Web.Repositories;
 
 namespace Web.Controllers {
-    public class CrudController<T> : Controller where T : IEntity, new() {
+    public class CrudController<T> : BaseController where T : IEntity, new() {
         private readonly IEventBus eventBus;
         private readonly IRepository<T> repository;
 

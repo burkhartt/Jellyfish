@@ -21,14 +21,15 @@
             <div class="container">            
                 <div class="top-menu">                                            
                     <span>Goal Setter</span>
-                    <ul>                        
-                        @if (!User.Identity.IsAuthenticated)
+                    <ul>
+                        <li>Accounts @Html.ActionLink("New", "Create", "Accounts")</li>
+                        @if (!Context.User.Identity.IsAuthenticated)
                         {
                             <li>@Html.ActionLink("Sign In", "Index", "Login")</li>
                         }
                         else
                         {
-                            <li>Accounts @Html.ActionLink("New", "Create", "Accounts") | @Html.ActionLink("View", "Listing", "Accounts")</li>
+                            <li>My Account @Html.ActionLink("Friends", "Listing", "MyFriends")</li>                            
                             <li>Goals @Html.ActionLink("New", "Create", "Goals") | @Html.ActionLink("View", "Listing", "Goals")</li>
                             <li>Friends @Html.ActionLink("Invite", "Invite", "Friends")</li>
                             <li>@Html.ActionLink("Sign Out", "Index", "Logout")</li>

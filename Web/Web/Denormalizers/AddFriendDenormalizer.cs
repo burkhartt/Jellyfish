@@ -3,14 +3,14 @@ using Web.Repositories;
 
 namespace Web.Denormalizers {
     public class AddFriendDenormalizer : IHandleEvents<InviteFriendEvent> {
-        private readonly IAccountRepository accountRepository;
+        private readonly IFriendRepository friendRepository;
 
-        public AddFriendDenormalizer(IAccountRepository accountRepository) {
-            this.accountRepository = accountRepository;
+        public AddFriendDenormalizer(IFriendRepository friendRepository) {
+            this.friendRepository = friendRepository;
         }
 
         public void Handle(InviteFriendEvent @event) {
-            accountRepository.AddFriend(@event.Id, @event.FriendId);
+            friendRepository.AddFriend(@event.Id, @event.FriendId);
         }
     }
 }
