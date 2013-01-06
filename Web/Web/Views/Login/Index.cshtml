@@ -1,8 +1,4 @@
 ﻿@model Web.Models.LoginModel
 
-@{
-    ViewBag.Title = "title";
-}
-
-<h2>Login</h2>
-@Html.EditorForModel()
+<h2>@ViewBag.Title</h2>
+@Html.Partial("Partials/Form", Model)

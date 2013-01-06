@@ -1,10 +1,6 @@
 ﻿@using System.Reflection
 @model IEnumerable<Web.Models.IEntity>
 
-@{
-    ViewBag.Title = "title";
-}
-
 <h2>@(Model.First().GetType().Name)s</h2>
 
 <div id="hacker-list">

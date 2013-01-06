@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Goals - @ViewBag.Title</title>
+        <title>@ViewBag.Title</title>
         <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />        
         <link href='http://fonts.googleapis.com/css?family=Anaheim' rel='stylesheet' type='text/css'>
         <script type="text/javascript" src="../../Content/jquery-1.7.2.min.js"></script>
@@ -24,7 +24,13 @@
                     <ul>
                         <li>Accounts @Html.ActionLink("New", "Create", "Accounts") | @Html.ActionLink("View", "Listing", "Accounts")</li>
                         <li>Goals @Html.ActionLink("New", "Create", "Goals") | @Html.ActionLink("View", "Listing", "Goals")</li>
-                        <li>@Html.ActionLink("Sign In", "Index", "Login")</li>                        
+                        @if (!User.Identity.IsAuthenticated) {
+                            <li>@Html.ActionLink("Sign In", "Index", "Login")</li>
+                        }
+                        else {
+                            <li>@Html.ActionLink("Sign Out", "Index", "Logout")</li>
+                        }
+                        
                     </ul>
                 </div>
                 

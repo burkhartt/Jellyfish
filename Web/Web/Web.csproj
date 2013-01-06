@@ -142,12 +142,14 @@
     <Compile Include="Attributes\ListBoxAttribute.cs" />
     <Compile Include="Attributes\PasswordAttribute.cs" />
     <Compile Include="Attributes\TextAreaAttribute.cs" />
+    <Compile Include="Authentication\IAuthenticator.cs" />
     <Compile Include="Config\BasePage.cs" />
     <Compile Include="Controllers\AccountsController.cs" />
     <Compile Include="Controllers\CrudController.cs" />
     <Compile Include="Controllers\GoalsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\LogoutController.cs" />
     <Compile Include="CustomModelMetadataProvider.cs" />
     <Compile Include="Database\IDatabase.cs" />
     <Compile Include="Denormalizers\GenericDenormalizer.cs" />
@@ -158,6 +160,7 @@
     <Compile Include="Events\IEvent.cs" />
     <Compile Include="Events\IEventBus.cs" />
     <Compile Include="Events\IHandleEvents.cs" />
+    <Compile Include="Filters\AuthorizedAttribute.cs" />
     <Compile Include="Filters\SuccessMessageFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

@@ -15,44 +15,44 @@ namespace Web.Controllers {
             this.repository = repository;
         }
 
-        public ViewResult Index(Guid id) {
+        public virtual ViewResult Index(Guid id) {
             return View(repository.FindById(id));
         }
 
-        public ViewResult Listing() {
+        public virtual ViewResult Listing() {
             return View(repository.All());
         }
 
-        public ViewResult Create() {
-            var model = new T { Id = Guid.NewGuid() };
+        public virtual ViewResult Create() {
+            var model = new T {Id = Guid.NewGuid()};
             return View(model);
         }
 
         [HttpPost]
-        public ActionResult Create(T model) {
+        public virtual ActionResult Create(T model) {
             if (!ModelState.IsValid) {
                 return View(model);
             }
             eventBus.Send(new EntityCreatedEvent<T>(model));
-            return RedirectToAction("Listing", new { SuccessMessage = typeof(T).Name + " created" });
+            return RedirectToAction("Listing", new {SuccessMessage = typeof (T).Name + " created"});
         }
 
-        public ViewResult Update(Guid id) {            
+        public virtual ViewResult Update(Guid id) {
             return View(repository.FindById(id));
         }
 
         [HttpPost]
-        public ActionResult Update(T model) {
+        public virtual ActionResult Update(T model) {
             if (!ModelState.IsValid) {
                 return View(model);
             }
             eventBus.Send(new EntityUpdatedEvent<T>(model));
-            return RedirectToAction("Listing", new { SuccessMessage = typeof(T).Name + " updated" });
+            return RedirectToAction("Listing", new {SuccessMessage = typeof (T).Name + " updated"});
         }
 
-        public ActionResult Delete(Guid id) {
+        public virtual ActionResult Delete(Guid id) {
             eventBus.Send(new EntityDeletedEvent<T>(id));
-            return RedirectToAction("Listing", new { SuccessMessage = typeof(T).Name + " updated" });
+            return RedirectToAction("Listing", new {SuccessMessage = typeof (T).Name + " updated"});
         }
     }
 }
