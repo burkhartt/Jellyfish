@@ -21,11 +21,17 @@
             <div class="container">            
                 <div class="top-menu">                                            
                     <span>Goal Setter</span>
+                    @if (Context.User.Identity.IsAuthenticated) {
+                        <p>Welcome @User.Account.FullName</p>
+                    }                    
+
                     <ul>
                         <li>Accounts @Html.ActionLink("New", "Create", "Accounts")</li>
                         @if (!Context.User.Identity.IsAuthenticated)
                         {
                             <li>@Html.ActionLink("Sign In", "Index", "Login")</li>
+                            <li>@Html.ActionLink("Unconfirmed Accounts", "Index", "UnconfirmedAccounts")</li>
+                            <li>@Html.ActionLink("Login As", "AllAccounts", "Login")</li>
                         }
                         else
                         {

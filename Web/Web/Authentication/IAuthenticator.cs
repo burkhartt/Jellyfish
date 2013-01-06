@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Principal;
 using System.Web;
 using System.Web.Script.Serialization;
 using System.Web.Security;
-using Web.Database;
+using Web.Events;
 using Web.Models;
 using Web.Repositories;
 
@@ -16,26 +14,22 @@ namespace Web.Authentication {
 
     public class Authenticator : IAuthenticator {
         private readonly IAccountRepository accountRepository;
+        private readonly IEventBus eventBus;
 
-        public Authenticator(IAccountRepository accountRepository) {
+        public Authenticator(IAccountRepository accountRepository, IEventBus eventBus) {
             this.accountRepository = accountRepository;
+            this.eventBus = eventBus;
         }
 
         public bool Authenticate(string emailAddress, string password) {
             var account = accountRepository.GetByEmailAddressAndPassword(emailAddress, password);
 
-            if (account == null){
+            if (account == null) {
                 return false;
             }
 
-            var serializer = new JavaScriptSerializer();
-            string userData = serializer.Serialize(account);
+            eventBus.Send(new AccountSuccessfullyAuthenticatedEvent { Id = account.Id });
 
-            var authTicket = new FormsAuthenticationTicket(1, account.Id.ToString(), DateTime.Now, DateTime.Now.AddMinutes(60), false, userData);
-            var encryptedTicket = FormsAuthentication.Encrypt(authTicket);
-            var authCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
-            
-            HttpContext.Current.Response.Cookies.Add(authCookie);
             return true;
         }
     }        

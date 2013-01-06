@@ -152,15 +152,20 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\LogoutController.cs" />
+    <Compile Include="Controllers\MyAccountController.cs" />
     <Compile Include="Controllers\MyFriendsController.cs" />
+    <Compile Include="Controllers\UnconfirmedAccountsController.cs" />
+    <Compile Include="Controllers\VerifyAccountController.cs" />
     <Compile Include="CustomModelMetadataProvider.cs" />
     <Compile Include="Database\IDatabase.cs" />
     <Compile Include="Denormalizers\AccountDenormalizer.cs" />
     <Compile Include="Denormalizers\AddFriendDenormalizer.cs" />
+    <Compile Include="Denormalizers\AuthenticationDenormalizer.cs" />
     <Compile Include="Denormalizers\FriendInvitationDenormalizer.cs" />
     <Compile Include="Denormalizers\GenericDenormalizer.cs" />
     <Compile Include="Denormalizers\GoalDenormalizer.cs" />
     <Compile Include="Email\IEmailSender.cs" />
+    <Compile Include="Events\AccountSuccessfullyAuthenticatedEvent.cs" />
     <Compile Include="Events\Entity\EntityCreatedEvent.cs" />
     <Compile Include="Events\Entity\EntityDeletedEvent.cs" />
     <Compile Include="Events\Entity\EntityUpdatedEvent.cs" />
@@ -168,6 +173,7 @@
     <Compile Include="Events\IEventBus.cs" />
     <Compile Include="Events\IHandleEvents.cs" />
     <Compile Include="Events\InviteFriendEvent.cs" />
+    <Compile Include="Events\VerifyAccountEvent.cs" />
     <Compile Include="Filters\AuthorizedAttribute.cs" />
     <Compile Include="Filters\GlobalMessageFilter.cs" />
     <Compile Include="Global.asax.cs">
@@ -254,6 +260,9 @@
     <Content Include="Views\Shared\DisplayTemplates\ErrorMessage.cshtml" />
     <Content Include="Views\Friends\Invite.cshtml" />
     <Content Include="Views\MyFriends\Listing.cshtml" />
+    <Content Include="Views\MyAccount\Verified.cshtml" />
+    <Content Include="Views\UnconfirmedAccounts\Index.cshtml" />
+    <Content Include="Views\Login\AllAccounts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

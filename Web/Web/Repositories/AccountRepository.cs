@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Web.Database;
 using Web.Models;
 
@@ -18,6 +16,10 @@ namespace Web.Repositories {
 
         public Account GetByEmailAddressAndPassword(string emailAddress, string password) {
             return database.GetTheDatabase().Account.FindByEmailAddressAndPassword(EmailAddress: emailAddress, Password: password);
+        }
+
+        public IEnumerable<Account> GetAllUnconfirmedAccounts() {
+            return database.GetTheDatabase().Account.FindAllByAccountConfirmed(AccountConfirmed: false).ToList<Account>();
         }
     }
 }

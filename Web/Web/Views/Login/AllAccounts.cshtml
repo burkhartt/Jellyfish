@@ -1,0 +1,7 @@
+﻿@model IEnumerable<Web.Models.Account>
+
+<ul>
+@foreach (var account in Model) {
+    <li><a href="@Url.Action("AutoLogin", "Login", new { Id = account.Id})">@account.FullName</a></li>
+}
+</ul>
