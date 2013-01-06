@@ -176,6 +176,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="Content\jquery-1.7.2.min.js" />
+    <Content Include="Content\list.min.js" />
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
     <None Include="Scripts\jquery-1.8.2-vsdoc.js" />
@@ -228,7 +230,7 @@
     <Content Include="Views\Shared\Create.cshtml" />
     <Content Include="Views\Shared\Partials\Form.cshtml" />
     <Content Include="Views\Shared\Update.cshtml" />
-    <Content Include="Views\Crud\Index.cshtml" />
+    <Content Include="Views\Shared\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

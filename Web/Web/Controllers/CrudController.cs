@@ -16,12 +16,12 @@ namespace Web.Controllers {
         }
 
         public ViewResult Index() {
-            var all = repository.All();
-            return View();
+            return View(repository.All());
         }
 
-        public ViewResult Create() {            
-            return View(new T());
+        public ViewResult Create() {
+            var model = new T { Id = Guid.NewGuid() };
+            return View(model);
         }
 
         [HttpPost]
