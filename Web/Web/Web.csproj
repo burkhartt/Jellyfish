@@ -142,6 +142,7 @@
     <Compile Include="Attributes\ListBoxAttribute.cs" />
     <Compile Include="Attributes\PasswordAttribute.cs" />
     <Compile Include="Attributes\TextAreaAttribute.cs" />
+    <Compile Include="Config\BasePage.cs" />
     <Compile Include="Controllers\AccountsController.cs" />
     <Compile Include="Controllers\CrudController.cs" />
     <Compile Include="Controllers\GoalsController.cs" />
@@ -225,13 +226,15 @@
     <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Textarea.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Shared\Create.cshtml" />
     <Content Include="Views\Shared\Partials\Form.cshtml" />
     <Content Include="Views\Shared\Update.cshtml" />
     <Content Include="Views\Shared\Listing.cshtml" />
     <Content Include="Views\Shared\Index.cshtml" />
+    <Content Include="Views\Goals\Index.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -255,7 +258,7 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerPort>62886</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:50653/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
