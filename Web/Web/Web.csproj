@@ -142,7 +142,7 @@
     <Compile Include="Attributes\ListBoxAttribute.cs" />
     <Compile Include="Attributes\PasswordAttribute.cs" />
     <Compile Include="Attributes\TextAreaAttribute.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AccountsController.cs" />
     <Compile Include="Controllers\CrudController.cs" />
     <Compile Include="Controllers\GoalsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -164,6 +164,7 @@
     <Compile Include="Helpers\CastingHelper.cs" />
     <Compile Include="ModelBinders\DecimalModelBInder.cs" />
     <Compile Include="ModelBinders\ModelBinderHelper.cs" />
+    <Compile Include="Models\Account.cs" />
     <Compile Include="Models\CreateAccountModel.cs" />
     <Compile Include="Models\Goal.cs" />
     <Compile Include="Models\LoginModel.cs" />
@@ -225,7 +226,6 @@
     <Content Include="Views\Shared\EditorTemplates\Textarea.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Account\Create.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Shared\Create.cshtml" />
     <Content Include="Views\Shared\Partials\Form.cshtml" />

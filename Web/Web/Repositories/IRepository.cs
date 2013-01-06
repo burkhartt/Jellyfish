@@ -19,7 +19,7 @@ namespace Web.Repositories {
         }
 
         public T FindById(Guid id) {
-            return default(T);
+            return database.GetTheDatabase()[TableName()].FindById(id);
         }
 
         public IEnumerable<T> All() {
@@ -27,7 +27,7 @@ namespace Web.Repositories {
         }
 
         public void Update(T model) {
-            
+            database.GetTheDatabase()[TableName()].Update(model);
         }
         
         public void Delete(Guid id) {}

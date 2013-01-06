@@ -30,7 +30,7 @@ namespace Web.Controllers {
                 return View(model);
             }
             eventBus.Send(new EntityCreatedEvent<T>(model));
-            return RedirectToAction("Index", "Home", new { SuccessMessage = typeof(T).Name + " created" });
+            return RedirectToAction("Index", new { SuccessMessage = typeof(T).Name + " created" });
         }
 
         public ViewResult Update(Guid id) {            
@@ -43,7 +43,7 @@ namespace Web.Controllers {
                 return View(model);
             }
             eventBus.Send(new EntityUpdatedEvent<T>(model));
-            return RedirectToAction("Index", "Home", new { SuccessMessage = typeof(T).Name + " updated" });
+            return RedirectToAction("Index", new { SuccessMessage = typeof(T).Name + " updated" });
         }
 
         public ActionResult Delete(Guid id) {
