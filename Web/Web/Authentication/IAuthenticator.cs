@@ -30,6 +30,10 @@ namespace Web.Authentication {
         }
 
         private bool IsAuthenticated(string emailAddress, string password) {
+            if (string.IsNullOrEmpty(emailAddress) || string.IsNullOrEmpty(password)) {
+                return false;
+            }
+
             var result = database.GetTheDatabase().Account.FindByEmailAddressAndPassword(EmailAddress: emailAddress, Password: password);
             return result != null;
         }

@@ -7,7 +7,7 @@ using Web.Models;
 #endregion
 
 namespace Web.Filters {
-    public class SuccessMessageFilter : IActionFilter {
+    public class GlobalMessageFilter : IActionFilter {
         public void OnActionExecuting(ActionExecutingContext filterContext) {}
 
         public void OnActionExecuted(ActionExecutedContext filterContext) {
@@ -19,6 +19,13 @@ namespace Web.Filters {
             if (successMessage != null) {
                 filterContext.Controller.TempData["SuccessMessage"] = new SuccessMessage {
                     Message = (string) successMessage
+                };
+            }
+
+            var errorMessage = filterContext.Result.CastAs<RedirectToRouteResult>().RouteValues["ErrorMessage"];
+            if (errorMessage != null) {
+                filterContext.Controller.TempData["ErrorMessage"] = new ErrorMessage {
+                    Message = (string) errorMessage
                 };
             }
         }

@@ -111,7 +111,7 @@ namespace Web {
             builder.RegisterType(typeof(Authenticator)).As<IAuthenticator>();
             
 
-            builder.RegisterType<SuccessMessageFilter>().As<IActionFilter>();
+            builder.RegisterType<GlobalMessageFilter>().As<IActionFilter>();
 
             builder.RegisterType<ServiceLocatorValidatorFactory>().As<IValidatorFactory>();
             var findValidatorsInAssembly = AssemblyScanner.FindValidatorsInAssembly(Assembly.GetExecutingAssembly());

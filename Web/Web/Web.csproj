@@ -161,7 +161,7 @@
     <Compile Include="Events\IEventBus.cs" />
     <Compile Include="Events\IHandleEvents.cs" />
     <Compile Include="Filters\AuthorizedAttribute.cs" />
-    <Compile Include="Filters\SuccessMessageFilter.cs" />
+    <Compile Include="Filters\GlobalMessageFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -238,6 +238,7 @@
     <Content Include="Views\Shared\Index.cshtml" />
     <Content Include="Views\Goals\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\ErrorMessage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
