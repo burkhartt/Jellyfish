@@ -17,28 +17,31 @@ namespace Web.Authentication {
         }
 
         public bool Authenticate(string emailAddress, string password) {
-            if (!IsAuthenticated(emailAddress, password)) {
+            var accountId = GetAccountId(emailAddress, password);
+
+            if (accountId == Guid.Empty){
                 return false;
             }
 
-            var roles = GetRoles(emailAddress);
-            var authTicket = new FormsAuthenticationTicket(1, emailAddress, DateTime.Now, DateTime.Now.AddMinutes(60), false, roles);
-            var encryptedTicket = FormsAuthentication.Encrypt(authTicket);            
+            var roles = GetRoles(accountId);
+            var authTicket = new FormsAuthenticationTicket(1, accountId.ToString(), DateTime.Now, DateTime.Now.AddMinutes(60), false, roles);
+            var encryptedTicket = FormsAuthentication.Encrypt(authTicket);
             var authCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
             HttpContext.Current.Response.Cookies.Add(authCookie);
             return true;
         }
 
-        private bool IsAuthenticated(string emailAddress, string password) {
+        private Guid GetAccountId(string emailAddress, string password) {
             if (string.IsNullOrEmpty(emailAddress) || string.IsNullOrEmpty(password)) {
-                return false;
+                return Guid.Empty;
             }
 
             var result = database.GetTheDatabase().Account.FindByEmailAddressAndPassword(EmailAddress: emailAddress, Password: password);
-            return result != null;
+
+            return result != null ? result.Id : Guid.Empty;
         }
 
-        private string GetRoles(string emailAddress) {
+        private string GetRoles(Guid accountId) {
             // Lookup code omitted for clarity
             // This code would typically look up the role list from a database
             // table.

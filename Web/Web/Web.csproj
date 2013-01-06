@@ -146,6 +146,7 @@
     <Compile Include="Config\BasePage.cs" />
     <Compile Include="Controllers\AccountsController.cs" />
     <Compile Include="Controllers\CrudController.cs" />
+    <Compile Include="Controllers\FriendsController.cs" />
     <Compile Include="Controllers\GoalsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -154,6 +155,7 @@
     <Compile Include="Database\IDatabase.cs" />
     <Compile Include="Denormalizers\GenericDenormalizer.cs" />
     <Compile Include="Denormalizers\GoalDenormalizer.cs" />
+    <Compile Include="Email\IEmailSender.cs" />
     <Compile Include="Events\Entity\EntityCreatedEvent.cs" />
     <Compile Include="Events\Entity\EntityDeletedEvent.cs" />
     <Compile Include="Events\Entity\EntityUpdatedEvent.cs" />
@@ -162,6 +164,9 @@
     <Compile Include="Events\IHandleEvents.cs" />
     <Compile Include="Filters\AuthorizedAttribute.cs" />
     <Compile Include="Filters\GlobalMessageFilter.cs" />
+    <Compile Include="FriendInviter\FriendInvitation.cs" />
+    <Compile Include="FriendInviter\IFriendInvitationRepository.cs" />
+    <Compile Include="FriendInviter\IFriendInviter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -171,6 +176,7 @@
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\CreateAccountModel.cs" />
     <Compile Include="Models\Goal.cs" />
+    <Compile Include="Models\InviteFriendForm.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\SuccessMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -239,6 +245,7 @@
     <Content Include="Views\Goals\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\ErrorMessage.cshtml" />
+    <Content Include="Views\Friends\Invite.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

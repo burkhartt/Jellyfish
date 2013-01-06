@@ -3754,7 +3754,7 @@ var cachedruns,
 	//   then attribute selectors and non-pseudos (denoted by :),
 	//   then anything else
 	// These preferences are here to reduce the number of selectors
-	//   needing tokenize in the PSEUDO preFilter
+	//   needing Idize in the PSEUDO preFilter
 	pseudos = ":(" + characterEncoding + ")(?:\\((?:(['\"])((?:\\\\.|[^\\\\])*?)\\2|([^()[\\]]*|(?:(?:" + attributes + ")|[^:]|\\\\.)*|.*))\\)|)",
 
 	// For matchExpr.POS and matchExpr.needsContext
@@ -4214,7 +4214,7 @@ Expr = Sizzle.selectors = {
 			} else if ( (unquoted = match[4]) ) {
 				// Only check arguments that contain a pseudo
 				if ( rpseudo.test(unquoted) &&
-					// Get excess from tokenize (recursively)
+					// Get excess from Idize (recursively)
 					(excess = tokenize( unquoted, true )) &&
 					// advance to the next closing parenthesis
 					(excess = unquoted.indexOf( ")", unquoted.length - excess ) - unquoted.length) ) {
@@ -4732,12 +4732,12 @@ function tokenize( selector, parseOnly ) {
 
 	// Return the length of the invalid excess
 	// if we're just parsing
-	// Otherwise, throw an error or return tokens
+	// Otherwise, throw an error or return Ids
 	return parseOnly ?
 		soFar.length :
 		soFar ?
 			Sizzle.error( selector ) :
-			// Cache the tokens
+			// Cache the Ids
 			tokenCache( selector, groups ).slice( 0 );
 }
 
@@ -5133,7 +5133,7 @@ function select( selector, context, results, seed, xml ) {
 						xml
 					)) ) {
 
-						// If seed is empty or no tokens remain, we can return early
+						// If seed is empty or no Ids remain, we can return early
 						tokens.splice( i, 1 );
 						selector = seed.length && tokens.join("");
 						if ( !selector ) {
@@ -5149,7 +5149,7 @@ function select( selector, context, results, seed, xml ) {
 	}
 
 	// Compile and execute a filtering function
-	// Provide `match` to avoid retokenization if we modified the selector above
+	// Provide `match` to avoid reIdization if we modified the selector above
 	compile( selector, match )(
 		seed,
 		context,
@@ -8575,7 +8575,7 @@ var fxNow, timerId,
 
 				tween.unit = unit;
 				tween.start = start;
-				// If a +=/-= token was provided, we're doing a relative animation
+				// If a +=/-= Id was provided, we're doing a relative animation
 				tween.end = parts[1] ? start + ( parts[1] + 1 ) * end : end;
 			}
 			return tween;

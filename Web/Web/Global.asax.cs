@@ -16,9 +16,11 @@ using Web.Authentication;
 using Web.Controllers;
 using Web.Database;
 using Web.Denormalizers;
+using Web.Email;
 using Web.Events;
 using Web.Events.Entity;
 using Web.Filters;
+using Web.FriendInviter;
 using Web.Models;
 using Web.Repositories;
 using Web.Validation;
@@ -109,7 +111,10 @@ namespace Web {
             builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly()).Where(t => t.Name.EndsWith("Denormalizer")).AsImplementedInterfaces();
 
             builder.RegisterType(typeof(Authenticator)).As<IAuthenticator>();
-            
+
+            builder.RegisterType(typeof (FriendInviter.FriendInviter)).As<IFriendInviter>();
+            builder.RegisterType(typeof (FriendInvitationRepository)).As<IFriendInvitationRepository>();
+            builder.RegisterType(typeof (EmailSender)).As(typeof (IEmailSender));
 
             builder.RegisterType<GlobalMessageFilter>().As<IActionFilter>();
 
