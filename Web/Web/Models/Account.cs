@@ -14,10 +14,13 @@ namespace Web.Models {
         [Password]
         public string ConfirmPassword { get; set; }
 
+        [DoNotDisplay]
         public bool AccountConfirmed { get; set; }
 
+        [DoNotDisplay]
         public IEnumerable<Guid> Friends { get; set; }
 
+        [DoNotDisplay]
         public string FullName {
             get {
                 return !string.IsNullOrEmpty(FirstName) && !string.IsNullOrEmpty(LastName)

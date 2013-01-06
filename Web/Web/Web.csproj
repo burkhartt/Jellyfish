@@ -263,6 +263,7 @@
     <Content Include="Views\MyAccount\Verified.cshtml" />
     <Content Include="Views\UnconfirmedAccounts\Index.cshtml" />
     <Content Include="Views\Login\AllAccounts.cshtml" />
+    <Content Include="Views\MyAccount\Update.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

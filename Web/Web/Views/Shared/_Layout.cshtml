@@ -24,7 +24,7 @@
                     @if (Context.User.Identity.IsAuthenticated) {
                         <p>Welcome @User.Account.FullName</p>
                     }                    
-
+                    
                     <ul>
                         <li>Accounts @Html.ActionLink("New", "Create", "Accounts")</li>
                         @if (!Context.User.Identity.IsAuthenticated)
@@ -35,7 +35,7 @@
                         }
                         else
                         {
-                            <li>My Account @Html.ActionLink("Friends", "Listing", "MyFriends")</li>                            
+                            <li>My Account <a href ="@Url.Action("Update", "Accounts", new { id = User.Account.Id })">Update</a> | @Html.ActionLink("Friends", "Listing", "MyFriends")</li>                            
                             <li>Goals @Html.ActionLink("New", "Create", "Goals") | @Html.ActionLink("View", "Listing", "Goals")</li>
                             <li>Friends @Html.ActionLink("Invite", "Invite", "Friends")</li>
                             <li>@Html.ActionLink("Sign Out", "Index", "Logout")</li>
