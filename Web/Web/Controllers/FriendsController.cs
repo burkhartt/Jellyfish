@@ -1,13 +1,14 @@
-﻿using System.Web.Mvc;
-using Web.FriendInviter;
+﻿using System;
+using System.Web.Mvc;
+using Web.Events;
 using Web.Models;
 
 namespace Web.Controllers {
     public class FriendsController : Controller {
-        private readonly IFriendInviter friendInviter;
+        private readonly IEventBus eventBus;
 
-        public FriendsController(IFriendInviter friendInviter) {
-            this.friendInviter = friendInviter;
+        public FriendsController(IEventBus eventBus) {
+            this.eventBus = eventBus;
         }
 
         public ActionResult Invite() {
@@ -20,7 +21,7 @@ namespace Web.Controllers {
                 return View(inviteFriendForm);
             }
 
-            friendInviter.Invite(User.Identity, inviteFriendForm.EmailAddress);
+            eventBus.Send(new InviteFriendEvent { Id = Guid.Parse(User.Identity.Name), FriendId = Guid.NewGuid(), EmailAddress = inviteFriendForm.EmailAddress });
 
             return RedirectToAction("Invite", new {SuccessMessage = "Friend invited"});
         }

@@ -153,6 +153,9 @@
     <Compile Include="Controllers\LogoutController.cs" />
     <Compile Include="CustomModelMetadataProvider.cs" />
     <Compile Include="Database\IDatabase.cs" />
+    <Compile Include="Denormalizers\AccountDenormalizer.cs" />
+    <Compile Include="Denormalizers\AddFriendDenormalizer.cs" />
+    <Compile Include="Denormalizers\FriendInvitationDenormalizer.cs" />
     <Compile Include="Denormalizers\GenericDenormalizer.cs" />
     <Compile Include="Denormalizers\GoalDenormalizer.cs" />
     <Compile Include="Email\IEmailSender.cs" />
@@ -162,11 +165,9 @@
     <Compile Include="Events\IEvent.cs" />
     <Compile Include="Events\IEventBus.cs" />
     <Compile Include="Events\IHandleEvents.cs" />
+    <Compile Include="Events\InviteFriendEvent.cs" />
     <Compile Include="Filters\AuthorizedAttribute.cs" />
     <Compile Include="Filters\GlobalMessageFilter.cs" />
-    <Compile Include="FriendInviter\FriendInvitation.cs" />
-    <Compile Include="FriendInviter\IFriendInvitationRepository.cs" />
-    <Compile Include="FriendInviter\IFriendInviter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -180,6 +181,8 @@
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\SuccessMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\AccountRepository.cs" />
+    <Compile Include="Repositories\IAccountRepository.cs" />
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Validation\ServiceLocatorValidatorFactory.cs" />
   </ItemGroup>

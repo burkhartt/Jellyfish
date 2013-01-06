@@ -1,3 +1,7 @@
-﻿namespace Web.Events {
-    public interface IEvent {}
+﻿using System;
+
+namespace Web.Events {
+    public interface IEvent {
+        
+    }
 }

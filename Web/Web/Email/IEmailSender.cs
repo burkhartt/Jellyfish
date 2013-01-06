@@ -1,13 +1,11 @@
-﻿using Web.FriendInviter;
+﻿using System;
 
 namespace Web.Email {
     public interface IEmailSender {
-        void SendInvitation(FriendInvitation friendInvitation);
+        void SendInvitation(Guid accountId, string emailAddress);
     }
 
     public class EmailSender : IEmailSender {
-        public void SendInvitation(FriendInvitation friendInvitation) {
-            
-        }
+        public void SendInvitation(Guid accountId, string emailAddress) {}
     }
 }
