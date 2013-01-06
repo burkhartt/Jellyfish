@@ -15,6 +15,7 @@ using FluentValidation.Mvc;
 using Web.Authentication;
 using Web.Controllers;
 using Web.Database;
+using Web.Denormalizers;
 using Web.Events;
 using Web.Events.Entity;
 using Web.Filters;
@@ -104,6 +105,8 @@ namespace Web {
             builder.RegisterGeneric(typeof (Repository<>)).As(typeof (IRepository<>)).SingleInstance();
             builder.RegisterType(typeof (EventBus)).As(typeof (IEventBus)).SingleInstance();
             builder.RegisterType(typeof (Database.Database)).As(typeof (IDatabase)).SingleInstance();
+
+            builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly()).Where(t => t.Name.EndsWith("Denormalizer")).AsImplementedInterfaces();
 
             builder.RegisterType(typeof(Authenticator)).As<IAuthenticator>();
             
