@@ -20,9 +20,9 @@ namespace Web.Controllers {
             if (!ModelState.IsValid) {
                 return View(loginModel);
             }
-
+            
             if (!authenticator.Authenticate(loginModel.EmailAddress, loginModel.Password)) {
-                return RedirectToAction("Index", new {ErrorMessage = "Unable to authenticate"});
+                return RedirectToAction("Index", new { ErrorMessage = "Unable to authenticate", ReturnUrl = Request.QueryString["ReturnUrl"] });
             }
 
             return Redirect(FormsAuthentication.GetRedirectUrl(loginModel.EmailAddress, false));
