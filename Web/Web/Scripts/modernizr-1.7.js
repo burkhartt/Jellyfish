@@ -1,4 +1,4 @@
-/*!
+﻿/*!
 * Note: While Microsoft is not the author of this file, Microsoft is
 * offering you a license subject to the terms of the Microsoft Software
 * License Terms for Microsoft ASP.NET Model View Controller 3.
@@ -376,13 +376,13 @@ window.Modernizr = (function(window,document,undefined){
     };
     
     // Vendors have inconsistent prefixing with the experimental Indexed DB:
-    // - Firefox is shipping indexedDB in FF4 as moz_indexedDB
+    // - Firefox is shipping ListingedDB in FF4 as moz_ListingedDB
     // - Webkit's implementation is accessible through webkitIndexedDB
     // We test both styles.
     tests['indexedDB'] = function(){
       for (var i = -1, len = domPrefixes.length; ++i < len; ){ 
         var prefix = domPrefixes[i].toLowerCase();
-        if (window[prefix + '_indexedDB'] || window[prefix + 'IndexedDB']){
+        if (window[prefix + '_ListingedDB'] || window[prefix + 'IndexedDB']){
           return true;
         } 
       }
@@ -610,7 +610,7 @@ window.Modernizr = (function(window,document,undefined){
     // e.g.  Modernizr.video     // true
     //       Modernizr.video.ogg // 'probably'
     //
-    // Codec values from : http://github.com/NielsLeenheer/html5test/blob/9106a8/index.html#L845
+    // Codec values from : http://github.com/NielsLeenheer/html5test/blob/9106a8/Listing.html#L845
     //                     thx to NielsLeenheer and zcorpan
     
     // Note: in FF 3.5.1 and 3.5.0, "no" was a return value instead of empty string.

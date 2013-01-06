@@ -1116,7 +1116,7 @@ Array.forEach = function Array$forEach(array, method, instance) {
     }
 }
 Array.indexOf = function Array$indexOf(array, item, start) {
-    /// <summary locid="M:J#Array.indexOf" />
+    /// <summary locid="M:J#Array.ListingOf" />
     /// <param name="array" type="Array" elementMayBeNull="true"></param>
     /// <param name="item" optional="true" mayBeNull="true"></param>
     /// <param name="start" optional="true" mayBeNull="true"></param>
@@ -1132,11 +1132,11 @@ Array.indexOf = function Array$indexOf(array, item, start) {
 Array.insert = function Array$insert(array, index, item) {
     /// <summary locid="M:J#Array.insert" />
     /// <param name="array" type="Array" elementMayBeNull="true"></param>
-    /// <param name="index" mayBeNull="true"></param>
+    /// <param name="Listing" mayBeNull="true"></param>
     /// <param name="item" mayBeNull="true"></param>
     var e = Function._validateParams(arguments, [
         {name: "array", type: Array, elementMayBeNull: true},
-        {name: "index", mayBeNull: true},
+        {name: "Listing", mayBeNull: true},
         {name: "item", mayBeNull: true}
     ]);
     if (e) throw e;
@@ -1174,10 +1174,10 @@ Array.remove = function Array$remove(array, item) {
 Array.removeAt = function Array$removeAt(array, index) {
     /// <summary locid="M:J#Array.removeAt" />
     /// <param name="array" type="Array" elementMayBeNull="true"></param>
-    /// <param name="index" mayBeNull="true"></param>
+    /// <param name="Listing" mayBeNull="true"></param>
     var e = Function._validateParams(arguments, [
         {name: "array", type: Array, elementMayBeNull: true},
-        {name: "index", mayBeNull: true}
+        {name: "Listing", mayBeNull: true}
     ]);
     if (e) throw e;
     array.splice(index, 1);
@@ -2057,11 +2057,11 @@ Sys.Observer.clear = function Sys$Observer$clear(target) {
 Sys.Observer.insert = function Sys$Observer$insert(target, index, item) {
     /// <summary locid="M:J#Sys.Observer.insert" />
     /// <param name="target" type="Array" elementMayBeNull="true"></param>
-    /// <param name="index" type="Number" integer="true"></param>
+    /// <param name="Listing" type="Number" integer="true"></param>
     /// <param name="item" mayBeNull="true"></param>
     var e = Function._validateParams(arguments, [
         {name: "target", type: Array, elementMayBeNull: true},
-        {name: "index", type: Number, integer: true},
+        {name: "Listing", type: Number, integer: true},
         {name: "item", mayBeNull: true}
     ]);
     if (e) throw e;
@@ -2089,10 +2089,10 @@ Sys.Observer.remove = function Sys$Observer$remove(target, item) {
 Sys.Observer.removeAt = function Sys$Observer$removeAt(target, index) {
     /// <summary locid="M:J#Sys.Observer.removeAt" />
     /// <param name="target" type="Array" elementMayBeNull="true"></param>
-    /// <param name="index" type="Number" integer="true"></param>
+    /// <param name="Listing" type="Number" integer="true"></param>
     var e = Function._validateParams(arguments, [
         {name: "target", type: Array, elementMayBeNull: true},
-        {name: "index", type: Number, integer: true}
+        {name: "Listing", type: Number, integer: true}
     ]);
     if (e) throw e;
     if ((index > -1) && (index < target.length)) {
@@ -2195,7 +2195,7 @@ Sys.Observer._arrayMethods = {
     },
     insert: function(index, item) { 
         /// <summary locid="M:J#Sys.Observer.raiseCollectionChanged" />
-        /// <param name="index" type="Number" integer="true"></param>
+        /// <param name="Listing" type="Number" integer="true"></param>
         /// <param name="item" mayBeNull="true"></param>
         Sys.Observer.insert(this, index, item);
     },
@@ -2207,7 +2207,7 @@ Sys.Observer._arrayMethods = {
     },
     removeAt: function(index) {
         /// <summary locid="M:J#Sys.Observer.raiseCollectionChanged" />
-        /// <param name="index" type="Number" integer="true"></param>
+        /// <param name="Listing" type="Number" integer="true"></param>
         Sys.Observer.removeAt(this, index);
     },
     raiseCollectionChanged: function(changes) {

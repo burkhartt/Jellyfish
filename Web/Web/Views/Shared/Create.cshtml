@@ -5,6 +5,6 @@
     Layout = "../Shared/_Layout.cshtml";
 }
 
-<h2>title</h2>
+<h2>New @Model.GetType().Name</h2>
 
 @{ Html.RenderPartial("Partials/Form", Model); }

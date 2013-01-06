@@ -15,7 +15,11 @@ namespace Web.Controllers {
             this.repository = repository;
         }
 
-        public ViewResult Index() {
+        public ViewResult Index(Guid id) {
+            return View(repository.FindById(id));
+        }
+
+        public ViewResult Listing() {
             return View(repository.All());
         }
 
@@ -30,7 +34,7 @@ namespace Web.Controllers {
                 return View(model);
             }
             eventBus.Send(new EntityCreatedEvent<T>(model));
-            return RedirectToAction("Index", new { SuccessMessage = typeof(T).Name + " created" });
+            return RedirectToAction("Listing", new { SuccessMessage = typeof(T).Name + " created" });
         }
 
         public ViewResult Update(Guid id) {            
@@ -43,12 +47,12 @@ namespace Web.Controllers {
                 return View(model);
             }
             eventBus.Send(new EntityUpdatedEvent<T>(model));
-            return RedirectToAction("Index", new { SuccessMessage = typeof(T).Name + " updated" });
+            return RedirectToAction("Listing", new { SuccessMessage = typeof(T).Name + " updated" });
         }
 
         public ActionResult Delete(Guid id) {
             eventBus.Send(new EntityDeletedEvent<T>(id));
-            return RedirectToAction("Index", "Home", new { SuccessMessage = typeof(T).Name + " updated" });
+            return RedirectToAction("Listing", new { SuccessMessage = typeof(T).Name + " updated" });
         }
     }
 }

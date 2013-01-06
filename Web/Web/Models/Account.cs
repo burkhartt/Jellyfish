@@ -3,6 +3,7 @@ using Web.Attributes;
 
 namespace Web.Models {
     public class Account : IEntity {
+        [Hidden]
         public Guid Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }

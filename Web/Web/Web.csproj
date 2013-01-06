@@ -230,6 +230,7 @@
     <Content Include="Views\Shared\Create.cshtml" />
     <Content Include="Views\Shared\Partials\Form.cshtml" />
     <Content Include="Views\Shared\Update.cshtml" />
+    <Content Include="Views\Shared\Listing.cshtml" />
     <Content Include="Views\Shared\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>

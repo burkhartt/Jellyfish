@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>@ViewBag.Title</title>
+        <title>Goals - @ViewBag.Title</title>
         <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />        
         <link href='http://fonts.googleapis.com/css?family=Anaheim' rel='stylesheet' type='text/css'>
         <script type="text/javascript" src="../../Content/jquery-1.7.2.min.js"></script>
@@ -22,10 +22,9 @@
                 <div class="top-menu">                                            
                     <span>Goal Setter</span>
                     <ul>
-                        <li>@Html.ActionLink("Create Account", "Create", "Accounts")</li>
-                        <li>@Html.ActionLink("Sign In", "Index", "Login")</li>
-                        <li>@Html.ActionLink("New Goal", "Create", "Goals")</li>
-                        <li>@Html.ActionLink("View Goals", "Index", "Goals")</li>
+                        <li>Accounts @Html.ActionLink("New", "Create", "Accounts") | @Html.ActionLink("View", "Listing", "Accounts")</li>
+                        <li>Goals @Html.ActionLink("New", "Create", "Goals") | @Html.ActionLink("View", "Listing", "Goals")</li>
+                        <li>@Html.ActionLink("Sign In", "Index", "Login")</li>                        
                     </ul>
                 </div>
                 

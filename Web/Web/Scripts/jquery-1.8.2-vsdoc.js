@@ -259,7 +259,7 @@
                             var index;
                             while ((index = jQuery.inArray(arg, list, index)) > -1) {
                                 list.splice(index, 1);
-                                // Handle firing indexes
+                                // Handle firing Listinges
                                 if (firing) {
                                     if (index <= firingLength) {
                                         firingLength--;
@@ -1255,7 +1255,7 @@
                         // handleScript alters the DOM, so use jQuery.merge to ensure snapshot iteration
                         jsTags = jQuery.grep(jQuery.merge([], elem.getElementsByTagName("script")), handleScript);
 
-                        // Splice the scripts into ret after their former ancestor and advance our index beyond them
+                        // Splice the scripts into ret after their former ancestor and advance our Listing beyond them
                         ret.splice.apply(ret, [i + 1, 0].concat(jsTags));
                         i += jsTags.length;
                     }
@@ -1625,7 +1625,7 @@
     };
     jQuery.each = function (obj, callback, args) {
         /// <summary>
-        ///     A generic iterator function, which can be used to seamlessly iterate over both objects and arrays. Arrays and array-like objects with a length property (such as a function's arguments object) are iterated by numeric index, from 0 to length-1. Other objects are iterated via their named properties.
+        ///     A generic iterator function, which can be used to seamlessly iterate over both objects and arrays. Arrays and array-like objects with a length property (such as a function's arguments object) are iterated by numeric Listing, from 0 to length-1. Other objects are iterated via their named properties.
         /// </summary>
         /// <param name="obj" type="Object">
         ///     The object or array to iterate over.
@@ -1963,7 +1963,7 @@
         ///     The array to search through.
         /// </param>
         /// <param name="callback" type="Function">
-        ///     The function to process each item against.  The first argument to the function is the item, and the second argument is the index.  The function should return a Boolean value.  this will be the global window object.
+        ///     The function to process each item against.  The first argument to the function is the item, and the second argument is the Listing.  The function should return a Boolean value.  this will be the global window object.
         /// </param>
         /// <param name="inv" type="Boolean">
         ///     If "invert" is false, or not provided, then the function returns an array consisting of all elements for which "callback" returns true.  If "invert" is true, then the function returns an array consisting of all elements for which "callback" returns false.
@@ -2017,7 +2017,7 @@
     };
     jQuery.inArray = function (elem, arr, i) {
         /// <summary>
-        ///     Search for a specified value within an array and return its index (or -1 if not found).
+        ///     Search for a specified value within an array and return its Listing (or -1 if not found).
         /// </summary>
         /// <param name="elem" type="Object">
         ///     The value to search for.
@@ -2026,7 +2026,7 @@
         ///     An array through which to search.
         /// </param>
         /// <param name="i" type="Number">
-        ///     The index of the array at which to begin the search. The default is 0, which will search the whole array.
+        ///     The Listing of the array at which to begin the search. The default is 0, which will search the whole array.
         /// </param>
         /// <returns type="Number" />
 
@@ -2179,14 +2179,14 @@
     jQuery.map = function (elems, callback, arg) {
         /// <summary>
         ///     Translate all items in an array or object to new array of items.
-        ///     &#10;1 - jQuery.map(array, callback(elementOfArray, indexInArray)) 
-        ///     &#10;2 - jQuery.map(arrayOrObject, callback( value, indexOrKey ))
+        ///     &#10;1 - jQuery.map(array, callback(elementOfArray, ListingInArray)) 
+        ///     &#10;2 - jQuery.map(arrayOrObject, callback( value, ListingOrKey ))
         /// </summary>
         /// <param name="elems" type="Array">
         ///     The Array to translate.
         /// </param>
         /// <param name="callback" type="Function">
-        ///     The function to process each item against.  The first argument to the function is the array item, the second argument is the index in array The function can return any value. Within the function, this refers to the global (window) object.
+        ///     The function to process each item against.  The first argument to the function is the array item, the second argument is the Listing in array The function can return any value. Within the function, this refers to the global (window) object.
         /// </param>
         /// <returns type="Array" />
 
@@ -3192,7 +3192,7 @@
         /// <summary>
         ///     Adds the specified class(es) to each of the set of matched elements.
         ///     &#10;1 - addClass(className) 
-        ///     &#10;2 - addClass(function(index, currentClass))
+        ///     &#10;2 - addClass(function(Listing, currentClass))
         /// </summary>
         /// <param name="value" type="String">
         ///     One or more class names to be added to the class attribute of each matched element.
@@ -3238,7 +3238,7 @@
         /// <summary>
         ///     Insert content, specified by the parameter, after each element in the set of matched elements.
         ///     &#10;1 - after(content, content) 
-        ///     &#10;2 - after(function(index))
+        ///     &#10;2 - after(function(Listing))
         /// </summary>
         /// <param name="" type="jQuery">
         ///     HTML string, DOM element, or jQuery object to insert after each element in the set of matched elements.
@@ -3375,7 +3375,7 @@
         /// <summary>
         ///     Insert content, specified by the parameter, to the end of each element in the set of matched elements.
         ///     &#10;1 - append(content, content) 
-        ///     &#10;2 - append(function(index, html))
+        ///     &#10;2 - append(function(Listing, html))
         /// </summary>
         /// <param name="" type="jQuery">
         ///     DOM element, HTML string, or jQuery object to insert at the end of each element in the set of matched elements.
@@ -3427,7 +3427,7 @@
         ///     &#10;2: Set one or more attributes for the set of matched elements.
         ///     &#10;    2.1 - attr(attributeName, value) 
         ///     &#10;    2.2 - attr(map) 
-        ///     &#10;    2.3 - attr(attributeName, function(index, attr))
+        ///     &#10;    2.3 - attr(attributeName, function(Listing, attr))
         /// </summary>
         /// <param name="name" type="String">
         ///     The name of the attribute to set.
@@ -3703,7 +3703,7 @@
         ///     &#10;    1.1 - css(propertyName)
         ///     &#10;2: Set one or more CSS properties for the  set of matched elements.
         ///     &#10;    2.1 - css(propertyName, value) 
-        ///     &#10;    2.2 - css(propertyName, function(index, value)) 
+        ///     &#10;    2.2 - css(propertyName, function(Listing, value)) 
         ///     &#10;    2.3 - css(map)
         /// </summary>
         /// <param name="name" type="String">
@@ -4043,9 +4043,9 @@
     };
     jQuery.prototype.eq = function (i) {
         /// <summary>
-        ///     Reduce the set of matched elements to the one at the specified index.
-        ///     &#10;1 - eq(index) 
-        ///     &#10;2 - eq(-index)
+        ///     Reduce the set of matched elements to the one at the specified Listing.
+        ///     &#10;1 - eq(Listing) 
+        ///     &#10;2 - eq(-Listing)
         /// </summary>
         /// <param name="i" type="Number">
         ///     An integer indicating the 0-based position of the element.
@@ -4230,7 +4230,7 @@
         /// <summary>
         ///     Reduce the set of matched elements to those that match the selector or pass the function's test.
         ///     &#10;1 - filter(selector) 
-        ///     &#10;2 - filter(function(index)) 
+        ///     &#10;2 - filter(function(Listing)) 
         ///     &#10;3 - filter(element) 
         ///     &#10;4 - filter(jQuery object)
         /// </summary>
@@ -4431,7 +4431,7 @@
         ///     &#10;    1.1 - height()
         ///     &#10;2: Set the CSS height of every matched element.
         ///     &#10;    2.1 - height(value) 
-        ///     &#10;    2.2 - height(function(index, height))
+        ///     &#10;    2.2 - height(function(Listing, height))
         /// </summary>
         /// <param name="margin" type="Number">
         ///     An integer representing the number of pixels, or an integer with an optional unit of measure appended (as a string).
@@ -4519,7 +4519,7 @@
         ///     &#10;    1.1 - html()
         ///     &#10;2: Set the HTML contents of each element in the set of matched elements.
         ///     &#10;    2.1 - html(htmlString) 
-        ///     &#10;    2.2 - html(function(index, oldhtml))
+        ///     &#10;    2.2 - html(function(Listing, oldhtml))
         /// </summary>
         /// <param name="value" type="String">
         ///     A string of HTML to set as the content of each matched element.
@@ -4569,9 +4569,9 @@
     jQuery.prototype.index = function (elem) {
         /// <summary>
         ///     Search for a given element from among the matched elements.
-        ///     &#10;1 - index() 
-        ///     &#10;2 - index(selector) 
-        ///     &#10;3 - index(element)
+        ///     &#10;1 - Listing() 
+        ///     &#10;2 - Listing(selector) 
+        ///     &#10;3 - Listing(element)
         /// </summary>
         /// <param name="elem" type="String">
         ///     A selector representing a jQuery collection in which to look for an element.
@@ -4579,12 +4579,12 @@
         /// <returns type="Number" />
 
 
-        // No argument, return index in parent
+        // No argument, return Listing in parent
         if (!elem) {
             return (this[0] && this[0].parentNode) ? this.prevAll().length : -1;
         }
 
-        // index in selector
+        // Listing in selector
         if (typeof elem === "string") {
             return jQuery.inArray(this[0], jQuery(elem));
         }
@@ -4824,7 +4824,7 @@
         /// <summary>
         ///     Check the current matched set of elements against a selector, element, or jQuery object and return true if at least one of these elements matches the given arguments.
         ///     &#10;1 - is(selector) 
-        ///     &#10;2 - is(function(index)) 
+        ///     &#10;2 - is(function(Listing)) 
         ///     &#10;3 - is(jQuery object) 
         ///     &#10;4 - is(element)
         /// </summary>
@@ -5303,7 +5303,7 @@
         ///     Remove elements from the set of matched elements.
         ///     &#10;1 - not(selector) 
         ///     &#10;2 - not(elements) 
-        ///     &#10;3 - not(function(index)) 
+        ///     &#10;3 - not(function(Listing)) 
         ///     &#10;4 - not(jQuery object)
         /// </summary>
         /// <param name="selector" type="String">
@@ -5366,7 +5366,7 @@
         ///     &#10;    1.1 - offset()
         ///     &#10;2: Set the current coordinates of every element in the set of matched elements, relative to the document.
         ///     &#10;    2.1 - offset(coordinates) 
-        ///     &#10;    2.2 - offset(function(index, coords))
+        ///     &#10;    2.2 - offset(function(Listing, coords))
         /// </summary>
         /// <param name="options" type="Object">
         ///     An object containing the properties top and left, which are integers indicating the new top and left coordinates for the elements.
@@ -5736,7 +5736,7 @@
         /// <summary>
         ///     Insert content, specified by the parameter, to the beginning of each element in the set of matched elements.
         ///     &#10;1 - prepend(content, content) 
-        ///     &#10;2 - prepend(function(index, html))
+        ///     &#10;2 - prepend(function(Listing, html))
         /// </summary>
         /// <param name="" type="jQuery">
         ///     DOM element, array of elements, HTML string, or jQuery object to insert at the beginning of each element in the set of matched elements.
@@ -5913,7 +5913,7 @@
         ///     &#10;2: Set one or more properties for the set of matched elements.
         ///     &#10;    2.1 - prop(propertyName, value) 
         ///     &#10;    2.2 - prop(map) 
-        ///     &#10;    2.3 - prop(propertyName, function(index, oldPropertyValue))
+        ///     &#10;    2.3 - prop(propertyName, function(Listing, oldPropertyValue))
         /// </summary>
         /// <param name="name" type="String">
         ///     The name of the property to set.
@@ -6059,7 +6059,7 @@
         /// <summary>
         ///     Remove a single class, multiple classes, or all classes from each element in the set of matched elements.
         ///     &#10;1 - removeClass(className) 
-        ///     &#10;2 - removeClass(function(index, class))
+        ///     &#10;2 - removeClass(function(Listing, class))
         /// </summary>
         /// <param name="value" type="String">
         ///     One or more space-separated classes to be removed from the class attribute of each matched element.
@@ -6598,7 +6598,7 @@
         ///     &#10;    1.1 - text()
         ///     &#10;2: Set the content of each element in the set of matched elements to the specified text.
         ///     &#10;    2.1 - text(textString) 
-        ///     &#10;    2.2 - text(function(index, text))
+        ///     &#10;    2.2 - text(function(Listing, text))
         /// </summary>
         /// <param name="value" type="String">
         ///     A string of text to set as the content of each matched element.
@@ -6651,7 +6651,7 @@
         ///     &#10;1 - toggleClass(className) 
         ///     &#10;2 - toggleClass(className, switch) 
         ///     &#10;3 - toggleClass(switch) 
-        ///     &#10;4 - toggleClass(function(index, class, switch), switch)
+        ///     &#10;4 - toggleClass(function(Listing, class, switch), switch)
         /// </summary>
         /// <param name="value" type="String">
         ///     One or more class names (separated by spaces) to be toggled for each element in the matched set.
@@ -6811,7 +6811,7 @@
         ///     &#10;    1.1 - val()
         ///     &#10;2: Set the value of each element in the set of matched elements.
         ///     &#10;    2.1 - val(value) 
-        ///     &#10;    2.2 - val(function(index, value))
+        ///     &#10;    2.2 - val(function(Listing, value))
         /// </summary>
         /// <param name="value" type="String">
         ///     A string of text or an array of strings corresponding to the value of each matched element to set as selected/checked.
@@ -6882,7 +6882,7 @@
         ///     &#10;    1.1 - width()
         ///     &#10;2: Set the CSS width of each element in the set of matched elements.
         ///     &#10;    2.1 - width(value) 
-        ///     &#10;    2.2 - width(function(index, width))
+        ///     &#10;    2.2 - width(function(Listing, width))
         /// </summary>
         /// <param name="margin" type="Number">
         ///     An integer representing the number of pixels, or an integer along with an optional unit of measure appended (as a string).
@@ -6927,7 +6927,7 @@
         /// <summary>
         ///     Wrap an HTML structure around each element in the set of matched elements.
         ///     &#10;1 - wrap(wrappingElement) 
-        ///     &#10;2 - wrap(function(index))
+        ///     &#10;2 - wrap(function(Listing))
         /// </summary>
         /// <param name="html" type="jQuery">
         ///     An HTML snippet, selector expression, jQuery object, or DOM element specifying the structure to wrap around the matched elements.
@@ -6980,7 +6980,7 @@
         /// <summary>
         ///     Wrap an HTML structure around the content of each element in the set of matched elements.
         ///     &#10;1 - wrapInner(wrappingElement) 
-        ///     &#10;2 - wrapInner(function(index))
+        ///     &#10;2 - wrapInner(function(Listing))
         /// </summary>
         /// <param name="html" type="String">
         ///     An HTML snippet, selector expression, jQuery object, or DOM element specifying the structure to wrap around the content of the matched elements.

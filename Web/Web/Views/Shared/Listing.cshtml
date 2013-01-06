@@ -1,0 +1,42 @@
+﻿@using System.Reflection
+@model IEnumerable<Web.Models.IEntity>
+
+@{
+    ViewBag.Title = "title";
+    Layout = "../Shared/_Layout.cshtml";
+}
+
+<h2>@(Model.First().GetType().Name)s</h2>
+
+<div id="hacker-list">
+    <ul class="list"></ul>
+</div>
+
+<script type="text/javascript">
+    var options = {
+        item: '<li class="listing-item"><div class="url"></div><h3 class="title"></h3><p class="description"></p></li>'
+    };
+
+    var values = [
+        @foreach (var item in Model) {
+            @Html.Raw("{")
+            foreach (var property in item.GetType().GetProperties()) {
+                if (property.Name == "Id") {
+                    @Html.Raw("url: '" + Url.Action("Index", Model.First().GetType().Name + "s", new { id = item.Id }) + "',")
+                } else {
+                    @Html.Raw(@property.Name.ToLower() + ":" + "'" + @property.GetValue(item).ToString().Replace("'", "\\'") + "',")
+                }
+            }
+            @Html.Raw("},")
+        }
+    ];
+
+    var hackerList = new List('hacker-list', options, values);
+
+    $(function() {
+        $(".listing-item").click(function() {
+            window.location.href = $(this).find(".url").html();
+        });
+    });
+
+</script>
