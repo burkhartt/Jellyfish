@@ -6,7 +6,7 @@
         <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />        
         <link href='http://fonts.googleapis.com/css?family=Anaheim' rel='stylesheet' type='text/css'>
         <script type="text/javascript" src="../../Content/jquery-1.7.2.min.js"></script>
-        <script type="text/javascript" src="../../Content/list.min.js"></script>
+        <script type="text/javascript" src="../../Content/list.min.js"></script>        
 
         <script id="scriptInit" type="text/javascript">
             $(document).ready(function () {
@@ -17,6 +17,8 @@
     </head>
 
     <body>
+        @Html.Partial("Partials/FacebookSDK")
+
         <div class="top-container">
             <div class="container">            
                 <div class="top-menu">                                            
@@ -29,7 +31,7 @@
                         <li>Accounts @Html.ActionLink("New", "Create", "Accounts")</li>
                         @if (!Context.User.Identity.IsAuthenticated)
                         {
-                            <li>@Html.ActionLink("Sign In", "Index", "Login")</li>
+                            <li>Sign In @Html.ActionLink("Normal", "Index", "Login") | <a href="javascript:login()">Facebook</a></li>
                             <li>@Html.ActionLink("Unconfirmed Accounts", "Index", "UnconfirmedAccounts")</li>
                             <li>@Html.ActionLink("Login As", "AllAccounts", "Login")</li>
                         }

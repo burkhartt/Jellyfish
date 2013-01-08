@@ -264,6 +264,7 @@
     <Content Include="Views\UnconfirmedAccounts\Index.cshtml" />
     <Content Include="Views\Login\AllAccounts.cshtml" />
     <Content Include="Views\MyAccount\Update.cshtml" />
+    <Content Include="Views\Shared\Partials\FacebookSDK.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,77 @@
+﻿
+<div id="fb-root"></div>
+<script>
+    // Additional JS functions here
+    
+        window.fbAsyncInit = function () {            
+            FB.init({
+                appId: '333495033421063', // App ID
+                channelUrl: '', // Channel File
+                status: true, // check login status
+                cookie: true, // enable cookies to allow the server to access the session
+                xfbml: true  // parse XFBML
+            });
+
+            FB.getLoginStatus(function(response) {
+                if (response.status === 'connected') {
+                    GetUser();
+                } else if (response.status === 'not_authorized') {
+                    // not_authorized
+                    
+                } else {
+                    // not_logged_in
+                    
+                }
+            });
+        };
+
+    // Load the SDK Asynchronously
+    (function (d) {
+        var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+        if (d.getElementById(id)) { return; }
+        js = d.createElement('script'); js.id = id; js.async = true;
+        js.src = "//connect.facebook.net/en_US/all.js";
+        ref.parentNode.insertBefore(js, ref);
+    }(document));
+
+    function GetUser() {
+        FB.api('/me/friends?fields=id,name,picture,email&access_token=AAACEdEose0cBAI9JZACRpVB6t5okg2k6xT6S4C8fppu7htCYpun6HiiA7AKrD4IF1h7BKN0eyAiWW3ZCNYWlntORltn2hY6e2lZAgsloAZDZD', function (response) {
+            console.log(response);
+        });
+        
+        FB.api('/me', function (response) {
+            console.log(response);
+        });
+        
+        
+
+            FB.ui({
+                method: 'apprequests',
+                message: 'Become my Buddie',
+                filters: ['app_non_users'],
+                title: 'Become my Buddie'
+            },
+            function (response) {
+                if (response && response.request_ids) {
+                    console.log(request_ids);
+                } else {
+                    //  alert('canceled');
+                    return false;
+                }
+            });
+            return false;
+
+    }
+
+    function login() {
+        FB.login(function (response) {
+            if (response.authResponse) {
+                GetUser();
+            } else {
+                // cancelled
+            }
+        });
+    }
+    
+    
+</script>
