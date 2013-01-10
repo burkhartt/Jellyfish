@@ -175,6 +175,7 @@
     <Compile Include="Events\IHandleEvents.cs" />
     <Compile Include="Events\InviteFriendEvent.cs" />
     <Compile Include="Events\VerifyAccountEvent.cs" />
+    <Compile Include="FacebookAuthentication\FacebookAccountJsonDeserialization.cs" />
     <Compile Include="FacebookAuthentication\FacebookUserData.cs" />
     <Compile Include="FacebookAuthentication\IFacebookAccountDataRepository.cs" />
     <Compile Include="FacebookAuthentication\IFacebookDataRepository.cs" />

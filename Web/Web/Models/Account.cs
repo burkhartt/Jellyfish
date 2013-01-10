@@ -7,6 +7,7 @@ namespace Web.Models {
         Guid Id { get; }
         string FirstName { get; }
         string LastName { get; }
+        string Picture { get; }
     }
 
     public class FacebookAccount : Account {
@@ -23,6 +24,7 @@ namespace Web.Models {
 
         public override bool AccountConfirmed { get { return true; } }
         public override Guid Id { get { return account.Id; } }
+        public override string Picture { get; set; }
     }    
 
     public class Account : IAccount, IEntity {
@@ -59,5 +61,8 @@ namespace Web.Models {
 
         [DoNotDisplay]
         public bool IsAFacebookAccount { get { return FacebookId > 0; } }
+
+        [DoNotDisplay]
+        public virtual string Picture { get; set; }
     }
 }

@@ -26,6 +26,7 @@
                     <span>Goal Setter</span>
                     @if (Context.Account().IsLoggedIn) {
                         <p>Welcome @Context.Account().Data.FirstName</p>
+                        <img src="@Context.Account().Data.Picture" />
                     }                                        
                     <ul>
                         <li>Accounts @Html.ActionLink("New", "Create", "Accounts")</li>
