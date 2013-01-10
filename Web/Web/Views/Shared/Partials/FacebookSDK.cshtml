@@ -14,7 +14,7 @@
 
             FB.getLoginStatus(function(response) {
                 if (response.status === 'connected') {
-                    GetUser();
+                    //GetUser();
                 } else if (response.status === 'not_authorized') {
                     // not_authorized
                     
@@ -40,26 +40,31 @@
         });
         
         FB.api('/me', function (response) {
-            console.log(response);
+            var facebookId = response.id;
+            @*$.ajax({
+                type: "POST",
+                url: "@Url.Action("")",
+                data: { name: "John", location: "Boston" }
+            }).done(function (msg) {
+                alert("Data Saved: " + msg);
+            });*@
         });
         
-        
-
-            FB.ui({
-                method: 'apprequests',
-                message: 'Become my Buddie',
-                filters: ['app_non_users'],
-                title: 'Become my Buddie'
-            },
-            function (response) {
-                if (response && response.request_ids) {
-                    console.log(request_ids);
-                } else {
-                    //  alert('canceled');
-                    return false;
-                }
-            });
-            return false;
+        FB.ui({
+            method: 'apprequests',
+            message: 'Become my Buddie',
+            filters: ['app_non_users'],
+            title: 'Become my Buddie'
+        },
+        function (response) {
+            if (response && response.request_ids) {
+                console.log(request_ids);
+            } else {
+                //  alert('canceled');
+                return false;
+            }
+        });
+        return false;
 
     }
 

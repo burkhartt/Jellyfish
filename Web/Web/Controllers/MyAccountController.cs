@@ -5,7 +5,7 @@ using Web.Repositories;
 
 namespace Web.Controllers {
     [Authorized]
-    public class MyAccountController : BaseController {
+    public class MyAccountController : Controller {
         private readonly IAccountRepository accountRepository;
 
         public MyAccountController(IAccountRepository accountRepository) {

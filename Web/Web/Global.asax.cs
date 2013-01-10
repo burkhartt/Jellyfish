@@ -16,6 +16,7 @@ using Web.Authentication;
 using Web.Database;
 using Web.Email;
 using Web.Events;
+using Web.FacebookAuthentication;
 using Web.Filters;
 using Web.Models;
 using Web.Repositories;
@@ -30,6 +31,12 @@ namespace Web {
 
         public static void RegisterGlobalFilters(GlobalFilterCollection filters) {
             filters.Add(new HandleErrorAttribute());
+        }
+
+        protected void Application_AcquireRequestState(object sender, EventArgs e){
+            var account = DependencyResolver.Current.GetService<IAccount>();
+            var accountSessionRepository = DependencyResolver.Current.GetService<IAccountSessionRepository>();
+            Context.Items["Account"] = new AccountView { Data = account, IsLoggedIn = accountSessionRepository.GetCurrentId() != Guid.Empty };
         }
 
         public static void RegisterRoutes(RouteCollection routes) {
@@ -50,35 +57,6 @@ namespace Web {
             RegisterRoutes(RouteTable.Routes);
         }
 
-        protected void Application_AuthenticateRequest(object sender, EventArgs e) {
-            var cookieName = FormsAuthentication.FormsCookieName;
-            var authCookie = Context.Request.Cookies[cookieName];
-
-            if (null == authCookie) {
-                return;
-            }
-
-            FormsAuthenticationTicket authTicket;
-            try {
-                authTicket = FormsAuthentication.Decrypt(authCookie.Value);
-            }
-            catch (Exception) {
-                return;
-            }
-
-            if (null == authTicket) {
-                return;
-            }
-
-            var serializer = new JavaScriptSerializer();
-            
-            var account = serializer.Deserialize<Account>(authTicket.UserData);
-
-            // Create an Principal object
-            var id = new FormsIdentity(authTicket);
-            Context.User = new Principal(id, account);
-        }
-
         private void RegisterIoC() {
             var builder = new ContainerBuilder();
 
@@ -96,12 +74,16 @@ namespace Web {
             builder.RegisterType(typeof (EventBus)).As(typeof (IEventBus)).SingleInstance();
             builder.RegisterType(typeof (Database.Database)).As(typeof (IDatabase)).SingleInstance();
             builder.RegisterType(typeof (FriendRepository)).As(typeof (IFriendRepository));
+            builder.RegisterType(typeof(FacebookStateRepository)).As(typeof(IFacebookDataRepository));
+            builder.RegisterType(typeof(Authenticator)).As<IAuthenticator>();
+            builder.RegisterType(typeof(EmailSender)).As(typeof(IEmailSender));
+            builder.RegisterType(typeof(AccountRepository)).Named<IAccountRepository>("BaseAccountRepository");
+            builder.Register(c => new FacebookAccountRepository(c.ResolveNamed<IAccountRepository>("BaseAccountRepository"), c.Resolve<IFacebookDataRepository>())).As(typeof(IAccountRepository));
+            builder.RegisterType(typeof (AccountSessionRepository)).As(typeof (IAccountSessionRepository));
 
             builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly()).Where(t => t.Name.EndsWith("Denormalizer")).AsImplementedInterfaces();
-
-            builder.RegisterType(typeof(Authenticator)).As<IAuthenticator>();
-            builder.RegisterType(typeof (EmailSender)).As(typeof (IEmailSender));
-            builder.RegisterType(typeof (AccountRepository)).As(typeof (IAccountRepository));
+            
+            builder.Register(c => c.Resolve<IAccountRepository>().FindById(c.Resolve<IAccountSessionRepository>().GetCurrentId())).As<IAccount>().InstancePerLifetimeScope();
 
             builder.RegisterType<GlobalMessageFilter>().As<IActionFilter>();
 
@@ -121,7 +103,13 @@ namespace Web {
             ModelMetadataProviders.Current = Container.Resolve<DataAnnotationsModelMetadataProvider>();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(Container));
         }
-    }    
+    }
+
+    public static class CustomContext {
+        public static AccountView Account(this HttpContextBase contextBase) {
+            return (AccountView)contextBase.Items["Account"];
+        }
+    }
 
     public static class ActionFilterInjection {
         /// <summary>

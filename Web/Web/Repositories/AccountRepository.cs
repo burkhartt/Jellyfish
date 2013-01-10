@@ -21,5 +21,9 @@ namespace Web.Repositories {
         public IEnumerable<Account> GetAllUnconfirmedAccounts() {
             return database.GetTheDatabase().Account.FindAllByAccountConfirmed(AccountConfirmed: false).ToList<Account>();
         }
+
+        public Account GetByFacebookId(int facebookId) {
+            return database.GetTheDatabase().Account.FindByFacebookId(FacebookId: facebookId);
+        }
     }
 }

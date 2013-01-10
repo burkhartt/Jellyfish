@@ -3,10 +3,35 @@ using System.Collections.Generic;
 using Web.Attributes;
 
 namespace Web.Models {
-    public class Account : IEntity {
+    public interface IAccount {
+        Guid Id { get; }
+        string FirstName { get; }
+        string LastName { get; }
+    }
+
+    public class FacebookAccount : Account {
+        private readonly IAccount account;
+        public FacebookAccount() {}
+
+        public FacebookAccount(IAccount account) {
+            this.account = account;
+        }
+
+        public FacebookAccount(int facebookId) {
+            FacebookId = facebookId;
+        }
+
+        public override bool AccountConfirmed { get { return true; } }
+        public override Guid Id { get { return account.Id; } }
+    }    
+
+    public class Account : IAccount, IEntity {
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string EmailAddress { get; set; }
+        
+        [DoNotDisplay]
+        public int FacebookId { get; set; }
 
         [Password]
         public string Password { get; set; }
@@ -15,7 +40,7 @@ namespace Web.Models {
         public string ConfirmPassword { get; set; }
 
         [DoNotDisplay]
-        public bool AccountConfirmed { get; set; }
+        public virtual bool AccountConfirmed { get; set; }
 
         [DoNotDisplay]
         public IEnumerable<Guid> Friends { get; set; }
@@ -30,6 +55,9 @@ namespace Web.Models {
         }
 
         [Hidden]
-        public Guid Id { get; set; }
+        public virtual Guid Id { get; set; }
+
+        [DoNotDisplay]
+        public bool IsAFacebookAccount { get { return FacebookId > 0; } }
     }
 }

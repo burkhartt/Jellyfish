@@ -62,6 +62,10 @@
     <Reference Include="MongoDB.Driver">
       <HintPath>..\packages\mongocsharpdriver.1.6.1\lib\net35\MongoDB.Driver.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="Simple.Data">
       <HintPath>..\packages\Simple.Data.Core.0.18.3.1\lib\net40\Simple.Data.dll</HintPath>
     </Reference>
@@ -90,9 +94,6 @@
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.4.5.6\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http">
     </Reference>
@@ -145,7 +146,6 @@
     <Compile Include="Authentication\IAuthenticator.cs" />
     <Compile Include="Config\BasePage.cs" />
     <Compile Include="Controllers\AccountsController.cs" />
-    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CrudController.cs" />
     <Compile Include="Controllers\FriendsController.cs" />
     <Compile Include="Controllers\GoalsController.cs" />
@@ -169,11 +169,15 @@
     <Compile Include="Events\Entity\EntityCreatedEvent.cs" />
     <Compile Include="Events\Entity\EntityDeletedEvent.cs" />
     <Compile Include="Events\Entity\EntityUpdatedEvent.cs" />
+    <Compile Include="Events\FacebookLoginEvent.cs" />
     <Compile Include="Events\IEvent.cs" />
     <Compile Include="Events\IEventBus.cs" />
     <Compile Include="Events\IHandleEvents.cs" />
     <Compile Include="Events\InviteFriendEvent.cs" />
     <Compile Include="Events\VerifyAccountEvent.cs" />
+    <Compile Include="FacebookAuthentication\FacebookUserData.cs" />
+    <Compile Include="FacebookAuthentication\IFacebookAccountDataRepository.cs" />
+    <Compile Include="FacebookAuthentication\IFacebookDataRepository.cs" />
     <Compile Include="Filters\AuthorizedAttribute.cs" />
     <Compile Include="Filters\GlobalMessageFilter.cs" />
     <Compile Include="Global.asax.cs">
@@ -183,6 +187,7 @@
     <Compile Include="ModelBinders\DecimalModelBInder.cs" />
     <Compile Include="ModelBinders\ModelBinderHelper.cs" />
     <Compile Include="Models\Account.cs" />
+    <Compile Include="Models\AccountView.cs" />
     <Compile Include="Models\CreateAccountModel.cs" />
     <Compile Include="Models\Friend.cs" />
     <Compile Include="Models\Goal.cs" />
@@ -192,6 +197,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AccountRepository.cs" />
     <Compile Include="Repositories\IAccountRepository.cs" />
+    <Compile Include="Repositories\IAccountSessionRepository.cs" />
     <Compile Include="Repositories\IFriendRepository.cs" />
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Validation\ServiceLocatorValidatorFactory.cs" />

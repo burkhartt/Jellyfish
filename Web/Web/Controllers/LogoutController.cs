@@ -1,10 +1,17 @@
 ﻿using System.Web.Mvc;
 using System.Web.Security;
+using Web.Repositories;
 
 namespace Web.Controllers {
     public class LogoutController : Controller {
+        private readonly IAccountSessionRepository accountSessionRepository;
+
+        public LogoutController(IAccountSessionRepository accountSessionRepository) {
+            this.accountSessionRepository = accountSessionRepository;
+        }
+
         public ActionResult Index() {
-            FormsAuthentication.SignOut();
+            accountSessionRepository.Clear();
             return RedirectToAction("Index", "Home");
         }
     }

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Security.Principal;
-using System.Web;
-using System.Web.Script.Serialization;
-using System.Web.Security;
-using Web.Events;
-using Web.Models;
+﻿using Web.Events;
 using Web.Repositories;
 
 namespace Web.Authentication {
@@ -32,16 +26,5 @@ namespace Web.Authentication {
 
             return true;
         }
-    }        
-
-    public class Principal : GenericPrincipal {
-        public Principal(IIdentity identity, Account account) : base(identity, new string[]{}) {
-            Account = account;
-        }
-
-        public string Name { get; private set; }
-        public string AuthenticationType { get; private set; }
-        public bool IsAuthenticated { get; private set; }
-        public Account Account { get; private set; }
-    }
+    }            
 }

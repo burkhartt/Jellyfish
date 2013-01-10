@@ -1,4 +1,5 @@
 ﻿@using System.Web.Mvc.Html
+@using Web
 <!DOCTYPE html>
 <html>
     <head>
@@ -23,21 +24,20 @@
             <div class="container">            
                 <div class="top-menu">                                            
                     <span>Goal Setter</span>
-                    @if (Context.User.Identity.IsAuthenticated) {
-                        <p>Welcome @User.Account.FullName</p>
-                    }                    
-                    
+                    @if (Context.Account().IsLoggedIn) {
+                        <p>Welcome @Context.Account().Data.FirstName</p>
+                    }                                        
                     <ul>
                         <li>Accounts @Html.ActionLink("New", "Create", "Accounts")</li>
-                        @if (!Context.User.Identity.IsAuthenticated)
+                        @if (!Context.Account().IsLoggedIn)
                         {
-                            <li>Sign In @Html.ActionLink("Normal", "Index", "Login") | <a href="javascript:login()">Facebook</a></li>
+                            <li>Sign In @Html.ActionLink("Normal", "Index", "Login") | @Html.ActionLink("Facebook", "FacebookLogin", "Login")</li>
                             <li>@Html.ActionLink("Unconfirmed Accounts", "Index", "UnconfirmedAccounts")</li>
                             <li>@Html.ActionLink("Login As", "AllAccounts", "Login")</li>
                         }
                         else
                         {
-                            <li>My Account <a href ="@Url.Action("Update", "Accounts", new { id = User.Account.Id })">Update</a> | @Html.ActionLink("Friends", "Listing", "MyFriends")</li>                            
+                            <li>My Account <a href ="@Url.Action("Update", "Accounts", new { id = Context.Account().Data.Id })">Update</a> | @Html.ActionLink("Friends", "Listing", "MyFriends")</li>                            
                             <li>Goals @Html.ActionLink("New", "Create", "Goals") | @Html.ActionLink("View", "Listing", "Goals")</li>
                             <li>Friends @Html.ActionLink("Invite", "Invite", "Friends")</li>
                             <li>@Html.ActionLink("Sign Out", "Index", "Logout")</li>

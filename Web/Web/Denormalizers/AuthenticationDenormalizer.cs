@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Web;
-using System.Web.Script.Serialization;
 using System.Web.Security;
 using Web.Events;
 using Web.Events.Entity;
@@ -9,11 +8,14 @@ using Web.Repositories;
 
 namespace Web.Denormalizers {
     public class AuthenticationDenormalizer : IHandleEvents<AccountSuccessfullyAuthenticatedEvent>,
-                                              IHandleEvents<EntityUpdatedEvent<Account>> {
+                                              IHandleEvents<EntityUpdatedEvent<Account>>,
+                                              IHandleEvents<FacebookLoginEvent> {
         private readonly IAccountRepository accountRepository;
+        private readonly IAccountSessionRepository accountSessionRepository;
 
-        public AuthenticationDenormalizer(IAccountRepository accountRepository) {
+        public AuthenticationDenormalizer(IAccountRepository accountRepository, IAccountSessionRepository accountSessionRepository) {
             this.accountRepository = accountRepository;
+            this.accountSessionRepository = accountSessionRepository;
         }
 
         public void Handle(AccountSuccessfullyAuthenticatedEvent @event) {
@@ -24,18 +26,18 @@ namespace Web.Denormalizers {
             UpdateAuthenticationInformation(@event.Entity.Id);
         }
 
+        public void Handle(FacebookLoginEvent @event) {
+            var account = accountRepository.GetByFacebookId(@event.FacebookId);
+            if (account == null) {
+                accountRepository.Create(new FacebookAccount(@event.FacebookId));
+            }
+            
+            account = accountRepository.GetByFacebookId(@event.FacebookId);
+            UpdateAuthenticationInformation(account.Id);
+        }
+
         private void UpdateAuthenticationInformation(Guid id) {
-            var account = accountRepository.FindById(id);
-
-            var serializer = new JavaScriptSerializer();
-            var userData = serializer.Serialize(account);
-            var authTicket = new FormsAuthenticationTicket(1, account.Id.ToString(), DateTime.Now,
-                                                           DateTime.Now.AddMinutes(60),
-                                                           false, userData);
-            var encryptedTicket = FormsAuthentication.Encrypt(authTicket);
-            var authCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
-
-            HttpContext.Current.Response.Cookies.Add(authCookie);
+            accountSessionRepository.SetCurrentId(id);            
         }
     }
 }
