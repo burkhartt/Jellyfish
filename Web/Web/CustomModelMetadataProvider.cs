@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web.Mvc;
+using Attributes;
 using Autofac;
 using Web.Attributes;
 
@@ -25,7 +26,21 @@ namespace Web {
             if (!string.IsNullOrEmpty(modelMetadata.PropertyName)) {
                 modelMetadata.DisplayName = r.Replace(modelMetadata.PropertyName, " ");
             }
-            
+
+            if (!string.IsNullOrEmpty(modelMetadata.DisplayName)) {
+                if (modelMetadata.DisplayName.ToLower().Contains("password")) {
+                    modelMetadata.TemplateHint = "Password";
+                }
+            }
+
+            if (modelMetadata.ContainerType != null) {
+                var notEditableAttributes = modelMetadata.ContainerType.GetProperties().Where(x => x.GetCustomAttributes(typeof (NotEditableAttribute), true).Any());
+                if (notEditableAttributes.Any(x => x.Name == modelMetadata.PropertyName)) {
+                    modelMetadata.ShowForEdit = false;
+                }
+            }
+
+
             attributes.OfType<IMetadataAttribute>().ToList().ForEach(x => {
                 x.Container = componentContext;
                 x.Process(modelMetadata);

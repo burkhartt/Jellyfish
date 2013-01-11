@@ -167,7 +167,6 @@
     </Compile>
     <Compile Include="ModelBinders\DecimalModelBInder.cs" />
     <Compile Include="ModelBinders\ModelBinderHelper.cs" />
-    <Compile Include="Models\AccountModel.cs" />
     <Compile Include="Models\AccountView.cs" />
     <Compile Include="Models\CreateAccountModel.cs" />
     <Compile Include="Models\GoalModel.cs" />
@@ -255,6 +254,10 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Attributes\Attributes.csproj">
+      <Project>{71db18ba-98c0-4b18-bbf5-990b64c56128}</Project>
+      <Name>Attributes</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Authentication\Authentication.csproj">
       <Project>{f97df6a6-d433-4dff-a695-d62afff983a8}</Project>
       <Name>Authentication</Name>

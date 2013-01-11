@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{DC2DBDB0-FC38-4F9F-BA22-DEE421505905}</ProjectGuid>
+    <ProjectGuid>{71DB18BA-98C0-4B18-BBF5-990B64C56128}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Domain</RootNamespace>
-    <AssemblyName>Domain</AssemblyName>
+    <RootNamespace>Attributes</RootNamespace>
+    <AssemblyName>Attributes</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -39,30 +39,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\Accounts\Account.cs" />
-    <Compile Include="Models\Accounts\FacebookAccount.cs" />
-    <Compile Include="Models\Friend.cs" />
-    <Compile Include="Models\Goals\Goal.cs" />
-    <Compile Include="Models\IAccount.cs" />
-    <Compile Include="Models\IEntity.cs" />
+    <Compile Include="NotEditableAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\AccountRepository.cs" />
-    <Compile Include="Repositories\FriendRepository.cs" />
-    <Compile Include="Repositories\IAccountRepository.cs" />
-    <Compile Include="Repositories\IAccountSessionRepository.cs" />
-    <Compile Include="Repositories\IFriendRepository.cs" />
-    <Compile Include="Repositories\IRepository.cs" />
-    <Compile Include="Repositories\Repository.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Attributes\Attributes.csproj">
-      <Project>{71db18ba-98c0-4b18-bbf5-990b64c56128}</Project>
-      <Name>Attributes</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Database\Database.csproj">
-      <Project>{14085da7-85b8-4324-9916-104b29a58dcf}</Project>
-      <Name>Database</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
