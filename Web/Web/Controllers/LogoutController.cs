@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
 using System.Web.Security;
+using Domain.Repositories;
 using Web.Repositories;
 
 namespace Web.Controllers {

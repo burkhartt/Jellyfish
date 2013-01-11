@@ -1,7 +1,7 @@
-﻿using Web.Events;
+﻿using Domain.Models.Goals;
+using Domain.Repositories;
+using Events.Bus;
 using Web.Filters;
-using Web.Models;
-using Web.Repositories;
 
 namespace Web.Controllers {
     [Authorized]

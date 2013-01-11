@@ -143,7 +143,6 @@
     <Compile Include="Attributes\ListBoxAttribute.cs" />
     <Compile Include="Attributes\PasswordAttribute.cs" />
     <Compile Include="Attributes\TextAreaAttribute.cs" />
-    <Compile Include="Authentication\IAuthenticator.cs" />
     <Compile Include="Config\BasePage.cs" />
     <Compile Include="Controllers\AccountsController.cs" />
     <Compile Include="Controllers\CrudController.cs" />
@@ -157,24 +156,6 @@
     <Compile Include="Controllers\UnconfirmedAccountsController.cs" />
     <Compile Include="Controllers\VerifyAccountController.cs" />
     <Compile Include="CustomModelMetadataProvider.cs" />
-    <Compile Include="Database\IDatabase.cs" />
-    <Compile Include="Denormalizers\AccountDenormalizer.cs" />
-    <Compile Include="Denormalizers\AddFriendDenormalizer.cs" />
-    <Compile Include="Denormalizers\AuthenticationDenormalizer.cs" />
-    <Compile Include="Denormalizers\FriendInvitationDenormalizer.cs" />
-    <Compile Include="Denormalizers\GenericDenormalizer.cs" />
-    <Compile Include="Denormalizers\GoalDenormalizer.cs" />
-    <Compile Include="Email\IEmailSender.cs" />
-    <Compile Include="Events\AccountSuccessfullyAuthenticatedEvent.cs" />
-    <Compile Include="Events\Entity\EntityCreatedEvent.cs" />
-    <Compile Include="Events\Entity\EntityDeletedEvent.cs" />
-    <Compile Include="Events\Entity\EntityUpdatedEvent.cs" />
-    <Compile Include="Events\FacebookLoginEvent.cs" />
-    <Compile Include="Events\IEvent.cs" />
-    <Compile Include="Events\IEventBus.cs" />
-    <Compile Include="Events\IHandleEvents.cs" />
-    <Compile Include="Events\InviteFriendEvent.cs" />
-    <Compile Include="Events\VerifyAccountEvent.cs" />
     <Compile Include="FacebookAuthentication\FacebookAccountJsonDeserialization.cs" />
     <Compile Include="FacebookAuthentication\FacebookUserData.cs" />
     <Compile Include="FacebookAuthentication\IFacebookAccountDataRepository.cs" />
@@ -184,23 +165,17 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\CastingHelper.cs" />
     <Compile Include="ModelBinders\DecimalModelBInder.cs" />
     <Compile Include="ModelBinders\ModelBinderHelper.cs" />
-    <Compile Include="Models\Account.cs" />
+    <Compile Include="Models\AccountModel.cs" />
     <Compile Include="Models\AccountView.cs" />
     <Compile Include="Models\CreateAccountModel.cs" />
-    <Compile Include="Models\Friend.cs" />
-    <Compile Include="Models\Goal.cs" />
+    <Compile Include="Models\GoalModel.cs" />
     <Compile Include="Models\InviteFriendForm.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\SuccessMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\AccountRepository.cs" />
-    <Compile Include="Repositories\IAccountRepository.cs" />
     <Compile Include="Repositories\IAccountSessionRepository.cs" />
-    <Compile Include="Repositories\IFriendRepository.cs" />
-    <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Validation\ServiceLocatorValidatorFactory.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -278,6 +253,36 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Authentication\Authentication.csproj">
+      <Project>{f97df6a6-d433-4dff-a695-d62afff983a8}</Project>
+      <Name>Authentication</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Database\Database.csproj">
+      <Project>{14085da7-85b8-4324-9916-104b29a58dcf}</Project>
+      <Name>Database</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Denormalizers\Denormalizers.csproj">
+      <Project>{e56f2a1a-b69e-4a78-95cb-7c0ce923cea9}</Project>
+      <Name>Denormalizers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Domain\Domain.csproj">
+      <Project>{dc2dbdb0-fc38-4f9f-ba22-dee421505905}</Project>
+      <Name>Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Email\Email.csproj">
+      <Project>{1fa41132-221c-47a3-a0a7-8ede598b49f1}</Project>
+      <Name>Email</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Events\Events.csproj">
+      <Project>{4a1ec6a5-eaf5-4f79-8f28-6a77741d53d1}</Project>
+      <Name>Events</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utilities\Utilities.csproj">
+      <Project>{97887799-b126-44d6-8240-191097f4be44}</Project>
+      <Name>Utilities</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

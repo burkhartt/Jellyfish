@@ -1,7 +1,7 @@
 #region
 
 using System.Web.Mvc;
-using Web.Helpers;
+using Utilities;
 using Web.Models;
 
 #endregion

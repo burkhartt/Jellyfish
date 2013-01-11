@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Linq;
 using System.Reflection;
+using Domain.Models;
+using Domain.Models.Accounts;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Web.Models;

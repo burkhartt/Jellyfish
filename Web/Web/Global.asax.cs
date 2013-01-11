@@ -8,14 +8,20 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Script.Serialization;
 using System.Web.Security;
+using Authentication;
 using Autofac;
+using Autofac.Core;
 using Autofac.Integration.Mvc;
+using Database;
+using Denormalizers;
+using Domain;
+using Domain.Models;
+using Domain.Repositories;
+using Email;
+using Events.Bus;
 using FluentValidation;
 using FluentValidation.Mvc;
-using Web.Authentication;
-using Web.Database;
-using Web.Email;
-using Web.Events;
+using Simple.Data;
 using Web.FacebookAuthentication;
 using Web.Filters;
 using Web.Models;
@@ -64,6 +70,10 @@ namespace Web {
                    .As<DataAnnotationsModelMetadataProvider>()
                    .InstancePerLifetimeScope();
 
+            builder.RegisterModule(new DatabaseModule());
+            builder.RegisterModule(new EmailModule());
+            builder.RegisterModule(new DenormalizerModule());
+
             builder.RegisterModelBinders(Assembly.GetExecutingAssembly());
             builder.RegisterModelBinderProvider();
             builder.RegisterType<ExtensibleActionInvoker>().As<IActionInvoker>();
@@ -71,17 +81,13 @@ namespace Web {
             builder.RegisterFilterProvider();
 
             builder.RegisterGeneric(typeof (Repository<>)).As(typeof (IRepository<>)).SingleInstance();
-            builder.RegisterType(typeof (EventBus)).As(typeof (IEventBus)).SingleInstance();
-            builder.RegisterType(typeof (Database.Database)).As(typeof (IDatabase)).SingleInstance();
+            builder.RegisterType(typeof (EventBus)).As(typeof (IEventBus)).SingleInstance();            
             builder.RegisterType(typeof (FriendRepository)).As(typeof (IFriendRepository));
             builder.RegisterType(typeof(FacebookStateRepository)).As(typeof(IFacebookDataRepository));
-            builder.RegisterType(typeof(Authenticator)).As<IAuthenticator>();
-            builder.RegisterType(typeof(EmailSender)).As(typeof(IEmailSender));
+            builder.RegisterType(typeof(Authenticator)).As<IAuthenticator>();            
             builder.RegisterType(typeof(AccountRepository)).Named<IAccountRepository>("BaseAccountRepository");
             builder.Register(c => new FacebookAccountRepository(c.ResolveNamed<IAccountRepository>("BaseAccountRepository"), c.Resolve<IFacebookDataRepository>())).As(typeof(IAccountRepository));
-            builder.RegisterType(typeof (AccountSessionRepository)).As(typeof (IAccountSessionRepository));
-
-            builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly()).Where(t => t.Name.EndsWith("Denormalizer")).AsImplementedInterfaces();
+            builder.RegisterType(typeof (AccountSessionRepository)).As(typeof (IAccountSessionRepository));            
             
             builder.Register(c => c.Resolve<IAccountRepository>().FindById(c.Resolve<IAccountSessionRepository>().GetCurrentId())).As<IAccount>().InstancePerLifetimeScope();
 

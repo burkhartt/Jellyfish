@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web.Mvc;
-using Web.Events;
+using Events.Accounts;
+using Events.Bus;
 
 namespace Web.Controllers {
     public class VerifyAccountController : Controller {

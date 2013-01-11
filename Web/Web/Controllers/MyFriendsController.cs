@@ -1,4 +1,7 @@
 ﻿using System.Web.Mvc;
+using Domain;
+using Domain.Models;
+using Domain.Repositories;
 using Web.Filters;
 using Web.Models;
 using Web.Repositories;

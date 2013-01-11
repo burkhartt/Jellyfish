@@ -1,7 +1,6 @@
 ﻿using System.Web.Mvc;
+using Domain.Repositories;
 using Web.Filters;
-using Web.Models;
-using Web.Repositories;
 
 namespace Web.Controllers {
     [Authorized]

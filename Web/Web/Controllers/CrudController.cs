@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Web.Mvc;
-using Web.Events;
-using Web.Events.Entity;
+using Domain.Models;
+using Domain.Repositories;
+using Events.Bus;
+using Events.Entities;
 using Web.Models;
 using Web.Repositories;
 

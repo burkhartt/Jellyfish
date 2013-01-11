@@ -1,13 +1,8 @@
 ﻿using System;
 using System.Web;
+using Domain.Repositories;
 
 namespace Web.Repositories {
-    public interface IAccountSessionRepository {
-        void SetCurrentId(Guid id);
-        Guid GetCurrentId();
-        void Clear();
-    }
-
     public class AccountSessionRepository : IAccountSessionRepository {
         public void SetCurrentId(Guid id) {
             HttpContext.Current.Session["AccountId"] = id;

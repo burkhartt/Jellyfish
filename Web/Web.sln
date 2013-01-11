@@ -3,6 +3,20 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "Web\Web.csproj", "{21D433BB-D357-46B2-A278-70854459EF1F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Authentication", "Authentication\Authentication.csproj", "{F97DF6A6-D433-4DFF-A695-D62AFFF983A8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{DC2DBDB0-FC38-4F9F-BA22-DEE421505905}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Database", "Database\Database.csproj", "{14085DA7-85B8-4324-9916-104B29A58DCF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Events", "Events\Events.csproj", "{4A1EC6A5-EAF5-4F79-8F28-6A77741D53D1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Denormalizers", "Denormalizers\Denormalizers.csproj", "{E56F2A1A-B69E-4A78-95CB-7C0CE923CEA9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Email", "Email\Email.csproj", "{1FA41132-221C-47A3-A0A7-8EDE598B49F1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilities", "Utilities\Utilities.csproj", "{97887799-B126-44D6-8240-191097F4BE44}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +27,34 @@ Global
 		{21D433BB-D357-46B2-A278-70854459EF1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{21D433BB-D357-46B2-A278-70854459EF1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{21D433BB-D357-46B2-A278-70854459EF1F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F97DF6A6-D433-4DFF-A695-D62AFFF983A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F97DF6A6-D433-4DFF-A695-D62AFFF983A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F97DF6A6-D433-4DFF-A695-D62AFFF983A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F97DF6A6-D433-4DFF-A695-D62AFFF983A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC2DBDB0-FC38-4F9F-BA22-DEE421505905}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC2DBDB0-FC38-4F9F-BA22-DEE421505905}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC2DBDB0-FC38-4F9F-BA22-DEE421505905}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC2DBDB0-FC38-4F9F-BA22-DEE421505905}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14085DA7-85B8-4324-9916-104B29A58DCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14085DA7-85B8-4324-9916-104B29A58DCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14085DA7-85B8-4324-9916-104B29A58DCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14085DA7-85B8-4324-9916-104B29A58DCF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A1EC6A5-EAF5-4F79-8F28-6A77741D53D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A1EC6A5-EAF5-4F79-8F28-6A77741D53D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A1EC6A5-EAF5-4F79-8F28-6A77741D53D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A1EC6A5-EAF5-4F79-8F28-6A77741D53D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E56F2A1A-B69E-4A78-95CB-7C0CE923CEA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E56F2A1A-B69E-4A78-95CB-7C0CE923CEA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E56F2A1A-B69E-4A78-95CB-7C0CE923CEA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E56F2A1A-B69E-4A78-95CB-7C0CE923CEA9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FA41132-221C-47A3-A0A7-8EDE598B49F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FA41132-221C-47A3-A0A7-8EDE598B49F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FA41132-221C-47A3-A0A7-8EDE598B49F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FA41132-221C-47A3-A0A7-8EDE598B49F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97887799-B126-44D6-8240-191097F4BE44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97887799-B126-44D6-8240-191097F4BE44}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97887799-B126-44D6-8240-191097F4BE44}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97887799-B126-44D6-8240-191097F4BE44}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

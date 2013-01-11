@@ -1,20 +1,19 @@
 ﻿using System;
 using System.IO;
-using System.Linq;
 using System.Net;
-using System.Reflection;
 using System.Text;
 using System.Web;
 using System.Web.Configuration;
 using System.Web.Mvc;
 using System.Web.Security;
+using Authentication;
+using Domain.Repositories;
+using Events.Accounts;
+using Events.Bus;
+using Events.Events;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Web.Authentication;
-using Web.Events;
 using Web.FacebookAuthentication;
 using Web.Models;
-using Web.Repositories;
 
 namespace Web.Controllers {
     public class LoginController : Controller {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web.Mvc;
-using Web.Events;
+using Events.Bus;
+using Events.Friends;
 using Web.Models;
 
 namespace Web.Controllers {
