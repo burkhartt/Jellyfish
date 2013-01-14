@@ -43,8 +43,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GoalDirection.cs" />
+    <Compile Include="GoalMonth.cs" />
     <Compile Include="GoalParser.cs" />
     <Compile Include="ParsedGoal.cs" />
+    <Compile Include="ParsedGoalElement.cs" />
+    <Compile Include="ParsedGoalElements.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

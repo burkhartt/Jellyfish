@@ -1,6 +1,5 @@
 ﻿using System;
 using NUnit.Framework;
-using Should;
 
 namespace GoalEngine.Tests {
     [TestFixture]
@@ -86,6 +85,30 @@ namespace GoalEngine.Tests {
         public void It_should_return_the_correct_data_13() {
             var result = Parse("to have $1000000 in the next 13 years");
             result.ShouldEqual(1000000, GoalDirection.Ascending, new DateTime(DateTime.Now.AddYears(13).Year, 12, 31));
+        }
+        
+        [Test]
+        public void It_should_return_the_correct_data_14() {
+            var result = Parse("to find a job that pays at least $500000");
+            result.ShouldEqual(500000, GoalDirection.Ascending, null);
+        }
+
+        [Test]
+        public void It_should_return_the_correct_data_15() {
+            var result = Parse("to gain 15 lbs by November 15");
+            result.ShouldEqual(15, GoalDirection.Ascending, new DateTime(DateTime.Now.Year, 11, 15));
+        }
+
+        [Test]
+        public void It_should_return_the_correct_data_16() {
+            var result = Parse("I want to go to the last 5 states in the United States by December 18, 2029");
+            result.ShouldEqual(5, GoalDirection.Ascending, new DateTime(2029, 12, 18));
+        }
+
+        [Test]
+        public void It_should_return_the_correct_data_17() {
+            var result = Parse("I want to meet every president next year");
+            result.ShouldEqual(null, GoalDirection.None, new DateTime(DateTime.Now.AddYears(1).Year, 12, 31));
         }
     }
 }
