@@ -46,17 +46,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountCreatedEvent.cs" />
+    <Compile Include="AccountNameSetEvent.cs" />
     <Compile Include="Accounts\AccountSuccessfullyAuthenticatedEvent.cs" />
     <Compile Include="Accounts\VerifyAccountEvent.cs" />
     <Compile Include="Bus\EventBus.cs" />
     <Compile Include="Bus\IEventBus.cs" />
+    <Compile Include="DomainEvent.cs" />
     <Compile Include="Entities\EntityCreatedEvent.cs" />
     <Compile Include="Entities\EntityDeletedEvent.cs" />
     <Compile Include="Entities\EntityUpdatedEvent.cs" />
+    <Compile Include="EventModule.cs" />
     <Compile Include="Events\FacebookLoginEvent.cs" />
-    <Compile Include="Events\IEvent.cs" />
     <Compile Include="Friends\InviteFriendEvent.cs" />
-    <Compile Include="Handler\IHandleEvents.cs" />
+    <Compile Include="Handler\IHandleDomainEvents.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

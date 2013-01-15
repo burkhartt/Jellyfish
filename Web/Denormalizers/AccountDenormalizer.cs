@@ -6,8 +6,8 @@ using Events.Friends;
 using Events.Handler;
 
 namespace Denormalizers {
-    public class AccountDenormalizer : GenericDenormalizer<Account>, IHandleEvents<InviteFriendEvent>,
-                                       IHandleEvents<VerifyAccountEvent> {
+    public class AccountDenormalizer : GenericDenormalizer<Account>, IHandleDomainEvents<InviteFriendEvent>,
+                                       IHandleDomainEvents<VerifyAccountEvent> {
         private readonly IAccountRepository accountRepository;
         private readonly IEventBus eventBus;
 

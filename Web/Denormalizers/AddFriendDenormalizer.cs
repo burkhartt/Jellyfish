@@ -3,7 +3,7 @@ using Events.Friends;
 using Events.Handler;
 
 namespace Denormalizers {
-    public class AddFriendDenormalizer : IHandleEvents<InviteFriendEvent> {
+    public class AddFriendDenormalizer : IHandleDomainEvents<InviteFriendEvent> {
         private readonly IFriendRepository friendRepository;
 
         public AddFriendDenormalizer(IFriendRepository friendRepository) {

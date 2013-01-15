@@ -18,7 +18,7 @@ using Domain;
 using Domain.Models;
 using Domain.Repositories;
 using Email;
-using Events.Bus;
+using Events;
 using FluentValidation;
 using FluentValidation.Mvc;
 using Simple.Data;
@@ -73,6 +73,7 @@ namespace Web {
             builder.RegisterModule(new DatabaseModule());
             builder.RegisterModule(new EmailModule());
             builder.RegisterModule(new DenormalizerModule());
+            builder.RegisterModule(new EventModule());
 
             builder.RegisterModelBinders(Assembly.GetExecutingAssembly());
             builder.RegisterModelBinderProvider();
@@ -80,8 +81,7 @@ namespace Web {
             builder.RegisterControllers(Assembly.GetExecutingAssembly()).InjectActionInvoker();
             builder.RegisterFilterProvider();
 
-            builder.RegisterGeneric(typeof (Repository<>)).As(typeof (IRepository<>)).SingleInstance();
-            builder.RegisterType(typeof (EventBus)).As(typeof (IEventBus)).SingleInstance();            
+            builder.RegisterGeneric(typeof (Repository<>)).As(typeof (IRepository<>)).SingleInstance();            
             builder.RegisterType(typeof (FriendRepository)).As(typeof (IFriendRepository));
             builder.RegisterType(typeof(FacebookStateRepository)).As(typeof(IFacebookDataRepository));
             builder.RegisterType(typeof(Authenticator)).As<IAuthenticator>();            

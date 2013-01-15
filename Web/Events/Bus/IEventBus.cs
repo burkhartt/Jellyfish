@@ -2,6 +2,6 @@
 
 namespace Events.Bus {
     public interface IEventBus {
-        void Send(IEvent @event);
+        void Send(DomainEvent @event);
     }
 }

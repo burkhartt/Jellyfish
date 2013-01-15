@@ -2,7 +2,8 @@
 using Events.Events;
 
 namespace Events.Entities {
-    public class EntityCreatedEvent<T> : IEvent where T : IEntity {
+    public class EntityCreatedEvent<T> : DomainEvent where T : IEntity
+    {
         public EntityCreatedEvent(T entity) {
             Entity = entity;
         }

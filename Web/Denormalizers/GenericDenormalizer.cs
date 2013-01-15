@@ -4,9 +4,9 @@ using Events.Entities;
 using Events.Handler;
 
 namespace Denormalizers {
-    public abstract class GenericDenormalizer<T> : IHandleEvents<EntityCreatedEvent<T>>,
-                                                   IHandleEvents<EntityUpdatedEvent<T>>,
-                                                   IHandleEvents<EntityDeletedEvent<T>> where T : IEntity {
+    public abstract class GenericDenormalizer<T> : IHandleDomainEvents<EntityCreatedEvent<T>>,
+                                                   IHandleDomainEvents<EntityUpdatedEvent<T>>,
+                                                   IHandleDomainEvents<EntityDeletedEvent<T>> where T : IEntity {
         private readonly IRepository<T> repository;
 
         protected GenericDenormalizer(IRepository<T> repository) {

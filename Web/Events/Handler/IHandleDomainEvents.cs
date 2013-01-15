@@ -1,7 +1,7 @@
 ﻿using Events.Events;
 
 namespace Events.Handler {
-    public interface IHandleEvents<in T> where T : IEvent {
+    public interface IHandleDomainEvents<in T> where T : DomainEvent {
         void Handle(T @event);
     }
 }

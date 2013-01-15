@@ -1,5 +1,5 @@
 ﻿namespace Events.Events {
-    public class FacebookLoginEvent : IEvent {
+    public class FacebookLoginEvent : DomainEvent {
         public int FacebookId { get; set; }
     }
 }

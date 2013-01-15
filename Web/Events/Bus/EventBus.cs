@@ -14,12 +14,12 @@ namespace Events.Bus {
             this.componentContext = componentContext;
         }
 
-        public void Send(IEvent @event) {
+        public void Send(DomainEvent @event) {
             foreach (var registration in componentContext.ComponentRegistry.Registrations) {
                 foreach (var service in registration.Services.OfType<TypedService>()) {
                     var type = service.ServiceType;
                     if (!type.IsInterface || !type.IsGenericType || !type.IsConstructedGenericType ||
-                        type.GetGenericTypeDefinition() != typeof (IHandleEvents<>)) {
+                        type.GetGenericTypeDefinition() != typeof (IHandleDomainEvents<>)) {
                         continue;
                     }
 

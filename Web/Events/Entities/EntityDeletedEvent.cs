@@ -3,7 +3,8 @@ using Domain.Models;
 using Events.Events;
 
 namespace Events.Entities {
-    public class EntityDeletedEvent<T> : IEvent where T : IEntity {
+    public class EntityDeletedEvent<T> : DomainEvent where T : IEntity
+    {
         public EntityDeletedEvent(Guid id) {
             Id = id;
         }

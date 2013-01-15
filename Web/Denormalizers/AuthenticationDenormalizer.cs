@@ -7,9 +7,9 @@ using Events.Events;
 using Events.Handler;
 
 namespace Denormalizers {
-    public class AuthenticationDenormalizer : IHandleEvents<AccountSuccessfullyAuthenticatedEvent>,
-                                              IHandleEvents<EntityUpdatedEvent<Account>>,
-                                              IHandleEvents<FacebookLoginEvent> {
+    public class AuthenticationDenormalizer : IHandleDomainEvents<AccountSuccessfullyAuthenticatedEvent>,
+                                              IHandleDomainEvents<EntityUpdatedEvent<Account>>,
+                                              IHandleDomainEvents<FacebookLoginEvent> {
         private readonly IAccountRepository accountRepository;
         private readonly IAccountSessionRepository accountSessionRepository;
 

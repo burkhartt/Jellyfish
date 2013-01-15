@@ -3,7 +3,7 @@ using Events.Friends;
 using Events.Handler;
 
 namespace Denormalizers {
-    public class FriendInvitationDenormalizer : IHandleEvents<InviteFriendEvent> {
+    public class FriendInvitationDenormalizer : IHandleDomainEvents<InviteFriendEvent> {
         private readonly IEmailSender emailSender;
 
         public FriendInvitationDenormalizer(IEmailSender emailSender) {
