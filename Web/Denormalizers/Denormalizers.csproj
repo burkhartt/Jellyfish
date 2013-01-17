@@ -46,14 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccountDenormalizer.cs" />
     <Compile Include="AccountReportDenormalizer.cs" />
     <Compile Include="AddFriendDenormalizer.cs" />
     <Compile Include="AuthenticationDenormalizer.cs" />
     <Compile Include="DenormalizerModule.cs" />
     <Compile Include="FriendInvitationDenormalizer.cs" />
-    <Compile Include="GenericDenormalizer.cs" />
-    <Compile Include="GoalDenormalizer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -22,7 +22,7 @@ namespace Web.FacebookAuthentication {
 
         public Account FindById(Guid id) {
             var account = accountRepository.FindById(id);
-            if (account == null) return new Account();
+            if (account == null) return new Account(Guid.NewGuid());
 
             if (!account.IsAFacebookAccount) {
                 return account;

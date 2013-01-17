@@ -39,6 +39,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AggregateRoot.cs" />
+    <Compile Include="DomainRepository.cs" />
+    <Compile Include="IDomainRepository.cs" />
     <Compile Include="Models\Accounts\Account.cs" />
     <Compile Include="Models\Accounts\FacebookAccount.cs" />
     <Compile Include="Models\Friend.cs" />
@@ -62,6 +65,10 @@
     <ProjectReference Include="..\Database\Database.csproj">
       <Project>{14085da7-85b8-4324-9916-104b29a58dcf}</Project>
       <Name>Database</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Events\Events.csproj">
+      <Project>{4a1ec6a5-eaf5-4f79-8f28-6a77741d53d1}</Project>
+      <Name>Events</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

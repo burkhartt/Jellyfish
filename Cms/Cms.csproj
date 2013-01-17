@@ -144,6 +144,14 @@
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Web\CommandBus\CommandBus.csproj">
+      <Project>{6c0f389a-8d02-4be4-89f9-8f7f21b13c14}</Project>
+      <Name>CommandBus</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Web\Commands\Commands.csproj">
+      <Project>{1ad6e097-3f2d-4a10-bcc4-6d22f8c6b514}</Project>
+      <Name>Commands</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Web\Denormalizers\Denormalizers.csproj">
       <Project>{e56f2a1a-b69e-4a78-95cb-7c0ce923cea9}</Project>
       <Name>Denormalizers</Name>

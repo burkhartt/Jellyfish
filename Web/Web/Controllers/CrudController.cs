@@ -3,9 +3,6 @@ using System.Web.Mvc;
 using Domain.Models;
 using Domain.Repositories;
 using Events.Bus;
-using Events.Entities;
-using Web.Models;
-using Web.Repositories;
 
 namespace Web.Controllers {
     public class CrudController<T> : Controller where T : IEntity, new() {
@@ -35,7 +32,7 @@ namespace Web.Controllers {
             if (!ModelState.IsValid) {
                 return View(model);
             }
-            eventBus.Send(new EntityCreatedEvent<T>(model));
+            
             return RedirectToAction("Listing", new {SuccessMessage = typeof (T).Name + " created"});
         }
 
@@ -48,12 +45,12 @@ namespace Web.Controllers {
             if (!ModelState.IsValid) {
                 return View(model);
             }
-            eventBus.Send(new EntityUpdatedEvent<T>(model));
+            
             return RedirectToAction("Listing", new {SuccessMessage = typeof (T).Name + " updated"});
         }
 
         public virtual ActionResult Delete(Guid id) {
-            eventBus.Send(new EntityDeletedEvent<T>(id));
+            
             return RedirectToAction("Listing", new {SuccessMessage = typeof (T).Name + " updated"});
         }
     }

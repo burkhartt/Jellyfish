@@ -1,12 +1,12 @@
-﻿using System;
-using System.Reflection;
+﻿using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Autofac;
 using Autofac.Integration.Mvc;
-using Cms.Controllers;
+using CommandBus;
 using Denormalizers;
+using Domain;
 using Events;
 
 namespace Cms {
@@ -35,21 +35,16 @@ namespace Cms {
 
             builder.RegisterModule(new DenormalizerModule());
             builder.RegisterModule(new EventModule());
+            builder.RegisterModule(new CommandBusModule());
 
             builder.RegisterModelBinders(Assembly.GetExecutingAssembly());
             builder.RegisterModelBinderProvider();
             builder.RegisterType<ExtensibleActionInvoker>().As<IActionInvoker>();
             builder.RegisterControllers(Assembly.GetExecutingAssembly()).InjectActionInvoker();
-            builder.RegisterFilterProvider();
-
-            builder.RegisterType(typeof (CommandBus)).As<ICommandBus>();
+            builder.RegisterFilterProvider();            
             builder.RegisterType(typeof (DomainRepository)).As<IDomainRepository>().SingleInstance();
             
-            
-
-            builder.RegisterAssemblyTypes(typeof(CreateAccountCommandHandler).Assembly)
-                   .Where(t => t.Name.EndsWith("CommandHandler"))
-                   .AsImplementedInterfaces();
+                       
 
             Container = builder.Build();
 
