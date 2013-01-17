@@ -49,6 +49,21 @@
       <HintPath>..\Web\packages\Autofac.Mvc4.2.6.2.859\lib\NET40\Autofac.Integration.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MongoDB.Bson">
+      <HintPath>..\Web\packages\mongocsharpdriver.1.6.1\lib\net35\MongoDB.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver">
+      <HintPath>..\Web\packages\mongocsharpdriver.1.6.1\lib\net35\MongoDB.Driver.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Simple.Data, Version=0.18.3.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Web\packages\Simple.Data.Core.0.18.3.1\lib\net40\Simple.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Simple.Data.MongoDB, Version=0.18.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Web\packages\Simple.Data.MongoDB.0.18.0\lib\net40\Simple.Data.MongoDB.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -113,7 +128,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\CrudController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MenusController.cs" />
+    <Compile Include="Controllers\PagesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -123,6 +141,103 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="Content\AdminTheme\bootstrap\css\bootstrap-image-gallery.css" />
+    <Content Include="Content\AdminTheme\bootstrap\css\bootstrap-image-gallery.min.css" />
+    <Content Include="Content\AdminTheme\bootstrap\css\bootstrap-responsive.css" />
+    <Content Include="Content\AdminTheme\bootstrap\css\bootstrap-responsive.min.css" />
+    <Content Include="Content\AdminTheme\bootstrap\css\bootstrap.css" />
+    <Content Include="Content\AdminTheme\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Content\AdminTheme\bootstrap\css\font-awesome.css" />
+    <Content Include="Content\AdminTheme\bootstrap\css\prettify.css" />
+    <Content Include="Content\AdminTheme\bootstrap\font\fontawesome-webfont.svg" />
+    <Content Include="Content\AdminTheme\bootstrap\ico\bootstrap-apple-114x114.png" />
+    <Content Include="Content\AdminTheme\bootstrap\ico\bootstrap-apple-57x57.png" />
+    <Content Include="Content\AdminTheme\bootstrap\ico\bootstrap-apple-72x72.png" />
+    <Content Include="Content\AdminTheme\bootstrap\ico\favicon.ico" />
+    <Content Include="Content\AdminTheme\bootstrap\img\glyphicons-halflings-white.png" />
+    <Content Include="Content\AdminTheme\bootstrap\img\glyphicons-halflings.png" />
+    <Content Include="Content\AdminTheme\bootstrap\img\loading.gif" />
+    <Content Include="Content\AdminTheme\bootstrap\js\bootstrap-image-gallery.js" />
+    <Content Include="Content\AdminTheme\bootstrap\js\bootstrap-image-gallery.min.js" />
+    <Content Include="Content\AdminTheme\bootstrap\js\bootstrap.js" />
+    <Content Include="Content\AdminTheme\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Content\AdminTheme\bootstrap\js\html5.js" />
+    <Content Include="Content\AdminTheme\bootstrap\js\jquery.js" />
+    <Content Include="Content\AdminTheme\bootstrap\js\load-image.min.js" />
+    <Content Include="Content\AdminTheme\bootstrap\js\media.js" />
+    <Content Include="AdminStuff\index.html" />
+    <Content Include="AdminStuff\pages\button.html" />
+    <Content Include="AdminStuff\pages\calendar.html" />
+    <Content Include="AdminStuff\pages\chart.html" />
+    <Content Include="AdminStuff\pages\chat.html" />
+    <Content Include="AdminStuff\pages\dashboard.html" />
+    <Content Include="AdminStuff\pages\element.html" />
+    <Content Include="AdminStuff\pages\forms.html" />
+    <Content Include="AdminStuff\pages\grid.html" />
+    <Content Include="AdminStuff\pages\media.html" />
+    <Content Include="AdminStuff\pages\notification.html" />
+    <Content Include="AdminStuff\pages\profile.html" />
+    <Content Include="AdminStuff\pages\tables.html" />
+    <Content Include="Content\AdminTheme\resource\calendar\css\doc.css" />
+    <Content Include="Content\AdminTheme\resource\calendar\css\fullcalendar.css" />
+    <Content Include="Content\AdminTheme\resource\calendar\css\fullcalendar.print.css" />
+    <Content Include="Content\AdminTheme\resource\calendar\js\calendar.js" />
+    <Content Include="Content\AdminTheme\resource\calendar\js\fullcalendar.js" />
+    <Content Include="Content\AdminTheme\resource\calendar\js\fullcalendar.min.js" />
+    <Content Include="Content\AdminTheme\resource\calendar\js\jquery.custom.min.js" />
+    <Content Include="Content\AdminTheme\resource\calendar\js\ui.js" />
+    <Content Include="Content\AdminTheme\resource\chart\chart-column.js" />
+    <Content Include="Content\AdminTheme\resource\chart\chart-pie.js" />
+    <Content Include="Content\AdminTheme\resource\chart\chart-spline.js" />
+    <Content Include="Content\AdminTheme\resource\chart\chart-stacked.js" />
+    <Content Include="Content\AdminTheme\resource\chart\chart.js" />
+    <Content Include="Content\AdminTheme\resource\chart\exporting.js" />
+    <Content Include="Content\AdminTheme\resource\chart\highcharts.js" />
+    <Content Include="Content\AdminTheme\resource\chart\themes\dark-blue.js" />
+    <Content Include="Content\AdminTheme\resource\chart\themes\dark-green.js" />
+    <Content Include="Content\AdminTheme\resource\chart\themes\gray.js" />
+    <Content Include="Content\AdminTheme\resource\chart\themes\grid.js" />
+    <Content Include="Content\AdminTheme\resource\chart\themes\skies.js" />
+    <Content Include="Content\AdminTheme\resource\css\style.css" />
+    <Content Include="Content\AdminTheme\resource\dataTabel\css\DT_bootstrap.css" />
+    <Content Include="Content\AdminTheme\resource\dataTabel\img\sort_asc.png" />
+    <Content Include="Content\AdminTheme\resource\dataTabel\img\sort_asc_disabled.png" />
+    <Content Include="Content\AdminTheme\resource\dataTabel\img\sort_both.png" />
+    <Content Include="Content\AdminTheme\resource\dataTabel\img\sort_desc.png" />
+    <Content Include="Content\AdminTheme\resource\dataTabel\img\sort_desc_disabled.png" />
+    <Content Include="Content\AdminTheme\resource\dataTabel\js\DT_bootstrap.js" />
+    <Content Include="Content\AdminTheme\resource\dataTabel\js\jquery.dataTables.js" />
+    <Content Include="Content\AdminTheme\resource\img\160x120.gif" />
+    <Content Include="Content\AdminTheme\resource\img\acount.png" />
+    <Content Include="Content\AdminTheme\resource\img\album.png" />
+    <Content Include="Content\AdminTheme\resource\img\bg.png" />
+    <Content Include="Content\AdminTheme\resource\img\defaultPhoto.png" />
+    <Content Include="Content\AdminTheme\resource\img\post.png" />
+    <Content Include="Content\AdminTheme\resource\img\set.png" />
+    <Content Include="Content\AdminTheme\resource\img\trash.png" />
+    <Content Include="Content\AdminTheme\resource\img\video.png" />
+    <Content Include="Content\AdminTheme\resource\js\jstyle.js" />
+    <Content Include="Content\AdminTheme\resource\upload\css\jquery.fileupload-ui.css" />
+    <Content Include="Content\AdminTheme\resource\upload\js\canvas-to-blob.min.js" />
+    <Content Include="Content\AdminTheme\resource\upload\js\cors\jquery.postmessage-transport.js" />
+    <Content Include="Content\AdminTheme\resource\upload\js\cors\jquery.xdr-transport.js" />
+    <Content Include="Content\AdminTheme\resource\upload\js\jquery.fileupload-fp.js" />
+    <Content Include="Content\AdminTheme\resource\upload\js\jquery.fileupload-ui.js" />
+    <Content Include="Content\AdminTheme\resource\upload\js\jquery.fileupload.js" />
+    <Content Include="Content\AdminTheme\resource\upload\js\jquery.iframe-transport.js" />
+    <Content Include="Content\AdminTheme\resource\upload\js\jquery.ui.widget.js" />
+    <Content Include="Content\AdminTheme\resource\upload\js\locale.js" />
+    <Content Include="Content\AdminTheme\resource\upload\js\main.js" />
+    <Content Include="Content\AdminTheme\resource\upload\js\tmpl.min.js" />
+    <Content Include="Content\AdminTheme\resource\upload\js\vendor\jquery.ui.widget.js" />
+    <Content Include="Content\AdminTheme\resource\validate\img\error.png" />
+    <Content Include="Content\AdminTheme\resource\validate\img\valid.png" />
+    <Content Include="Content\AdminTheme\resource\validate\jquery.validate.min.js" />
+    <Content Include="Content\AdminTheme\resource\validate\script.js" />
+    <Content Include="Content\AdminTheme\resource\wysi\css\bootstrap-wysihtml5.css" />
+    <Content Include="Content\AdminTheme\resource\wysi\js\bootstrap-wysihtml5.js" />
+    <Content Include="Content\AdminTheme\resource\wysi\js\prettify.js" />
+    <Content Include="Content\AdminTheme\resource\wysi\js\wysihtml5-0.3.0.js" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -144,6 +259,10 @@
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Web\CmsDomain\CmsDomain.csproj">
+      <Project>{6b06fb00-5975-466c-b9ee-0c10f96833df}</Project>
+      <Name>CmsDomain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Web\CommandBus\CommandBus.csproj">
       <Project>{6c0f389a-8d02-4be4-89f9-8f7f21b13c14}</Project>
       <Name>CommandBus</Name>
@@ -151,6 +270,10 @@
     <ProjectReference Include="..\Web\Commands\Commands.csproj">
       <Project>{1ad6e097-3f2d-4a10-bcc4-6d22f8c6b514}</Project>
       <Name>Commands</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Web\Database\Database.csproj">
+      <Project>{14085da7-85b8-4324-9916-104b29a58dcf}</Project>
+      <Name>Database</Name>
     </ProjectReference>
     <ProjectReference Include="..\Web\Denormalizers\Denormalizers.csproj">
       <Project>{e56f2a1a-b69e-4a78-95cb-7c0ce923cea9}</Project>
@@ -164,6 +287,32 @@
       <Project>{4a1ec6a5-eaf5-4f79-8f28-6a77741d53d1}</Project>
       <Name>Events</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\AdminTheme\bootstrap\font\fontawesome-webfont.eot" />
+    <Content Include="Content\AdminTheme\bootstrap\font\fontawesome-webfont.ttf" />
+    <Content Include="Content\AdminTheme\bootstrap\font\fontawesome-webfont.woff" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\_ViewStart.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_Layout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Update.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\DisplayTemplates\Table.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Partials\Form.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

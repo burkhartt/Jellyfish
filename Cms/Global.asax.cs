@@ -4,7 +4,9 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using Autofac;
 using Autofac.Integration.Mvc;
+using CmsDomain.Repositories;
 using CommandBus;
+using Database;
 using Denormalizers;
 using Domain;
 using Events;
@@ -33,10 +35,12 @@ namespace Cms {
         private void RegisterIoC() {
             var builder = new ContainerBuilder();
 
+            builder.RegisterModule(new DatabaseModule());
             builder.RegisterModule(new DenormalizerModule());
             builder.RegisterModule(new EventModule());
             builder.RegisterModule(new CommandBusModule());
 
+            builder.RegisterGeneric(typeof (Repository<>)).AsImplementedInterfaces();
             builder.RegisterModelBinders(Assembly.GetExecutingAssembly());
             builder.RegisterModelBinderProvider();
             builder.RegisterType<ExtensibleActionInvoker>().As<IActionInvoker>();
