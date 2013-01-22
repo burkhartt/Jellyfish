@@ -1,4 +1,21 @@
 ﻿@model Web.Models.LoginModel
 
-<h2>@ViewBag.Title</h2>
-@Html.Partial("Partials/Form", Model)
+@{
+    Layout = "../Shared/_ModalLayout.cshtml";
+}
+
+<div class="modal-body">       
+    <div class="row sign-in-options">
+        <div class="span3">
+            <h3>Sign In</h3>
+            @Html.Partial("Partials/Form", Model)
+        </div>        
+        <div class="span3">
+            <h3>Sign In With Facebook</h3>
+            <div>
+                <p>If you have a Facebook account, you can log in below.</p>
+                <a href="@Url.Action("FacebookLogin", "Login")"><img src="../../Content/img/fb-connect.png" /></a>
+            </div>
+        </div>
+    </div>
+</div>

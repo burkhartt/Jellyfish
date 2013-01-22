@@ -55,7 +55,25 @@
     <Reference Include="FluentValidation.Mvc">
       <HintPath>..\packages\FluentValidation.MVC4.3.4.6.0\lib\Net40\FluentValidation.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="IronRuby">
+      <HintPath>..\packages\IronRuby.1.1.3\Lib\IronRuby.dll</HintPath>
+    </Reference>
+    <Reference Include="IronRuby.Libraries">
+      <HintPath>..\packages\IronRuby.1.1.3\Lib\IronRuby.Libraries.dll</HintPath>
+    </Reference>
+    <Reference Include="IronRuby.Libraries.Yaml">
+      <HintPath>..\packages\IronRuby.1.1.3\Lib\IronRuby.Libraries.Yaml.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Dynamic">
+      <HintPath>..\packages\IronRuby.1.1.3\Lib\Microsoft.Dynamic.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Scripting">
+      <HintPath>..\packages\IronRuby.1.1.3\Lib\Microsoft.Scripting.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Scripting.Metadata">
+      <HintPath>..\packages\IronRuby.1.1.3\Lib\Microsoft.Scripting.Metadata.dll</HintPath>
+    </Reference>
     <Reference Include="MongoDB.Bson">
       <HintPath>..\packages\mongocsharpdriver.1.6.1\lib\net35\MongoDB.Bson.dll</HintPath>
     </Reference>
@@ -65,6 +83,18 @@
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="SassAndCoffee.AspNet">
+      <HintPath>..\packages\SassAndCoffee.AspNet.2.0.2.0\lib\net40\SassAndCoffee.AspNet.dll</HintPath>
+    </Reference>
+    <Reference Include="SassAndCoffee.Core">
+      <HintPath>..\packages\SassAndCoffee.Core.2.0.2.0\lib\net40-Client\SassAndCoffee.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="SassAndCoffee.JavaScript">
+      <HintPath>..\packages\SassAndCoffee.JavaScript.2.0.2.0\lib\net40-Client\SassAndCoffee.JavaScript.dll</HintPath>
+    </Reference>
+    <Reference Include="SassAndCoffee.Ruby">
+      <HintPath>..\packages\SassAndCoffee.Ruby.2.0.2.0\lib\net40-Client\SassAndCoffee.Ruby.dll</HintPath>
     </Reference>
     <Reference Include="Simple.Data">
       <HintPath>..\packages\Simple.Data.Core.0.18.3.1\lib\net40\Simple.Data.dll</HintPath>
@@ -171,19 +201,33 @@
     <Compile Include="Models\GoalModel.cs" />
     <Compile Include="Models\InviteFriendForm.cs" />
     <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\Site.cs" />
     <Compile Include="Models\SuccessMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\IAccountSessionRepository.cs" />
+    <Compile Include="Validation\LoginModelValidator.cs" />
     <Compile Include="Validation\ServiceLocatorValidatorFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="Content\css\bootstrap-responsive.css" />
+    <Content Include="Content\css\bootstrap-responsive.min.css" />
+    <Content Include="Content\css\bootstrap.css" />
+    <Content Include="Content\css\bootstrap.min.css" />
+    <Content Include="Content\img\fb-connect.png" />
+    <Content Include="Content\img\glyphicons-halflings-white.png" />
+    <Content Include="Content\img\glyphicons-halflings.png" />
     <Content Include="Content\jquery-1.7.2.min.js" />
+    <Content Include="Content\js\bootstrap.js" />
+    <Content Include="Content\js\bootstrap.min.js" />
+    <Content Include="Content\js\forms.js" />
+    <Content Include="Content\js\signin.js" />
     <Content Include="Content\list.min.js" />
-    <Content Include="Content\Site.css" />
+    <Content Include="Content\reset.css" />
     <Content Include="Global.asax" />
+    <Content Include="Content\site.scss" />
     <None Include="Scripts\jquery-1.8.2-vsdoc.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
@@ -245,6 +289,7 @@
     <Content Include="Views\Login\AllAccounts.cshtml" />
     <Content Include="Views\MyAccount\Update.cshtml" />
     <Content Include="Views\Shared\Partials\FacebookSDK.cshtml" />
+    <Content Include="Views\Shared\_ModalLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

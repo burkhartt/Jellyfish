@@ -43,6 +43,7 @@ namespace Web {
             var account = DependencyResolver.Current.GetService<IAccount>();
             var accountSessionRepository = DependencyResolver.Current.GetService<IAccountSessionRepository>();
             Context.Items["Account"] = new AccountView { Data = account, IsLoggedIn = accountSessionRepository.GetCurrentId() != Guid.Empty };
+            Context.Items["Site"] = new Site {Name = "Goals"};
         }
 
         public static void RegisterRoutes(RouteCollection routes) {
@@ -114,6 +115,10 @@ namespace Web {
     public static class CustomContext {
         public static AccountView Account(this HttpContextBase contextBase) {
             return (AccountView)contextBase.Items["Account"];
+        }
+
+        public static Site Site(this HttpContextBase contextBase) {
+            return (Site) contextBase.Items["Site"];
         }
     }
 

@@ -1,0 +1,21 @@
+﻿$primaryColor: darkred;
+
+.sign-in-options [class^="span"] + [class^="span"] {
+    border-left: 1px solid $primaryColor;
+	min-height: 200px;
+	padding-left: 15px;
+}
+.modal-body
+{
+	h3 {
+		color: $primaryColor;
+		font-size: 1.4em;
+	}
+}
+.field-validation-error {
+	color: darkred;
+	font-size: 0.8em;
+}
+.input-validation-error {
+	border: 1px solid darkred !important;
+}

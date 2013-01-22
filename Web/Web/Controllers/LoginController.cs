@@ -31,7 +31,7 @@ namespace Web.Controllers {
         }
 
         public ActionResult Index() {
-            return View(new LoginModel());
+            return PartialView(new LoginModel());
         }
 
         [HttpPost]
