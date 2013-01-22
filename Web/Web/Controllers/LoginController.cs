@@ -44,7 +44,7 @@ namespace Web.Controllers {
                 return View(loginModel);
             }
 
-            return Redirect(FormsAuthentication.GetRedirectUrl(loginModel.EmailAddress, false));
+            return Json(true);
         }
 
         public ActionResult FacebookLogin() {

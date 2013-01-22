@@ -15,7 +15,7 @@ namespace Domain.Repositories {
         }
 
         public Account GetByEmailAddressAndPassword(string emailAddress, string password) {
-            return database.GetTheDatabase().Account.FindByEmailAddressAndPassword(EmailAddress: emailAddress, Password: password);
+            return (Account)database.GetTheDatabase().Account.FindByEmailAddressAndPassword(EmailAddress: emailAddress, Password: password);
         }
 
         public IEnumerable<Account> GetAllUnconfirmedAccounts() {
@@ -23,7 +23,7 @@ namespace Domain.Repositories {
         }
 
         public Account GetByFacebookId(int facebookId) {
-            return database.GetTheDatabase().Account.FindByFacebookId(FacebookId: facebookId);
+            return (Account)database.GetTheDatabase().Account.FindByFacebookId(FacebookId: facebookId);
         }
     }
 }

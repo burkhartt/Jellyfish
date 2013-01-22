@@ -4,11 +4,15 @@ using Attributes;
 using Events;
 
 namespace Domain.Models.Accounts {
-    public class Account : AggregateRoot, IAccount {
+    public class Account : IAccount {
         private readonly Guid id;
 
         public Account(Guid id) {
             this.id = id;
+        }
+
+        public Account() {
+            id = Guid.NewGuid();
         }
 
         [NotEditable]
@@ -45,10 +49,6 @@ namespace Domain.Models.Accounts {
         public virtual Guid Id { get; set; }
 
         [NotEditable]
-        public virtual string Picture { get; set; }
-
-        public void SetName(string firstName, string lastName) {
-            
-        }
+        public virtual string Picture { get; set; }        
     }
 }

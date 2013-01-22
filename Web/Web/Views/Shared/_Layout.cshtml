@@ -35,12 +35,14 @@
                     </a>
                     <a class="brand" href="@Url.Action("Index", "Home")">@Context.Site().Name</a>
                     <div class="nav-collapse collapse">
-                        
-                            <ul class="nav pull-right">
-                                @if (!Context.Account().IsLoggedIn) {
-                                    <li><a href="@Url.Action("Index", "Login")" id="signIn">Sign In</a></li>                                    
-                                }
-                            </ul>                            
+                        <ul class="nav pull-right">
+                            @if (!Context.Account().IsLoggedIn) {
+                                <li><a href="@Url.Action("Index", "Login")" id="signIn">Sign In</a></li>
+                            }
+                            else {
+                                <li><a href="@Url.Action("Index", "Logout")">Sign Out</a></li>
+                            }
+                        </ul>                            
                         <ul class="nav">
                             <li class="active"><a href="@Url.Action("Index", "Home")">Home</a></li>
                         </ul>
