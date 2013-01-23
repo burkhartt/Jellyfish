@@ -198,6 +198,7 @@
     <Compile Include="ModelBinders\ModelBinderHelper.cs" />
     <Compile Include="Models\AccountView.cs" />
     <Compile Include="Models\CreateAccountModel.cs" />
+    <Compile Include="Models\GoalForm.cs" />
     <Compile Include="Models\GoalModel.cs" />
     <Compile Include="Models\InviteFriendForm.cs" />
     <Compile Include="Models\LoginModel.cs" />
@@ -205,6 +206,7 @@
     <Compile Include="Models\SuccessMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\IAccountSessionRepository.cs" />
+    <Compile Include="Validation\GoalFormValidator.cs" />
     <Compile Include="Validation\LoginModelValidator.cs" />
     <Compile Include="Validation\ServiceLocatorValidatorFactory.cs" />
   </ItemGroup>
@@ -223,6 +225,8 @@
     <Content Include="Content\js\bootstrap.js" />
     <Content Include="Content\js\bootstrap.min.js" />
     <Content Include="Content\js\forms.js" />
+    <Content Include="Content\js\goalsform.js" />
+    <Content Include="Content\js\jquery-ui.js" />
     <Content Include="Content\js\signin.js" />
     <Content Include="Content\list.min.js" />
     <Content Include="Content\reset.css" />
@@ -290,6 +294,7 @@
     <Content Include="Views\MyAccount\Update.cshtml" />
     <Content Include="Views\Shared\Partials\FacebookSDK.cshtml" />
     <Content Include="Views\Shared\_ModalLayout.cshtml" />
+    <Content Include="Views\Goals\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

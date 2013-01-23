@@ -1,5 +1,7 @@
 ﻿@model object
 
-<h2>New @Model.GetType().Name</h2>
+<div class="modal-body">       
+    <h3>New @Model.GetType().Name</h3>
 
-@{ Html.RenderPartial("Partials/Form", Model); }
+    @{ Html.RenderPartial("Partials/Form", Model); }
+</div>

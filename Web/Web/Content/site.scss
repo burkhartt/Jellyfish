@@ -1,4 +1,13 @@
 ﻿$primaryColor: darkred;
+body {
+	font-family: "Roboto";
+	line-height: 1.5em;
+}
+
+h1 {
+	font-size: 1.5em;
+	color: $primaryColor;
+}
 
 .sign-in-options [class^="span"] + [class^="span"] {
     border-left: 1px solid $primaryColor;
@@ -18,4 +27,19 @@
 }
 .input-validation-error {
 	border: 1px solid darkred !important;
+}
+.goals-form {
+	#Title, #Description {
+		width: 100%;
+	}
+	#Description {
+		height: 150px;
+	}
+	label {
+		font-size: 1.3em;
+	}
+	input[type=text] {
+		height: 1.3em;
+		font-size: 1.3em;
+	}
 }

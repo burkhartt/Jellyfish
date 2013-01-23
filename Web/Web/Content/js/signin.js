@@ -1,5 +1,5 @@
 ﻿$(function() {
-    $("#signIn").click(function(event) {
+    $(".ajax-button").click(function(event) {
         event.preventDefault();
 
         var url = $(this).attr('href');

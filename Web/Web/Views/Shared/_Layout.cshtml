@@ -7,8 +7,9 @@
         <link href="@Url.Content("~/Content/reset.css")" rel="stylesheet" type="text/css" />
         <link href="@Url.Content("~/Content/css/bootstrap.css")" rel="stylesheet" media="screen" />
         <link href="@Url.Content("~/Content/site.css")" rel="stylesheet" type="text/css" />        
-        <link href='http://fonts.googleapis.com/css?family=Anaheim' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
         <script type="text/javascript" src="../../Content/jquery-1.7.2.min.js"></script>
+        <script type="text/javascript" src="../../Content/js/jquery-ui.js"></script>
         <script type="text/javascript" src="../../Content/list.min.js"></script>        
         <script src="@Url.Content("~/Content/js/bootstrap.min.js")"></script>
         <script type="text/javascript" src="@Url.Content("~/Content/js/signin.js")"></script>
@@ -19,6 +20,10 @@
                 $("#success").fadeIn("slow").delay(1000).fadeOut("slow");
             });
         </script>
+        
+        @if (IsSectionDefined("Head")) {
+            @RenderSection("Head", required: false)
+        }
 
     </head>
 
@@ -37,7 +42,7 @@
                     <div class="nav-collapse collapse">
                         <ul class="nav pull-right">
                             @if (!Context.Account().IsLoggedIn) {
-                                <li><a href="@Url.Action("Index", "Login")" id="signIn">Sign In</a></li>
+                                <li><a href="@Url.Action("Index", "Login")" class="ajax-button">Sign In</a></li>
                             }
                             else {
                                 <li><a href="@Url.Action("Index", "Logout")">Sign Out</a></li>
@@ -45,39 +50,14 @@
                         </ul>                            
                         <ul class="nav">
                             <li class="active"><a href="@Url.Action("Index", "Home")">Home</a></li>
+                            <li><a href="@Url.Action("Index", "Goals")">Goals</a></li>
                         </ul>
                     </div><!--/.nav-collapse -->
                 </div>
             </div>
-        </div>
-
-        <div id="junk" class="top-container">
             <div class="container">            
-                <div class="top-menu">                                            
-                    <span>Goal Setter</span>
-                    @if (Context.Account().IsLoggedIn) {
-                        <p>Welcome @Context.Account().Data.FirstName</p>
-                        <img src="@Context.Account().Data.Picture" />
-                    }                                        
-                    <ul>
-                        <li>Accounts @Html.ActionLink("New", "Create", "Accounts")</li>
-                        @if (!Context.Account().IsLoggedIn) {
-                            <li>@Html.ActionLink("Unconfirmed Accounts", "Index", "UnconfirmedAccounts")</li>
-                            <li>@Html.ActionLink("Login As", "AllAccounts", "Login")</li>
-                        }
-                        else {
-                            <li>My Account <a href ="@Url.Action("Update", "Accounts", new {id = Context.Account().Data.Id})">Update</a> | @Html.ActionLink("Friends", "Listing", "MyFriends")</li>
-                            <li>Goals @Html.ActionLink("New", "Create", "Goals") | @Html.ActionLink("View", "Listing", "Goals")</li>
-                            <li>Friends @Html.ActionLink("Invite", "Invite", "Friends")</li>
-                            <li>@Html.ActionLink("Sign Out", "Index", "Logout")</li>
-                        }
-                        
-                    </ul>
-                </div>
-                
                 @Html.DisplayFor(x => TempData["SuccessMessage"])
                 @Html.DisplayFor(x => TempData["ErrorMessage"])
-
                 @RenderBody()
             </div>
         </div>

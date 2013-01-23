@@ -23,7 +23,7 @@ namespace Web {
                 (?<=[A-Z])(?=[A-Z][a-z]) |
                  (?<=[^A-Z])(?=[A-Z]) |
                  (?<=[A-Za-z])(?=[^A-Za-z])", RegexOptions.IgnorePatternWhitespace);
-            if (!string.IsNullOrEmpty(modelMetadata.PropertyName)) {
+            if (!string.IsNullOrEmpty(modelMetadata.PropertyName) && string.IsNullOrEmpty(modelMetadata.DisplayName)) {
                 modelMetadata.DisplayName = r.Replace(modelMetadata.PropertyName, " ");
             }
 

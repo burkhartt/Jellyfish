@@ -19,7 +19,7 @@ namespace Domain {
             domainEvent.Sequence = ++LastEventSequence;
             ApplyEventToDomainEntityState(domainEvent);
 
-            domainEvent.AggregateRootId = Id;
+            domainEvent.Id = Id;
             domainEvent.EventDate = DateTime.Now;
             uncommittedEvents.Enqueue(domainEvent);
         }

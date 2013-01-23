@@ -1,5 +1,5 @@
 ﻿$(function () {
-    $('form').live('submit', function (event) {
+    $('.modal-body form').live('submit', function (event) {
         var form = $(this);
         $.ajax(
         {

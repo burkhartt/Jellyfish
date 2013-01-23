@@ -1,0 +1,27 @@
+﻿@model Web.Models.GoalForm
+
+@section Head {
+    <script type="text/javascript" src="../../Content/js/goalsform.js"></script>
+}
+
+<div class="goals-form">
+    @using (Html.BeginForm("Create", "Goals")) {
+        <div class="hero-unit step" data-val="1">        
+            @Html.HiddenFor(x => x.Id)
+
+            <h1>Let's Get Started!</h1>
+            <p>@Html.LabelFor(x => x.Title)</p>
+            <p>@Html.TextBoxFor(x => x.Title)</p>
+            <input type="submit" value="Keep Going!" class="btn-primary btn" />
+        </div>
+        <div class="hero-unit step" data-val="2">        
+            @Html.HiddenFor(x => x.Id)
+
+            <h1>That's Great!</h1>
+            <p>@Html.LabelFor(x => x.Description)</p>
+            <p>@Html.TextAreaFor(x => x.Description)</p>
+            <input type="submit" value="So Awesome!" class="btn-primary btn" />
+        
+        </div>
+    }
+</div>

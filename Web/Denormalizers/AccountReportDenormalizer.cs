@@ -13,11 +13,11 @@ namespace Denormalizers {
         }
 
         public void Handle(AccountCreatedEvent @event) {
-            dictionary[@event.AggregateRootId] = "";
+            dictionary[@event.Id] = "";
         }
 
         public void Handle(AccountNameSetEvent @event) {
-            dictionary[@event.AggregateRootId] = @event.FirstName + " " + @event.LastName;
+            dictionary[@event.Id] = @event.FirstName + " " + @event.LastName;
         }
     }
 }

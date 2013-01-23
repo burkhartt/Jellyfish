@@ -51,9 +51,14 @@
     <Compile Include="AuthenticationDenormalizer.cs" />
     <Compile Include="DenormalizerModule.cs" />
     <Compile Include="FriendInvitationDenormalizer.cs" />
+    <Compile Include="GoalDenormalizer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Database\Database.csproj">
+      <Project>{14085da7-85b8-4324-9916-104b29a58dcf}</Project>
+      <Name>Database</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Domain\Domain.csproj">
       <Project>{dc2dbdb0-fc38-4f9f-ba22-dee421505905}</Project>
       <Name>Domain</Name>
