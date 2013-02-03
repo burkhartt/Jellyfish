@@ -184,6 +184,7 @@
     <Compile Include="Controllers\MyFriendsController.cs" />
     <Compile Include="Controllers\UnconfirmedAccountsController.cs" />
     <Compile Include="Controllers\VerifyAccountController.cs" />
+    <Compile Include="Controllers\BucketsController.cs" />
     <Compile Include="CustomModelMetadataProvider.cs" />
     <Compile Include="Extensions\HttpContextExtensions.cs" />
     <Compile Include="FacebookAuthentication\FacebookAccountJsonDeserialization.cs" />
@@ -231,6 +232,7 @@
     <Content Include="Content\js\goalsform.js" />
     <Content Include="Content\js\jquery-ui.js" />
     <Content Include="Content\js\knockout-2.2.1.js" />
+    <Content Include="Content\js\newbucket.js" />
     <Content Include="Content\js\newgoal.js" />
     <Content Include="Content\js\signin.js" />
     <Content Include="Content\list.min.js" />

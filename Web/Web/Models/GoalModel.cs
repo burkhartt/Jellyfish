@@ -6,7 +6,6 @@ namespace Web.Models {
     public class GoalModel {
         public GoalModel(Goal goal) {
             Title = goal.Title;
-            Description = goal.Description;
             Id = goal.Id;
         }
 

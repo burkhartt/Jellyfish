@@ -23,13 +23,14 @@ namespace Web.Controllers {
         }
 
         public JsonResult Get() {
-            return Json(goalRepository.AllByAccountId(account.Id), JsonRequestBehavior.AllowGet);
+            return Json(goalRepository.AllOrphansByAccountId(account.Id), JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
         public JsonResult Create(string goal) {
-            eventBus.Send(new GoalCreatedEvent {Id = Guid.NewGuid(), Title = goal, AccountId = account.Id});
-            return Json(true);
+            var goalId = Guid.NewGuid();
+            eventBus.Send(new GoalCreatedEvent {Id = goalId, Title = goal, AccountId = account.Id});
+            return Json(goalId);
         }
 
         [HttpPost]

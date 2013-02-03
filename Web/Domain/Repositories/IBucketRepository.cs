@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Domain.Models.Goals;
 
 namespace Domain.Repositories {
-    public interface IGoalRepository {
-        IEnumerable<Goal> AllOrphansByAccountId(Guid id);
+    public interface IBucketRepository {
+        IEnumerable<Bucket> AllByAccountId(Guid id);
     }
 }

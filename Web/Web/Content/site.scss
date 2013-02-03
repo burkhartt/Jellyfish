@@ -49,7 +49,19 @@ h1 {
 	height: 100px;
 	width: 100px;
 }
-#orphaned-goals li
+.goal
+{
+	border: 1px solid red;
+	height: 50px;
+	width: 50px;
+	cursor: move;
+}
+#orphaned-goals, #buckets{
+	margin: 0px;
+	padding: 0px;
+}
+#buckets li, #orphaned-goals li
 {
 	float: left;
+	margin-right: 15px;
 }
