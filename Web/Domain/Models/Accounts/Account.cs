@@ -5,14 +5,12 @@ using Events;
 
 namespace Domain.Models.Accounts {
     public class Account : IAccount {
-        private readonly Guid id;
-
         public Account(Guid id) {
-            this.id = id;
+            Id = id;
         }
 
         public Account() {
-            id = Guid.NewGuid();
+            Id = Guid.NewGuid();
         }
 
         [NotEditable]

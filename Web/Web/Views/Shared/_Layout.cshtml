@@ -1,5 +1,6 @@
 ﻿@using System.Web.Mvc.Html
 @using Web
+@using Web.Extensions
 <!DOCTYPE html>
 <html>
     <head>
@@ -7,10 +8,12 @@
         <link href="@Url.Content("~/Content/reset.css")" rel="stylesheet" type="text/css" />
         <link href="@Url.Content("~/Content/css/bootstrap.css")" rel="stylesheet" media="screen" />
         <link href="@Url.Content("~/Content/site.css")" rel="stylesheet" type="text/css" />        
+        <link href="@Url.Content("~/Content/css/datepicker.css")" rel="stylesheet" type="text/css" />        
         <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
         <script type="text/javascript" src="../../Content/jquery-1.7.2.min.js"></script>
         <script type="text/javascript" src="../../Content/js/jquery-ui.js"></script>
         <script type="text/javascript" src="../../Content/list.min.js"></script>        
+        <script type="text/javascript" src="../../Content/js/bootstrap-datepicker.js"></script>        
         <script src="@Url.Content("~/Content/js/bootstrap.min.js")"></script>
         <script type="text/javascript" src="@Url.Content("~/Content/js/signin.js")"></script>
         <script type="text/javascript" src="@Url.Content("~/Content/js/forms.js")"></script>
@@ -50,9 +53,8 @@
                         </ul>                            
                         <ul class="nav">
                             <li class="active"><a href="@Url.Action("Index", "Home")">Home</a></li>
-                            <li><a href="@Url.Action("Index", "Goals")">Goals</a></li>
                         </ul>
-                    </div><!--/.nav-collapse -->
+                    </div>
                 </div>
             </div>
             <div class="container">            

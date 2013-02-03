@@ -11,6 +11,7 @@ using System.Web.Security;
 using Authentication;
 using Autofac;
 using Autofac.Core;
+using Autofac.Core.Lifetime;
 using Autofac.Integration.Mvc;
 using Database;
 using Denormalizers;
@@ -40,6 +41,9 @@ namespace Web {
         }
 
         protected void Application_AcquireRequestState(object sender, EventArgs e){
+            if (HttpContext.Current.Session == null) {
+                return;
+            }
             var account = DependencyResolver.Current.GetService<IAccount>();
             var accountSessionRepository = DependencyResolver.Current.GetService<IAccountSessionRepository>();
             Context.Items["Account"] = new AccountView { Data = account, IsLoggedIn = accountSessionRepository.GetCurrentId() != Guid.Empty };
@@ -88,9 +92,13 @@ namespace Web {
             builder.RegisterType(typeof(Authenticator)).As<IAuthenticator>();            
             builder.RegisterType(typeof(AccountRepository)).Named<IAccountRepository>("BaseAccountRepository");
             builder.Register(c => new FacebookAccountRepository(c.ResolveNamed<IAccountRepository>("BaseAccountRepository"), c.Resolve<IFacebookDataRepository>())).As(typeof(IAccountRepository));
-            builder.RegisterType(typeof (AccountSessionRepository)).As(typeof (IAccountSessionRepository));            
+            builder.RegisterType(typeof (AccountSessionRepository)).As(typeof (IAccountSessionRepository));
+            builder.RegisterType<GoalRepository>().As<IGoalRepository>();
             
-            builder.Register(c => c.Resolve<IAccountRepository>().FindById(c.Resolve<IAccountSessionRepository>().GetCurrentId())).As<IAccount>().InstancePerLifetimeScope();
+            builder.Register<IAccount>(c => {
+                var currentId = c.Resolve<IAccountSessionRepository>().GetCurrentId();
+                return c.Resolve<IAccountRepository>().FindById(currentId);
+            }).As<IAccount>();
 
             builder.RegisterType<GlobalMessageFilter>().As<IActionFilter>();
 
@@ -101,26 +109,13 @@ namespace Web {
 
             Container = builder.Build();
 
-            var fluentValidationModelValidatorProvider =
-                new FluentValidationModelValidatorProvider(new ServiceLocatorValidatorFactory(Container)) {
-                    AddImplicitRequiredValidator = false
-                };
+            var fluentValidationModelValidatorProvider = new FluentValidationModelValidatorProvider(new ServiceLocatorValidatorFactory(Container)) { AddImplicitRequiredValidator = false };
             ModelValidatorProviders.Providers.Add(fluentValidationModelValidatorProvider);
 
             ModelMetadataProviders.Current = Container.Resolve<DataAnnotationsModelMetadataProvider>();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(Container));
         }
-    }
-
-    public static class CustomContext {
-        public static AccountView Account(this HttpContextBase contextBase) {
-            return (AccountView)contextBase.Items["Account"];
-        }
-
-        public static Site Site(this HttpContextBase contextBase) {
-            return (Site) contextBase.Items["Site"];
-        }
-    }
+    }    
 
     public static class ActionFilterInjection {
         /// <summary>

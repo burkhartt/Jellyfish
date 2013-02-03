@@ -17,7 +17,8 @@ namespace Web.FacebookAuthentication {
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue,
                                         JsonSerializer serializer) {
-            var mappedObj = new FacebookAccount(Guid.NewGuid()); //new FacebookAccount(account);
+            var mappedObj = new FacebookAccount();
+            mappedObj.Id = account.Id;
             //get an array of the object's props so I can check if the JSON prop s/b mapped to it
             var objProps = objectType.GetProperties().Select(p => p.Name.ToLower()).ToArray();
 
@@ -35,9 +36,7 @@ namespace Web.FacebookAuthentication {
 
                 if (reader.Read() && objProps.Contains(readerValue)) {
                     //get the property info and set the Mapped object's property value
-                    var pi = mappedObj.GetType()
-                                      .GetProperty(readerValue,
-                                                   BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
+                    var pi = mappedObj.GetType().GetProperty(readerValue, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
                     var convertedValue = Convert.ChangeType(reader.Value, pi.PropertyType);
                     pi.SetValue(mappedObj, convertedValue, null);
                 }
@@ -46,7 +45,7 @@ namespace Web.FacebookAuthentication {
         }
 
         public override FacebookAccount Create(Type objectType) {
-            return new FacebookAccount(Guid.NewGuid());
+            return new FacebookAccount();
         }
     }
 }

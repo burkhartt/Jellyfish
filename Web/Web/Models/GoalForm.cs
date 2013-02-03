@@ -11,6 +11,8 @@ namespace Web.Models {
         [DisplayName("What are you going to do?")]
         public string Title { get; set; }
         [DisplayName("Tell me more about it...")]
-        public string Description { get; set; }        
+        public string Description { get; set; }
+        [DisplayName("When do you it accomplished?")]
+        public DateTime Deadline { get; set; }
     }
 }

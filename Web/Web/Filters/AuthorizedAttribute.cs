@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
 using System.Web.Security;
+using Web.Extensions;
 
 namespace Web.Filters {
     public class AuthorizedAttribute : ActionFilterAttribute {

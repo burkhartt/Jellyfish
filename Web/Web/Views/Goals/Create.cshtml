@@ -21,7 +21,13 @@
             <p>@Html.LabelFor(x => x.Description)</p>
             <p>@Html.TextAreaFor(x => x.Description)</p>
             <input type="submit" value="So Awesome!" class="btn-primary btn" />
-        
+        </div>
+        <div class="hero-unit step" data-val="3">        
+            @Html.HiddenFor(x => x.Id)
+
+            <h1>Woot!</h1>
+            <p>@Html.EditorFor(x => x.Deadline)</p>
+            <input type="submit" value="Success!" class="btn-primary btn" />
         </div>
     }
 </div>

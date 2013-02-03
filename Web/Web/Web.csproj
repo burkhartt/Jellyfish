@@ -185,6 +185,7 @@
     <Compile Include="Controllers\UnconfirmedAccountsController.cs" />
     <Compile Include="Controllers\VerifyAccountController.cs" />
     <Compile Include="CustomModelMetadataProvider.cs" />
+    <Compile Include="Extensions\HttpContextExtensions.cs" />
     <Compile Include="FacebookAuthentication\FacebookAccountJsonDeserialization.cs" />
     <Compile Include="FacebookAuthentication\FacebookUserData.cs" />
     <Compile Include="FacebookAuthentication\IFacebookAccountDataRepository.cs" />
@@ -218,15 +219,19 @@
     <Content Include="Content\css\bootstrap-responsive.min.css" />
     <Content Include="Content\css\bootstrap.css" />
     <Content Include="Content\css\bootstrap.min.css" />
+    <Content Include="Content\css\datepicker.css" />
     <Content Include="Content\img\fb-connect.png" />
     <Content Include="Content\img\glyphicons-halflings-white.png" />
     <Content Include="Content\img\glyphicons-halflings.png" />
     <Content Include="Content\jquery-1.7.2.min.js" />
+    <Content Include="Content\js\bootstrap-datepicker.js" />
     <Content Include="Content\js\bootstrap.js" />
     <Content Include="Content\js\bootstrap.min.js" />
     <Content Include="Content\js\forms.js" />
     <Content Include="Content\js\goalsform.js" />
     <Content Include="Content\js\jquery-ui.js" />
+    <Content Include="Content\js\knockout-2.2.1.js" />
+    <Content Include="Content\js\newgoal.js" />
     <Content Include="Content\js\signin.js" />
     <Content Include="Content\list.min.js" />
     <Content Include="Content\reset.css" />

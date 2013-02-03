@@ -1,4 +1,5 @@
 ﻿$primaryColor: darkred;
+
 body {
 	font-family: "Roboto";
 	line-height: 1.5em;
@@ -42,4 +43,13 @@ h1 {
 		height: 1.3em;
 		font-size: 1.3em;
 	}
+}
+.bucket {
+	border: 1px solid navy;
+	height: 100px;
+	width: 100px;
+}
+#orphaned-goals li
+{
+	float: left;
 }

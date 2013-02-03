@@ -17,4 +17,7 @@
 
         return false;
     });
+    $(function () {
+        $(".datepicker").datepicker();
+    });
 });

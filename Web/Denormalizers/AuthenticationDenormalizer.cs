@@ -23,7 +23,7 @@ namespace Denormalizers {
         public void Handle(FacebookLoginEvent @event) {
             var account = accountRepository.GetByFacebookId(@event.FacebookId);
             if (account == null) {
-                //accountRepository.Create(new FacebookAccount(@event.FacebookId));
+                accountRepository.Create(new FacebookAccount(@event.FacebookId));
             }
             
             account = accountRepository.GetByFacebookId(@event.FacebookId);

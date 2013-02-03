@@ -1,8 +1,11 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
+using Domain.Models;
 using Domain.Models.Goals;
 using Domain.Repositories;
 using Events;
 using Events.Bus;
+using MongoDB.Bson;
 using Web.Filters;
 using Web.Models;
 
@@ -10,29 +13,22 @@ namespace Web.Controllers {
     [Authorized]
     public class GoalsController : Controller {
         private readonly IEventBus eventBus;
-        private readonly IRepository<Goal> goalRepository;
+        private readonly IGoalRepository goalRepository;
+        private readonly IAccount account;
 
-        public GoalsController(IEventBus eventBus, IRepository<Goal> goalRepository) {
+        public GoalsController(IEventBus eventBus, IGoalRepository goalRepository, IAccount account) {
             this.eventBus = eventBus;
             this.goalRepository = goalRepository;
+            this.account = account;
         }
 
-        public ActionResult Index() {
-            return View("Listing", goalRepository.All());
-        }
-
-        public ActionResult Create() {
-            return View(new GoalForm());
+        public JsonResult Get() {
+            return Json(goalRepository.AllByAccountId(account.Id), JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
-        public JsonResult Create(GoalForm goalForm) {
-            if (!ModelState.IsValid) {
-                return Json(false);
-            }
-
-            eventBus.Send(new GoalCreatedEvent {Id = goalForm.Id, Title = goalForm.Title});
-
+        public JsonResult Create(string goal) {
+            eventBus.Send(new GoalCreatedEvent {Id = Guid.NewGuid(), Title = goal, AccountId = account.Id});
             return Json(true);
         }
 
@@ -42,9 +38,9 @@ namespace Web.Controllers {
                 return Json(false);
             }
 
-            eventBus.Send(new GoalUpdatedEvent {Id = goalForm.Id, Description = goalForm.Description});
+            eventBus.Send(new GoalUpdatedEvent {Id = goalForm.Id, Description = goalForm.Description, Deadline = goalForm.Deadline });
 
             return Json(true);
         }
-    }
+    }    
 }
