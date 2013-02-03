@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Web.Mvc;
 using Domain.Models;
-using Domain.Models.Goals;
 using Domain.Repositories;
 using Events;
 using Events.Bus;
-using MongoDB.Bson;
 using Web.Filters;
 using Web.Models;
 

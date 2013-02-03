@@ -2,13 +2,13 @@
 
 @section Head{
     <script type="text/javascript" src="../../Content/js/newgoal.js"></script>
-    <script type="text/javascript" src="../../Content/js/newbucket.js"></script>
+    <script type="text/javascript" src="../../Content/js/newbucket.js"></script>    
     <script type="text/javascript">
         $(function () {
             var bucketManager = new BucketManager($('input[name="new-bucket"]'), $("#buckets"), '@Model.Id');
             bucketManager.LoadBuckets();
             var goalManager = new GoalManager($('input[name="new-goal"]'), $("#orphaned-goals"), '@Model.Id');
-            goalManager.LoadGoals();
+            goalManager.LoadGoals();            
         });
     </script>
 }

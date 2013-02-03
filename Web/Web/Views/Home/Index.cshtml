@@ -1,26 +1,43 @@
 ﻿@model dynamic
 
-@section Head{
+@section Head {
     <script type="text/javascript" src="../../Content/js/newgoal.js"></script>
     <script type="text/javascript" src="../../Content/js/newbucket.js"></script>
+    <script type="text/javascript" src="../../Content/js/newgroup.js"></script>
     <script type="text/javascript">
-        $(function () {
+        $(function() {
             var bucketManager = new BucketManager($('input[name="new-bucket"]'), $("#buckets"));
             bucketManager.LoadBuckets();
             var goalManager = new GoalManager($('input[name="new-goal"]'), $("#orphaned-goals"));
             goalManager.LoadGoals();
-        });        
+            var groupManager = new GroupManager($('#new-group'), $("#groups"));
+            groupManager.LoadGroups();
+        });
     </script>
 }
 
-<h1>Buckets</h1>
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span2">
+            <fieldset id="groupsContainer">
+                <legend>Groups <input type="button" id="new-group" class="btn-new" /></legend>
+                <ul id="groups"></ul>
+            </fieldset>
+        </div>
+        <div class="span10">
+            <h1>Buckets</h1>
 
-<fieldset>
-    <legend>Unbucketed Goals <input type="button" name="new-goal" value="New" class="btn btn-primary" /></legend>
-    <ul id="orphaned-goals"></ul>
-</fieldset>
+            <fieldset>
+                <legend>Unbucketed Goals <input type="button" name="new-goal" value="New" class="btn btn-primary" /></legend>
+                <ul id="orphaned-goals"></ul>
+            </fieldset>
 
-<fieldset>
-    <legend>"Who" Buckets <input type="button" name="new-bucket" value="New" class="btn btn-primary"/></legend>
-    <ul id="buckets"></ul>
-</fieldset>
+            <fieldset>
+                <legend>"Who" Buckets <input type="button" name="new-bucket" value="New" class="btn btn-primary"/></legend>
+                <ul id="buckets"></ul>
+            </fieldset>
+        </div>
+    </div>
+</div>
+
+

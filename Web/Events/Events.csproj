@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountAddedToGroupEvent.cs" />
     <Compile Include="AccountCreatedEvent.cs" />
     <Compile Include="AccountNameSetEvent.cs" />
     <Compile Include="Accounts\AccountSuccessfullyAuthenticatedEvent.cs" />
@@ -60,6 +61,7 @@
     <Compile Include="GoalAddedToBucketEvent.cs" />
     <Compile Include="GoalCreatedEvent.cs" />
     <Compile Include="GoalUpdatedEvent.cs" />
+    <Compile Include="GroupCreatedEvent.cs" />
     <Compile Include="Handler\IHandleDomainEvents.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

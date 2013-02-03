@@ -177,6 +177,7 @@
     <Compile Include="Controllers\CrudController.cs" />
     <Compile Include="Controllers\FriendsController.cs" />
     <Compile Include="Controllers\GoalsController.cs" />
+    <Compile Include="Controllers\GroupsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\LogoutController.cs" />
@@ -222,6 +223,7 @@
     <Content Include="Content\css\bootstrap.css" />
     <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\css\datepicker.css" />
+    <Content Include="Content\icons\add.png" />
     <Content Include="Content\img\fb-connect.png" />
     <Content Include="Content\img\glyphicons-halflings-white.png" />
     <Content Include="Content\img\glyphicons-halflings.png" />
@@ -229,6 +231,7 @@
     <Content Include="Content\js\bootstrap-datepicker.js" />
     <Content Include="Content\js\bootstrap.js" />
     <Content Include="Content\js\bootstrap.min.js" />
+    <Content Include="Content\js\newgroup.js" />
     <Content Include="Content\js\forms.js" />
     <Content Include="Content\js\goalsform.js" />
     <Content Include="Content\js\jquery-ui.js" />
