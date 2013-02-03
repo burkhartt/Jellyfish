@@ -7655,7 +7655,7 @@ $.extend(Datepicker.prototype, {
 		offset.left -= (isFixed && offset.left == inst.input.offset().left) ? $(document).scrollLeft() : 0;
 		offset.top -= (isFixed && offset.top == (inst.input.offset().top + inputHeight)) ? $(document).scrollTop() : 0;
 
-		// now check if datepicker is showing outside window viewport - move to a better place if so.
+		// now check if datepicker is showing outside window Indexport - move to a better place if so.
 		offset.left -= Math.min(offset.left, (offset.left + dpWidth > viewWidth && viewWidth > dpWidth) ?
 			Math.abs(offset.left + dpWidth - viewWidth) : 0);
 		offset.top -= Math.min(offset.top, (offset.top + dpHeight > viewHeight && viewHeight > dpHeight) ?
@@ -7675,7 +7675,7 @@ $.extend(Datepicker.prototype, {
 	    return [position.left, position.top];
 	},
 
-	/* Hide the date picker from view.
+	/* Hide the date picker from Index.
 	   @param  input  element - the input field attached to the date picker */
 	_hideDatepicker: function(input) {
 		var inst = this._curInst;

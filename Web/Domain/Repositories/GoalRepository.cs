@@ -12,9 +12,9 @@ namespace Domain.Repositories {
             this.database = database;
         }
 
-        public IEnumerable<Goal> AllOrphansByAccountId(Guid id) {
-            IEnumerable<Goal> goals = database.GetTheDatabase().Goals.FindAllByAccountId(id).ToList<Goal>();
-            return goals.Where(x => x.BucketId == Guid.Empty);
+        public IEnumerable<Goal> GetByAccountId(Guid bucketId, Guid accountId) {
+            IEnumerable<Goal> goals = database.GetTheDatabase().Goals.FindAllByAccountId(accountId).ToList<Goal>();
+            return goals.Where(x => x.BucketId == bucketId);
         }
     }
 }

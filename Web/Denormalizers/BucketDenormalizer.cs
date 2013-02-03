@@ -11,7 +11,7 @@ namespace Denormalizers {
         }
 
         public void Handle(BucketCreatedEvent @event) {
-            database.GetTheDatabase().Buckets.Insert(Id: @event.Id, AccountId: @event.AccountId, Title: @event.Title);
+            database.GetTheDatabase().Buckets.Insert(Id: @event.Id, AccountId: @event.AccountId, Title: @event.Title, ParentId: @event.ParentBucketId);
         }
     }
 }

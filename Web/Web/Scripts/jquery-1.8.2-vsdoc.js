@@ -1689,7 +1689,7 @@
     jQuery.event = {
         "global": {},
         "customEvent": {},
-        "props": ['attrChange', 'attrName', 'relatedNode', 'srcElement', 'altKey', 'bubbles', 'cancelable', 'ctrlKey', 'currentTarget', 'eventPhase', 'metaKey', 'relatedTarget', 'shiftKey', 'target', 'timeStamp', 'view', 'which'],
+        "props": ['attrChange', 'attrName', 'relatedNode', 'srcElement', 'altKey', 'bubbles', 'cancelable', 'ctrlKey', 'currentTarget', 'eventPhase', 'metaKey', 'relatedTarget', 'shiftKey', 'target', 'timeStamp', 'Index', 'which'],
         "fixHooks": {},
         "keyHooks": {},
         "mouseHooks": {},

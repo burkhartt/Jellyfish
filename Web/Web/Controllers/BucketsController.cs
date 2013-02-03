@@ -19,14 +19,18 @@ namespace Web.Controllers {
             this.eventBus = eventBus;
         }
 
-        public JsonResult Get() {
-            return Json(bucketRepository.AllByAccountId(account.Id), JsonRequestBehavior.AllowGet);
+        public ViewResult Index(Guid id) {            
+            return View(bucketRepository.GetById(id));
+        }
+
+        public JsonResult Get(Guid parentId) {
+            return Json(bucketRepository.AllByAccountId(parentId, account.Id), JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
-        public JsonResult Create(string title) {
+        public JsonResult Create(string title, Guid parentBucketId) {
             var bucketId = Guid.NewGuid();
-            eventBus.Send(new BucketCreatedEvent {Id = bucketId, Title = title, AccountId = account.Id});
+            eventBus.Send(new BucketCreatedEvent {Id = bucketId, Title = title, AccountId = account.Id, ParentBucketId = parentBucketId});
             return Json(bucketId);
         }
 

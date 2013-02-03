@@ -22,14 +22,14 @@ namespace Web.Controllers {
             this.account = account;
         }
 
-        public JsonResult Get() {
-            return Json(goalRepository.AllOrphansByAccountId(account.Id), JsonRequestBehavior.AllowGet);
+        public JsonResult Get(Guid bucketId) {
+            return Json(goalRepository.GetByAccountId(bucketId, account.Id), JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
-        public JsonResult Create(string goal) {
+        public JsonResult Create(string goal, Guid bucketId) {
             var goalId = Guid.NewGuid();
-            eventBus.Send(new GoalCreatedEvent {Id = goalId, Title = goal, AccountId = account.Id});
+            eventBus.Send(new GoalCreatedEvent {Id = goalId, Title = goal, AccountId = account.Id, BucketId = bucketId});
             return Json(goalId);
         }
 
@@ -43,5 +43,5 @@ namespace Web.Controllers {
 
             return Json(true);
         }
-    }    
+    }
 }

@@ -1,12 +1,8 @@
-﻿$(function () {
-    var bucketManager = new BucketManager($('input[name="new-bucket"]'), $("#buckets"));
-    bucketManager.LoadBuckets();
-});
-
-var BucketManager = function (button, container) {
+﻿var BucketManager = function (button, container, parentBucketId) {
     var obj = this;
     this.button = button;
     this.container = container;
+    this.parentBucketId = parentBucketId;
 
     this.button.click(function () {
         obj.container.prepend('<li><div class="bucket"><input type="text" name="newBucket" /></div></li>');
@@ -18,7 +14,7 @@ var BucketManager = function (button, container) {
     };
 
     this.LoadBuckets = function () {
-        $.getJSON("/Buckets/Get", null, function (result) {
+        $.getJSON("/Buckets/Get", { parentId: parentBucketId}, function (result) {
             $.each(result, function (key, bucket) {
                 addBucket(bucket.Id, bucket.Title);
             });
@@ -29,12 +25,10 @@ var BucketManager = function (button, container) {
         $.ajax({
             type: "POST",
             url: "/Buckets/Create",
-            data: { title: bucketTitle },
+            data: { title: bucketTitle, parentBucketId: obj.parentBucketId },
             dataType: "json",
-            success: function (data) {
-                $.each(data, function(key, bucket) {
-                    addBucket(bucket.Id, bucketTitle);
-                });
+            success: function (bucket) {
+                addBucket(bucket.Id, bucketTitle);
             }
         });        
     };
@@ -57,6 +51,10 @@ var BucketManager = function (button, container) {
                 $(goal.draggable).remove();
                 linkGoalToBucket(goalId, thisBucketId);
             }
+        });
+
+        $(".bucket").click(function() {
+            window.location.href = "/Buckets/Index/" + $(this).data("val-id");
         });
     };
 };

@@ -1,19 +1,19 @@
-﻿@model dynamic
+﻿@model Domain.Models.Goals.Bucket
 
 @section Head{
     <script type="text/javascript" src="../../Content/js/newgoal.js"></script>
     <script type="text/javascript" src="../../Content/js/newbucket.js"></script>
     <script type="text/javascript">
         $(function () {
-            var bucketManager = new BucketManager($('input[name="new-bucket"]'), $("#buckets"));
+            var bucketManager = new BucketManager($('input[name="new-bucket"]'), $("#buckets"), '@Model.Id');
             bucketManager.LoadBuckets();
-            var goalManager = new GoalManager($('input[name="new-goal"]'), $("#orphaned-goals"));
+            var goalManager = new GoalManager($('input[name="new-goal"]'), $("#orphaned-goals"), '@Model.Id');
             goalManager.LoadGoals();
-        });        
+        });
     </script>
 }
 
-<h1>Buckets</h1>
+<h1>@Html.ActionLink("Buckets", "Index", "Home") &gt; @Model.Title</h1>
 
 <fieldset>
     <legend>Unbucketed Goals <input type="button" name="new-goal" value="New" class="btn btn-primary" /></legend>
@@ -21,6 +21,6 @@
 </fieldset>
 
 <fieldset>
-    <legend>"Who" Buckets <input type="button" name="new-bucket" value="New" class="btn btn-primary"/></legend>
+    <legend>"What" Buckets <input type="button" name="new-bucket" value="New" class="btn btn-primary"/></legend>
     <ul id="buckets"></ul>
 </fieldset>

@@ -197,6 +197,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="ModelBinders\DecimalModelBInder.cs" />
+    <Compile Include="ModelBinders\GuidModelBinder.cs" />
     <Compile Include="ModelBinders\ModelBinderHelper.cs" />
     <Compile Include="Models\AccountView.cs" />
     <Compile Include="Models\CreateAccountModel.cs" />
@@ -302,6 +303,7 @@
     <Content Include="Views\Shared\Partials\FacebookSDK.cshtml" />
     <Content Include="Views\Shared\_ModalLayout.cshtml" />
     <Content Include="Views\Goals\Create.cshtml" />
+    <Content Include="Views\Buckets\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

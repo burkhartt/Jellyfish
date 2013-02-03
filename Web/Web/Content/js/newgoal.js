@@ -1,12 +1,8 @@
-﻿$(function() {
-    var goalManager = new GoalManager($('input[name="new-goal"]'), $("#orphaned-goals"));
-    goalManager.LoadGoals();
-});
-
-var GoalManager = function (button, container) {
+﻿var GoalManager = function (button, container, bucketId) {
     var obj = this;
     this.button = button;
     this.container = container;
+    this.bucketId = bucketId;
     
     this.button.click(function () {
         obj.container.prepend('<li><div class="goal"><input type="text" name="newGoal" /></div></li>');
@@ -18,7 +14,7 @@ var GoalManager = function (button, container) {
     };
 
     this.LoadGoals = function() {
-        $.getJSON("/Goals/Get", null, function (result) {
+        $.getJSON("/Goals/Get", { bucketId: obj.bucketId }, function (result) {
             $.each(result, function(key, goal) {
                 addGoal(goal.Id, goal.Title);
             });
@@ -29,10 +25,10 @@ var GoalManager = function (button, container) {
         $.ajax({
             type: "POST",
             url: "/Goals/Create",
-            data: { goal: goalTitle },
+            data: { goal: goalTitle, bucketId: obj.bucketId },
             dataType: "json",
-            success: function(goal) {
-                addGoal(goal.Id, goalTitle);
+            success: function(goalId) {
+                addGoal(goalId, goalTitle);
             }
         });        
     };

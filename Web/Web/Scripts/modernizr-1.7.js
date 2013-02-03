@@ -335,7 +335,7 @@ window.Modernizr = (function(window,document,undefined){
      *   This test is a standards compliant-only test; for more complete
      *   testing, including a Google Gears fallback, please see:
      *   http://code.google.com/p/geo-location-javascript/
-     * or view a fallback solution using google's geo API:
+     * or Index a fallback solution using google's geo API:
      *   http://gist.github.com/366184
      */
     tests['geolocation'] = function() {
