@@ -1,11 +1,14 @@
 ﻿@model Domain.Models.Goals.Goal
 
 @section Head {
+    <script type="text/javascript" src="../../Content/js/newtask.js"></script>
     <script type="text/javascript" src="../../Content/js/editContent.js"></script>
     <script type="text/javascript">
         $(function () {
             var contentEditor = new ContentEditor('@Model.Id', $('input[name="edit-description"]'), $("#goal-description"), "TextArea");
             var deadlineEditor = new ContentEditor('@Model.Id', $('input[name="edit-deadline"]'), $("#goal-deadline"), "DateTime");
+            var taskManager = new TaskManager($('input[name="create-task"]'), $("#tasks"), '@Model.Id');
+            taskManager.LoadTasks();
         });
     </script>
 }
@@ -32,4 +35,5 @@
 
 <fieldset>
     <legend>Tasks <input type="button" name="create-task" class="btn-new"/></legend>
+    <ul id="tasks"></ul>    
 </fieldset>

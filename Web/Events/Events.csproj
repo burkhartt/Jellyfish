@@ -67,6 +67,8 @@
     <Compile Include="GroupCreatedEvent.cs" />
     <Compile Include="Handler\IHandleDomainEvents.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TaskCreatedEvent.cs" />
+    <Compile Include="TaskStatusUpdatedEvent.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

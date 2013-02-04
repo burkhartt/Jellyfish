@@ -57,6 +57,7 @@
     <Compile Include="GroupGoalsDenormalizer.cs" />
     <Compile Include="GroupMembersDenormalizer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TaskDenormalizer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Database\Database.csproj">

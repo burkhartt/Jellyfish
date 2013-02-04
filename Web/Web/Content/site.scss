@@ -1,5 +1,6 @@
 ﻿$primaryColor: darkred;
 $lightGray: #E5E5E5;
+$darkGray: #bbb;
 $lightBlue: #0088CC;
 
 body {
@@ -106,3 +107,21 @@ fieldset {
 		height: 100px;
 	}
 }
+#tasks {
+	margin: 0px;
+	padding: 0px;
+	li {
+		border-bottom: 1px solid $lightGray;
+		padding-left: 5px;
+		padding-top: 3px;
+	}
+	input[type="checkbox"] {
+		margin-right: 5px;
+		margin-bottom: 3px;
+	}
+}
+.task-completed {
+	color: $darkGray;
+	text-decoration: line-through;
+}
+

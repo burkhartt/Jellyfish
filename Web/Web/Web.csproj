@@ -177,6 +177,7 @@
     <Compile Include="Controllers\CrudController.cs" />
     <Compile Include="Controllers\FriendsController.cs" />
     <Compile Include="Controllers\GoalsController.cs" />
+    <Compile Include="Controllers\TasksController.cs" />
     <Compile Include="Controllers\GroupsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -185,7 +186,6 @@
     <Compile Include="Controllers\MyFriendsController.cs" />
     <Compile Include="Controllers\UnconfirmedAccountsController.cs" />
     <Compile Include="Controllers\VerifyAccountController.cs" />
-    <Compile Include="Controllers\BucketsController.cs" />
     <Compile Include="CustomModelMetadataProvider.cs" />
     <Compile Include="Extensions\HttpContextExtensions.cs" />
     <Compile Include="FacebookAuthentication\FacebookAccountJsonDeserialization.cs" />

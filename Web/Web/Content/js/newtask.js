@@ -1,9 +1,9 @@
-﻿var TaskManager = function (button, container, bucketId) {
+﻿var TaskManager = function (button, container, goalId) {
     var obj = this;
     this.button = button;
     this.container = container;
-    this.bucketId = bucketId;
-    
+    this.goalId = goalId;
+
     this.button.click(function () {
         obj.container.prepend('<li><div class="task"><input type="text" name="newTask" /></div></li>');
         new NewTaskInput(obj, $('input[name="newTask"]'));
@@ -14,9 +14,9 @@
     };
 
     this.LoadTasks = function() {
-        $.getJSON("/Tasks/Get", { bucketId: obj.bucketId }, function (result) {
+        $.getJSON("/Tasks/Get", { goalId: obj.goalId }, function (result) {
             $.each(result, function(key, task) {
-                addTask(task.Id, task.Title);
+                addTask(task.Id, task.Title, task.IsComplete);
             });
         });
     };
@@ -25,17 +25,32 @@
         $.ajax({
             type: "POST",
             url: "/Tasks/Create",
-            data: { task: taskTitle, bucketId: obj.bucketId },
+            data: { task: taskTitle, goalId: obj.goalId },
             dataType: "json",
             success: function(taskId) {
-                addTask(taskId, taskTitle);
+                addTask(taskId, taskTitle, false);
             }
         });        
     };
 
-    var addTask = function(taskId, taskTitle) {
-        obj.container.prepend('<li class="task" data-val-id="' + taskId + '">' + taskTitle + '</li>');
-        $(".task").draggable({ helper: 'clone', cursor: 'hand', revert: 'invalid' });
+    var addTask = function(taskId, taskTitle, isComplete) {
+        obj.container.prepend('<li class="task ' + (isComplete ? "task-completed" : "") + '" data-val-id="' + taskId + '"><input type="checkbox" ' + (isComplete ? "checked='checked'" : "") + ' /><span>' + taskTitle + '</span></li>');
+        $('[data-val-id="' + taskId + '"] input[type="checkbox"]').change(function() {
+            var isChecked = $(this).is(":checked");
+            var selectedTaskId = $(this).parent().data("val-id");
+            
+            if (isChecked) {
+                $(this).parent().addClass("task-completed");
+            } else {
+                $(this).parent().removeClass("task-completed");
+            }
+            
+            $.ajax({
+                type: "POST",
+                url: "/Tasks/StatusChanged",
+                data: { taskId: selectedTaskId, isComplete: isChecked }
+            });
+        });
     };
 };
 

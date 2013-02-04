@@ -5,41 +5,54 @@ using Domain.Repositories;
 using Events;
 using Events.Bus;
 using Web.Filters;
-using Web.Models;
 
 namespace Web.Controllers {
     [Authorized]
-    public class TasksController : Controller {
+    public class GoalsController : Controller {
+        private readonly IAccount account;
         private readonly IEventBus eventBus;
         private readonly IGoalRepository goalRepository;
-        private readonly IAccount account;
 
-        public TasksController(IEventBus eventBus, IGoalRepository goalRepository, IAccount account) {
-            this.eventBus = eventBus;
-            this.goalRepository = goalRepository;
+        public GoalsController(IAccount account, IGoalRepository goalRepository, IEventBus eventBus) {
             this.account = account;
+            this.goalRepository = goalRepository;
+            this.eventBus = eventBus;
         }
 
-        public JsonResult Get(Guid groupId, Guid bucketId) {
-            return Json(goalRepository.AllByGroupId(groupId, bucketId), JsonRequestBehavior.AllowGet);
+        public ViewResult Index(Guid id) {
+            return View(goalRepository.GetById(id));
+        }
+
+        public JsonResult Get(Guid groupId, Guid parentGoalId) {
+            return Json(goalRepository.AllByGroupId(groupId, parentGoalId), JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
-        public JsonResult Create(string goal, Guid parentGoalId) {
+        public JsonResult Create(string title, Guid groupId, Guid parentGoalId) {
             var goalId = Guid.NewGuid();
-            eventBus.Send(new GoalCreatedEvent {Id = goalId, Title = goal, AccountId = account.Id, ParentGoalId = parentGoalId});
+            eventBus.Send(new GoalCreatedEvent {
+                Id = goalId,
+                Title = title,
+                AccountId = account.Id,
+                ParentGoalId = parentGoalId
+            });
+            eventBus.Send(new GoalAddedToGroupEvent {GoalId = goalId, GroupId = groupId});
             return Json(goalId);
         }
 
+        public JsonResult AddGoal(Guid goalId, Guid parentGoalId) {
+            eventBus.Send(new GoalAddedToGoalEvent {GoalId = goalId, ParentGoalId = parentGoalId});
+            return Json(true, JsonRequestBehavior.AllowGet);
+        }
+
         [HttpPost]
-        public JsonResult Update(GoalForm goalForm) {
-            if (!ModelState.IsValid) {
-                return Json(false);
-            }
+        public void UpdateDescription(Guid goalId, string description) {
+            eventBus.Send(new GoalDescriptionUpdatedEvent {Id = goalId, Description = description});
+        }
 
-            eventBus.Send(new GoalUpdatedEvent {Id = goalForm.Id, Description = goalForm.Description, Deadline = goalForm.Deadline });
-
-            return Json(true);
+        [HttpPost]
+        public void UpdateDeadline(Guid goalId, DateTime? deadline) {
+            eventBus.Send(new GoalDeadlineUpdatedEvent { Id = goalId, Deadline = deadline });
         }
     }
 }

@@ -50,6 +50,7 @@
     <Compile Include="Models\Goals\Group.cs" />
     <Compile Include="Models\Goals\GroupGoal.cs" />
     <Compile Include="Models\Goals\GroupMember.cs" />
+    <Compile Include="Models\Goals\Task.cs" />
     <Compile Include="Models\IAccount.cs" />
     <Compile Include="Models\IEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -64,7 +65,9 @@
     <Compile Include="Repositories\IGroupRepository.cs" />
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Repositories\IBucketRepository.cs" />
+    <Compile Include="Repositories\ITaskRepository.cs" />
     <Compile Include="Repositories\Repository.cs" />
+    <Compile Include="Repositories\TaskRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Attributes\Attributes.csproj">
