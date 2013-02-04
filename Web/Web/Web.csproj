@@ -224,6 +224,7 @@
     <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\css\datepicker.css" />
     <Content Include="Content\icons\add.png" />
+    <Content Include="Content\icons\pencil.png" />
     <Content Include="Content\img\fb-connect.png" />
     <Content Include="Content\img\glyphicons-halflings-white.png" />
     <Content Include="Content\img\glyphicons-halflings.png" />
@@ -231,13 +232,14 @@
     <Content Include="Content\js\bootstrap-datepicker.js" />
     <Content Include="Content\js\bootstrap.js" />
     <Content Include="Content\js\bootstrap.min.js" />
+    <Content Include="Content\js\editContent.js" />
     <Content Include="Content\js\newgroup.js" />
     <Content Include="Content\js\forms.js" />
     <Content Include="Content\js\goalsform.js" />
     <Content Include="Content\js\jquery-ui.js" />
     <Content Include="Content\js\knockout-2.2.1.js" />
-    <Content Include="Content\js\newbucket.js" />
     <Content Include="Content\js\newgoal.js" />
+    <Content Include="Content\js\newtask.js" />
     <Content Include="Content\js\signin.js" />
     <Content Include="Content\list.min.js" />
     <Content Include="Content\reset.css" />
@@ -307,6 +309,7 @@
     <Content Include="Views\Shared\_ModalLayout.cshtml" />
     <Content Include="Views\Goals\Create.cshtml" />
     <Content Include="Views\Buckets\Index.cshtml" />
+    <Content Include="Views\Groups\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

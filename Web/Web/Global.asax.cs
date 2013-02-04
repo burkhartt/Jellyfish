@@ -94,7 +94,6 @@ namespace Web {
             builder.Register(c => new FacebookAccountRepository(c.ResolveNamed<IAccountRepository>("BaseAccountRepository"), c.Resolve<IFacebookDataRepository>())).As(typeof(IAccountRepository));
             builder.RegisterType(typeof (AccountSessionRepository)).As(typeof (IAccountSessionRepository));
             builder.RegisterType<GoalRepository>().As<IGoalRepository>();
-            builder.RegisterType<BucketRepository>().As<IBucketRepository>();
             builder.RegisterType<GroupRepository>().As<IGroupRepository>();
             
             builder.Register<IAccount>(c => {

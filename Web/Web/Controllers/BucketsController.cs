@@ -8,35 +8,51 @@ using Web.Filters;
 
 namespace Web.Controllers {
     [Authorized]
-    public class BucketsController : Controller {
+    public class GoalsController : Controller {
         private readonly IAccount account;
-        private readonly IBucketRepository bucketRepository;
         private readonly IEventBus eventBus;
+        private readonly IGoalRepository goalRepository;
 
-        public BucketsController(IAccount account, IBucketRepository bucketRepository, IEventBus eventBus) {
+        public GoalsController(IAccount account, IGoalRepository goalRepository, IEventBus eventBus) {
             this.account = account;
-            this.bucketRepository = bucketRepository;
+            this.goalRepository = goalRepository;
             this.eventBus = eventBus;
         }
 
-        public ViewResult Index(Guid id) {            
-            return View(bucketRepository.GetById(id));
+        public ViewResult Index(Guid id) {
+            return View(goalRepository.GetById(id));
         }
 
-        public JsonResult Get(Guid parentId) {
-            return Json(bucketRepository.AllByAccountId(parentId, account.Id), JsonRequestBehavior.AllowGet);
+        public JsonResult Get(Guid groupId, Guid parentGoalId) {
+            return Json(goalRepository.AllByGroupId(groupId, parentGoalId), JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
-        public JsonResult Create(string title, Guid parentBucketId) {
-            var bucketId = Guid.NewGuid();
-            eventBus.Send(new BucketCreatedEvent {Id = bucketId, Title = title, AccountId = account.Id, ParentBucketId = parentBucketId});
-            return Json(bucketId);
+        public JsonResult Create(string title, Guid groupId, Guid parentGoalId) {
+            var goalId = Guid.NewGuid();
+            eventBus.Send(new GoalCreatedEvent {
+                Id = goalId,
+                Title = title,
+                AccountId = account.Id,
+                ParentGoalId = parentGoalId
+            });
+            eventBus.Send(new GoalAddedToGroupEvent {GoalId = goalId, GroupId = groupId});
+            return Json(goalId);
         }
 
-        public JsonResult AddGoal(Guid goalId, Guid bucketId) {
-            eventBus.Send(new GoalAddedToBucketEvent { GoalId = goalId, BucketId = bucketId });
+        public JsonResult AddGoal(Guid goalId, Guid parentGoalId) {
+            eventBus.Send(new GoalAddedToGoalEvent {GoalId = goalId, ParentGoalId = parentGoalId});
             return Json(true, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public void UpdateDescription(Guid goalId, string description) {
+            eventBus.Send(new GoalDescriptionUpdatedEvent {Id = goalId, Description = description});
+        }
+
+        [HttpPost]
+        public void UpdateDeadline(Guid goalId, DateTime? deadline) {
+            eventBus.Send(new GoalDeadlineUpdatedEvent { Id = goalId, Deadline = deadline });
         }
     }    
 }

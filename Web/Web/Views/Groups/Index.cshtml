@@ -1,0 +1,18 @@
+﻿@model Domain.Models.Goals.Group
+
+@section Head{
+    <script type="text/javascript" src="../../Content/js/newgoal.js"></script>    
+    <script type="text/javascript">
+        $(function () {
+            var bucketManager = new GoalManager($('input[name="new-bucket"]'), $("#buckets"), '@Model.Id');
+            bucketManager.LoadGoals();            
+        });
+    </script>
+}
+
+<h1>@Model.Title</h1>
+
+<fieldset>
+    <legend>Goals <input type="button" name="new-bucket" class="btn-new"/></legend>
+    <ul id="buckets"></ul>
+</fieldset>

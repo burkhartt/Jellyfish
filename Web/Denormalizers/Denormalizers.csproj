@@ -54,6 +54,7 @@
     <Compile Include="FriendInvitationDenormalizer.cs" />
     <Compile Include="GoalDenormalizer.cs" />
     <Compile Include="GroupDenormalizer.cs" />
+    <Compile Include="GroupGoalsDenormalizer.cs" />
     <Compile Include="GroupMembersDenormalizer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

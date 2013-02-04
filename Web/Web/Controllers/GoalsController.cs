@@ -9,25 +9,25 @@ using Web.Models;
 
 namespace Web.Controllers {
     [Authorized]
-    public class GoalsController : Controller {
+    public class TasksController : Controller {
         private readonly IEventBus eventBus;
         private readonly IGoalRepository goalRepository;
         private readonly IAccount account;
 
-        public GoalsController(IEventBus eventBus, IGoalRepository goalRepository, IAccount account) {
+        public TasksController(IEventBus eventBus, IGoalRepository goalRepository, IAccount account) {
             this.eventBus = eventBus;
             this.goalRepository = goalRepository;
             this.account = account;
         }
 
-        public JsonResult Get(Guid bucketId) {
-            return Json(goalRepository.GetByAccountId(bucketId, account.Id), JsonRequestBehavior.AllowGet);
+        public JsonResult Get(Guid groupId, Guid bucketId) {
+            return Json(goalRepository.AllByGroupId(groupId, bucketId), JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
-        public JsonResult Create(string goal, Guid bucketId) {
+        public JsonResult Create(string goal, Guid parentGoalId) {
             var goalId = Guid.NewGuid();
-            eventBus.Send(new GoalCreatedEvent {Id = goalId, Title = goal, AccountId = account.Id, BucketId = bucketId});
+            eventBus.Send(new GoalCreatedEvent {Id = goalId, Title = goal, AccountId = account.Id, ParentGoalId = parentGoalId});
             return Json(goalId);
         }
 

@@ -12,9 +12,15 @@ namespace Domain.Repositories {
             this.database = database;
         }
 
-        public IEnumerable<Goal> GetByAccountId(Guid bucketId, Guid accountId) {
-            IEnumerable<Goal> goals = database.GetTheDatabase().Goals.FindAllByAccountId(accountId).ToList<Goal>();
-            return goals.Where(x => x.BucketId == bucketId);
+        public IEnumerable<Goal> AllByGroupId(Guid groupId, Guid parentGoalId) {
+            IEnumerable<GroupGoal> groupGoals = database.GetTheDatabase().GroupGoals.FindAllByGroupId(groupId).ToList<GroupGoal>();
+            var goalIds = groupGoals.Select(@group => @group.GoalId).ToList();
+            IEnumerable<Goal> goals = database.GetTheDatabase().Goals.FindAllById(goalIds).ToList<Goal>();
+            return goals.Where(x => x.BucketId == parentGoalId);
         }
-    }
+
+        public Goal GetById(Guid id) {
+            return (Goal)database.GetTheDatabase().Goals.FindById(id);
+        }
+    }    
 }

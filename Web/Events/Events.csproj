@@ -58,8 +58,11 @@
     <Compile Include="EventModule.cs" />
     <Compile Include="Events\FacebookLoginEvent.cs" />
     <Compile Include="Friends\InviteFriendEvent.cs" />
-    <Compile Include="GoalAddedToBucketEvent.cs" />
+    <Compile Include="GoalAddedToGoalEvent.cs" />
+    <Compile Include="GoalAddedToGroupEvent.cs" />
     <Compile Include="GoalCreatedEvent.cs" />
+    <Compile Include="GoalDeadlineUpdatedEvent.cs" />
+    <Compile Include="GoalDescriptionUpdatedEvent.cs" />
     <Compile Include="GoalUpdatedEvent.cs" />
     <Compile Include="GroupCreatedEvent.cs" />
     <Compile Include="Handler\IHandleDomainEvents.cs" />

@@ -1,41 +1,62 @@
-﻿var GoalManager = function (button, container, bucketId) {
+﻿var GoalManager = function (button, container, groupId, parentGoalId) {
     var obj = this;
     this.button = button;
     this.container = container;
-    this.bucketId = bucketId;
-    
+    this.parentGoalId = parentGoalId;
+    this.groupId = groupId;
+
     this.button.click(function () {
         obj.container.prepend('<li><div class="goal"><input type="text" name="newGoal" /></div></li>');
         new NewGoalInput(obj, $('input[name="newGoal"]'));
     });
 
-    this.GoalEntered = function (goalTitle) {        
+    this.GoalTitleEntered = function (goalTitle) {
         saveGoal(goalTitle);
     };
 
-    this.LoadGoals = function() {
-        $.getJSON("/Goals/Get", { bucketId: obj.bucketId }, function (result) {
-            $.each(result, function(key, goal) {
+    this.LoadGoals = function () {
+        $.getJSON("/Goals/Get", { groupId: groupId, parentId: parentGoalId}, function (result) {
+            $.each(result, function (key, goal) {
                 addGoal(goal.Id, goal.Title);
             });
         });
     };
 
-    var saveGoal = function(goalTitle) {
+    var saveGoal = function (goalTitle) {
         $.ajax({
             type: "POST",
             url: "/Goals/Create",
-            data: { goal: goalTitle, bucketId: obj.bucketId },
+            data: { title: goalTitle, groupId: obj.groupId, parentGoalId: obj.parentGoalId },
             dataType: "json",
-            success: function(goalId) {
-                addGoal(goalId, goalTitle);
+            success: function (goal) {
+                addGoal(goal.Id, goalTitle);
             }
         });        
     };
 
-    var addGoal = function(goalId, goalTitle) {
+    var linkGoalToGoal = function(goalId, parentId) {
+        $.ajax({
+            type: "POST",
+            url: "/Goals/AddGoal",
+            data: { goalId: goalId, parentGoalId: parentId },
+        });
+    };
+
+    var addGoal = function (goalId, goalTitle) {
         obj.container.prepend('<li class="goal" data-val-id="' + goalId + '">' + goalTitle + '</li>');
-        $(".goal").draggable({ helper: 'clone', cursor: 'hand', revert: 'invalid' });
+        
+        $(".goal").droppable({
+            drop: function (event, goal) {
+                var goalId = $(goal.draggable).data("val-id");
+                var thisGoalId = $(this).data("val-id");
+                $(goal.draggable).remove();
+                linkGoalToGoal(goalId, thisGoalId);
+            }
+        });
+
+        $(".goal").click(function() {
+            window.location.href = "/Goals/Index/" + $(this).data("val-id");
+        });
     };
 };
 
@@ -47,15 +68,15 @@ var NewGoalInput = function (goalCreator, element) {
     obj.blur(function () {
         deleteMe();
     });
-    
+
     obj.keypress(function (e) {
         if (e.which == 13) {
-            goalCreator.GoalEntered(obj.val());
+            goalCreator.GoalTitleEntered(obj.val());
             deleteMe();
         }
     });
 
-    var deleteMe = function() {
+    var deleteMe = function () {
         obj.parent().parent().remove();
     };
 };

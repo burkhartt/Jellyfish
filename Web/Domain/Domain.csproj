@@ -48,6 +48,7 @@
     <Compile Include="Models\Goals\Bucket.cs" />
     <Compile Include="Models\Goals\Goal.cs" />
     <Compile Include="Models\Goals\Group.cs" />
+    <Compile Include="Models\Goals\GroupGoal.cs" />
     <Compile Include="Models\Goals\GroupMember.cs" />
     <Compile Include="Models\IAccount.cs" />
     <Compile Include="Models\IEntity.cs" />
@@ -64,7 +65,6 @@
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Repositories\IBucketRepository.cs" />
     <Compile Include="Repositories\Repository.cs" />
-    <Compile Include="Repositories\BucketRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Attributes\Attributes.csproj">

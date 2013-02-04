@@ -19,6 +19,10 @@ namespace Web.Controllers {
             this.eventBus = eventBus;
         }
 
+        public ViewResult Index(Guid id) {
+            return View(groupRepository.GetById(id));
+        }
+
         public JsonResult Get() {
             return Json(groupRepository.GetByAccountId(account.Id), JsonRequestBehavior.AllowGet);
         }
@@ -29,6 +33,6 @@ namespace Web.Controllers {
             eventBus.Send(new GroupCreatedEvent { Id = groupId, Title = title });
             eventBus.Send(new AccountAddedToGroupEvent { GroupId = groupId, AccountId = account.Id });
             return Json(groupId);
-        }
+        }        
     }    
 }
