@@ -54,5 +54,10 @@ namespace Web.Controllers {
         public void UpdateDeadline(Guid id, DateTime? datetime) {
             eventBus.Send(new GoalDeadlineUpdatedEvent { Id = id, Deadline = datetime });
         }
-    }
+
+        [HttpPost]
+        public void UpdateType(Guid id, string type) {
+            eventBus.Send(new GoalTypeUpdatedEvent { Id = id, Type = type });
+        }
+    }    
 }

@@ -96,6 +96,7 @@ namespace Web {
             builder.RegisterType<GoalRepository>().As<IGoalRepository>();
             builder.RegisterType<GroupRepository>().As<IGroupRepository>();
             builder.RegisterType<TaskRepository>().As<ITaskRepository>();
+            builder.RegisterType<GoalTypeRepository>().As<IGoalTypeRepository>();
             
             builder.Register<IAccount>(c => {
                 var currentId = c.Resolve<IAccountSessionRepository>().GetCurrentId();

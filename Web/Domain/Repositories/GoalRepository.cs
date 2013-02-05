@@ -22,5 +22,5 @@ namespace Domain.Repositories {
         public Goal GetById(Guid id) {
             return (Goal)database.GetTheDatabase().Goals.FindById(id);
         }
-    }    
+    }
 }

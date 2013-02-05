@@ -177,6 +177,7 @@
     <Compile Include="Controllers\CrudController.cs" />
     <Compile Include="Controllers\FriendsController.cs" />
     <Compile Include="Controllers\GoalsController.cs" />
+    <Compile Include="Controllers\GoalTypesController.cs" />
     <Compile Include="Controllers\TasksController.cs" />
     <Compile Include="Controllers\GroupsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -233,6 +234,7 @@
     <Content Include="Content\js\bootstrap.js" />
     <Content Include="Content\js\bootstrap.min.js" />
     <Content Include="Content\js\editContent.js" />
+    <Content Include="Content\js\goaltypes.js" />
     <Content Include="Content\js\newgroup.js" />
     <Content Include="Content\js\forms.js" />
     <Content Include="Content\js\goalsform.js" />

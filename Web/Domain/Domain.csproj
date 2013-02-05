@@ -47,6 +47,7 @@
     <Compile Include="Models\Friend.cs" />
     <Compile Include="Models\Goals\Bucket.cs" />
     <Compile Include="Models\Goals\Goal.cs" />
+    <Compile Include="Models\Goals\GoalType.cs" />
     <Compile Include="Models\Goals\Group.cs" />
     <Compile Include="Models\Goals\GroupGoal.cs" />
     <Compile Include="Models\Goals\GroupMember.cs" />
@@ -57,11 +58,13 @@
     <Compile Include="Repositories\AccountRepository.cs" />
     <Compile Include="Repositories\FriendRepository.cs" />
     <Compile Include="Repositories\GoalRepository.cs" />
+    <Compile Include="Repositories\GoalTypeRepository.cs" />
     <Compile Include="Repositories\GroupRepository.cs" />
     <Compile Include="Repositories\IAccountRepository.cs" />
     <Compile Include="Repositories\IAccountSessionRepository.cs" />
     <Compile Include="Repositories\IFriendRepository.cs" />
     <Compile Include="Repositories\IGoalRepository.cs" />
+    <Compile Include="Repositories\IGoalTypeRepository.cs" />
     <Compile Include="Repositories\IGroupRepository.cs" />
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Repositories\IBucketRepository.cs" />

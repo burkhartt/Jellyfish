@@ -6,7 +6,8 @@ namespace Denormalizers {
     public class GoalDenormalizer : IHandleDomainEvents<GoalCreatedEvent>, IHandleDomainEvents<GoalUpdatedEvent>,
                                     IHandleDomainEvents<GoalAddedToGoalEvent>,
                                     IHandleDomainEvents<GoalDescriptionUpdatedEvent>,
-                                    IHandleDomainEvents<GoalDeadlineUpdatedEvent> {
+                                    IHandleDomainEvents<GoalDeadlineUpdatedEvent>,
+                                    IHandleDomainEvents<GoalTypeUpdatedEvent> {
         private readonly IDatabase database;
 
         public GoalDenormalizer(IDatabase database) {
@@ -29,6 +30,10 @@ namespace Denormalizers {
 
         public void Handle(GoalDescriptionUpdatedEvent @event) {
             database.GetTheDatabase().Goals.UpdateById(Id: @event.Id, Description: @event.Description);
+        }
+
+        public void Handle(GoalTypeUpdatedEvent @event) {
+            database.GetTheDatabase().Goals.UpdateById(Id: @event.Id, Type: @event.Type);
         }
 
         public void Handle(GoalUpdatedEvent @event) {

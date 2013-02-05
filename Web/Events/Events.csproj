@@ -63,6 +63,7 @@
     <Compile Include="GoalCreatedEvent.cs" />
     <Compile Include="GoalDeadlineUpdatedEvent.cs" />
     <Compile Include="GoalDescriptionUpdatedEvent.cs" />
+    <Compile Include="GoalTypeUpdatedEvent.cs" />
     <Compile Include="GoalUpdatedEvent.cs" />
     <Compile Include="GroupCreatedEvent.cs" />
     <Compile Include="Handler\IHandleDomainEvents.cs" />

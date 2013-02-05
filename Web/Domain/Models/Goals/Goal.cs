@@ -7,5 +7,6 @@ namespace Domain.Models.Goals {
         public Guid BucketId { get; set; }
         public string Description { get; set; }
         public DateTime? Deadline { get; set; }
+        public string Type { get; set; }
     }
 }
