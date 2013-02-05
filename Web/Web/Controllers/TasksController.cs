@@ -23,13 +23,19 @@ namespace Web.Controllers {
         [HttpPost]
         public JsonResult Create(string task, Guid goalId) {
             var taskId = Guid.NewGuid();
-            eventBus.Send(new TaskCreatedEvent { Id = taskId, Title = task, GoalId = goalId });
+            eventBus.Send(new TaskCreatedEvent { Id = taskId, GoalId = goalId });
+            eventBus.Send(new TaskTitleUpdatedEvent { Id = taskId, Title = task });
             return Json(taskId);
         }
 
         [HttpPost]
         public void StatusChanged(Guid taskId, bool isComplete) {
             eventBus.Send(new TaskStatusUpdatedEvent { Id = taskId, IsComplete = isComplete});
+        }
+
+        [HttpPost]
+        public void UpdateTitle(Guid id, string content) {
+            eventBus.Send(new TaskTitleUpdatedEvent { Id = id, Title = content});
         }
     }    
 }

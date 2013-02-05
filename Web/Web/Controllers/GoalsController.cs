@@ -46,13 +46,13 @@ namespace Web.Controllers {
         }
 
         [HttpPost]
-        public void UpdateDescription(Guid goalId, string description) {
-            eventBus.Send(new GoalDescriptionUpdatedEvent {Id = goalId, Description = description});
+        public void UpdateDescription(Guid id, string content) {
+            eventBus.Send(new GoalDescriptionUpdatedEvent {Id = id, Description = content});
         }
 
         [HttpPost]
-        public void UpdateDeadline(Guid goalId, DateTime? deadline) {
-            eventBus.Send(new GoalDeadlineUpdatedEvent { Id = goalId, Deadline = deadline });
+        public void UpdateDeadline(Guid id, DateTime? datetime) {
+            eventBus.Send(new GoalDeadlineUpdatedEvent { Id = id, Deadline = datetime });
         }
     }
 }

@@ -1,20 +1,21 @@
-﻿var ContentEditor = function(goalId, button, content, contentEditorType) {
+﻿var ContentEditor = function(id, button, content, contentEditorType, targetUrl) {
     var obj = this;
     this.content = content;
     this.button = button;
     this.isBeingEdited = false;
-    this.goalId = goalId;
+    this.id = id;
     this.contentEditorType = contentEditorType;
     this.dataSaver = null;
+    this.targetUrl = targetUrl;
 
-    this.button.click(function() {
+    this.button.live("click", function() {
         if (!obj.isBeingEdited) {
             if (obj.contentEditorType == "TextArea") {
                 new ContentEditorTextArea(obj, obj.content);
-                obj.dataSaver = new GoalDescriptionSaver();
+                obj.dataSaver = new GoalDescriptionSaver(obj.targetUrl);
             } else if (obj.contentEditorType == "DateTime") {
                 new ContentEditorDateTime(obj, obj.content);
-                obj.dataSaver = new GoalDeadlineSaver();
+                obj.dataSaver = new GoalDateTimeSaver(obj.targetUrl);
             }
         }
         obj.isBeingEdited = true;
@@ -25,26 +26,26 @@
     };
 
     this.Save = function(text) {
-        obj.dataSaver.Save(obj.goalId, text);
+        obj.dataSaver.Save(obj.id, text);
     };
 };
 
-var GoalDescriptionSaver = function () {
-    this.Save = function(goalId, description) {
+var GoalDescriptionSaver = function (targetUrl) {
+    this.Save = function(id, description) {
         $.ajax({
             type: "POST",
-            url: "/Goals/UpdateDescription",
-            data: { goalId: goalId, description: description },
+            url: targetUrl,
+            data: { id: id, content: description },
         });
     };
 };
 
-var GoalDeadlineSaver = function() {
-    this.Save = function (goalId, deadline) {
+var GoalDateTimeSaver = function(targetUrl) {
+    this.Save = function (id, deadline) {
         $.ajax({
             type: "POST",
-            url: "/Goals/UpdateDeadline",
-            data: { goalId: goalId, deadline: deadline },
+            url: targetUrl,
+            data: { id: id, datetime: deadline },
         });
     };
 };

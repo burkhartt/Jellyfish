@@ -5,8 +5,8 @@
     <script type="text/javascript" src="../../Content/js/editContent.js"></script>
     <script type="text/javascript">
         $(function () {
-            var contentEditor = new ContentEditor('@Model.Id', $('input[name="edit-description"]'), $("#goal-description"), "TextArea");
-            var deadlineEditor = new ContentEditor('@Model.Id', $('input[name="edit-deadline"]'), $("#goal-deadline"), "DateTime");
+            var contentEditor = new ContentEditor('@Model.Id', $('input[name="edit-description"]'), $("#goal-description"), "TextArea", "@Url.Action("UpdateDescription")");
+            var deadlineEditor = new ContentEditor('@Model.Id', $('input[name="edit-deadline"]'), $("#goal-deadline"), "DateTime", "@Url.Action("UpdateDeadline")");
             var taskManager = new TaskManager($('input[name="create-task"]'), $("#tasks"), '@Model.Id');
             taskManager.LoadTasks();
         });
