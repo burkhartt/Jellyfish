@@ -28,8 +28,8 @@
             url: "/Goals/Create",
             data: { title: goalTitle, groupId: obj.groupId, parentGoalId: obj.parentGoalId },
             dataType: "json",
-            success: function (goal) {
-                addGoal(goal.Id, goalTitle);
+            success: function (goalId) {
+                addGoal(goalId, goalTitle);
             }
         });        
     };
@@ -45,15 +45,6 @@
     var addGoal = function (goalId, goalTitle) {
         obj.container.prepend('<li class="goal" data-val-id="' + goalId + '">' + goalTitle + '</li>');
         
-        $(".goal").droppable({
-            drop: function (event, goal) {
-                var goalId = $(goal.draggable).data("val-id");
-                var thisGoalId = $(this).data("val-id");
-                $(goal.draggable).remove();
-                linkGoalToGoal(goalId, thisGoalId);
-            }
-        });
-
         $(".goal").click(function() {
             window.location.href = "/Goals/Index/" + $(this).data("val-id");
         });
