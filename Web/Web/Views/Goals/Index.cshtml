@@ -16,19 +16,19 @@
 <h1>@Model.Title</h1>
 
 <fieldset>
-    <legend>Description <input type="button" name="edit-description" class="btn-edit" /></legend>
-    <div id="goal-description">
-        @if (!string.IsNullOrEmpty(Model.Description)) {
-            @Html.Raw(Model.Description.Replace("\n", "<br />"))
+    <legend>Deadline <input type="button" name="edit-deadline" class="btn-edit" /></legend>
+    <div id="goal-deadline">
+        @if (Model.Deadline.HasValue) {
+            @Model.Deadline.Value.ToString("MMMM d, yyyy")
         }
     </div>
 </fieldset>
 
 <fieldset>
-    <legend>Deadline <input type="button" name="edit-deadline" class="btn-edit" /></legend>
-    <div id="goal-deadline">
-        @if (Model.Deadline.HasValue) {
-            @Model.Deadline.Value.ToString("MMMM d, yyyy")
+    <legend>Description <input type="button" name="edit-description" class="btn-edit" /></legend>
+    <div id="goal-description">
+        @if (!string.IsNullOrEmpty(Model.Description)) {
+            @Html.Raw(Model.Description.Replace("\n", "<br />"))
         }
     </div>
 </fieldset>

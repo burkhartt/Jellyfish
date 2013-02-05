@@ -35,7 +35,7 @@
 
     var addTask = function(taskId, taskTitle, isComplete) {
         obj.container.prepend('<li class="task ' + (isComplete ? "task-completed" : "") + '" data-val-id="' + taskId + '"><input type="checkbox" ' + (isComplete ? "checked='checked'" : "") + ' /><span>' + taskTitle + '</span></li>');
-        var editableTask = new ContentEditor(taskId, $('[data-val-id="' + taskId + '"] span'), $('[data-val-id="' + taskId + '"] span'), "TextArea", "/Tasks/UpdateTitle");
+        var editableTask = new ContentEditor(taskId, $('[data-val-id="' + taskId + '"] span'), $('[data-val-id="' + taskId + '"] span'), "TextBox", "/Tasks/UpdateTitle");
 
         $('[data-val-id="' + taskId + '"] input[type="checkbox"]').change(function() {
             var isChecked = $(this).is(":checked");

@@ -12,10 +12,13 @@
         if (!obj.isBeingEdited) {
             if (obj.contentEditorType == "TextArea") {
                 new ContentEditorTextArea(obj, obj.content);
-                obj.dataSaver = new GoalDescriptionSaver(obj.targetUrl);
+                obj.dataSaver = new GoalContentSaver(obj.targetUrl);
             } else if (obj.contentEditorType == "DateTime") {
                 new ContentEditorDateTime(obj, obj.content);
                 obj.dataSaver = new GoalDateTimeSaver(obj.targetUrl);
+            } else if (obj.contentEditorType == "TextBox") {
+                new ContentEditorTextBox(obj, obj.content);
+                obj.dataSaver = new GoalContentSaver(obj.targetUrl);
             }
         }
         obj.isBeingEdited = true;
@@ -30,7 +33,7 @@
     };
 };
 
-var GoalDescriptionSaver = function (targetUrl) {
+var GoalContentSaver = function (targetUrl) {
     this.Save = function(id, description) {
         $.ajax({
             type: "POST",
@@ -54,6 +57,25 @@ var ContentEditorTextArea = function (editor, content) {
     var obj = this;
     this.content = content;
     this.input = $("<textarea></textarea>");
+    obj.editor = editor;
+    obj.input.val($.trim(obj.content.html().replace(/<br>/gi, "\n")));
+    obj.input.insertAfter(content);
+    obj.content.remove();
+    obj.input.focus();
+
+    this.input.blur(function () {
+        obj.content.insertBefore(obj.input);
+        obj.content.html(obj.input.val().replace(/\r\n|\r|\n/g, "<br />"));
+        obj.editor.Save(obj.input.val());
+        obj.input.remove();
+        obj.editor.DoneEditing();
+    });
+};
+
+var ContentEditorTextBox = function (editor, content) {
+    var obj = this;
+    this.content = content;
+    this.input = $("<input type='text' />");
     obj.editor = editor;
     obj.input.val($.trim(obj.content.html().replace(/<br>/gi, "\n")));
     obj.input.insertAfter(content);
