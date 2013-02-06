@@ -28,6 +28,9 @@
                 type: "POST",
                 url: "/Goals/UpdateType",
                 data: { id: obj.goalId, type: $(this).val() },
+                success: function(data) {
+                    window.location.href = window.location.href;
+                }
             });
         });
     };

@@ -23,6 +23,8 @@
     <div id="goal-types"></div>
 </fieldset>
 
+@Html.DisplayForModel()
+
 <fieldset>
     <legend>Deadline <input type="button" name="edit-deadline" class="btn-edit" /></legend>
     <div id="goal-deadline">
@@ -44,4 +46,9 @@
 <fieldset>
     <legend>Tasks <input type="button" name="create-task" class="btn-new"/></legend>
     <ul id="tasks"></ul>    
+</fieldset>
+
+<fieldset>
+    <legend>History</legend>
+    <ul id="history"></ul>
 </fieldset>

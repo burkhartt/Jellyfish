@@ -1,0 +1,13 @@
+﻿@model Domain.Models.Goals.QuantitativeGoal
+
+<script type="text/javascript">
+    $(function() {
+        var currentNumber = new ContentEditor('@Model.Id', $('#goal-current-number'), $("#goal-current-number"), "Decimal", "@Url.Action("UpdateCurrentNumber", "Goals")");
+        var goalNumber = new ContentEditor('@Model.Id', $('#goal-target-number'), $("#goal-target-number"), "Decimal", "@Url.Action("UpdateTargetNumber", "Goals")");
+    });
+</script>
+
+<fieldset>
+    <legend>Goal Numbers</legend>
+    <div><span id="goal-current-number">@Model.CurrentNumber</span> of <span id="goal-target-number">@Model.TargetNumber</span></div>
+</fieldset>

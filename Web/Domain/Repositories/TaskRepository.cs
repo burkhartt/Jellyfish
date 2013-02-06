@@ -14,5 +14,9 @@ namespace Domain.Repositories {
         public IEnumerable<Task> AllByGoalId(Guid goalId) {
             return database.GetTheDatabase().Tasks.FindAllByGoalId(goalId).ToList<Task>();
         }
+
+        public Task GetById(Guid id) {
+            return (Task)database.GetTheDatabase().Tasks.FindById(id);
+        }
     }
 }

@@ -19,6 +19,9 @@
             } else if (obj.contentEditorType == "TextBox") {
                 new ContentEditorTextBox(obj, obj.content);
                 obj.dataSaver = new GoalContentSaver(obj.targetUrl);
+            } else if (obj.contentEditorType == "Decimal") {
+                new ContentEditorDecimal(obj, obj.content);
+                obj.dataSaver = new GoalDecimalSaver(obj.targetUrl);
             }
         }
         obj.isBeingEdited = true;
@@ -49,6 +52,16 @@ var GoalDateTimeSaver = function(targetUrl) {
             type: "POST",
             url: targetUrl,
             data: { id: id, datetime: deadline },
+        });
+    };
+};
+
+var GoalDecimalSaver = function (targetUrl) {
+    this.Save = function (id, number) {
+        $.ajax({
+            type: "POST",
+            url: targetUrl,
+            data: { id: id, number: number },
         });
     };
 };
@@ -98,6 +111,25 @@ var ContentEditorDateTime = function (editor, content) {
     obj.editor = editor;
     obj.input.val($.trim(obj.content.html()));
     obj.input.datepicker();
+    obj.input.insertAfter(content);
+    obj.content.remove();
+    obj.input.focus();
+
+    this.input.blur(function () {
+        obj.content.insertBefore(obj.input);
+        obj.content.html(obj.input.val());
+        obj.editor.Save(obj.input.val());
+        obj.input.remove();
+        obj.editor.DoneEditing();
+    });
+};
+
+var ContentEditorDecimal = function (editor, content) {
+    var obj = this;
+    this.content = content;
+    this.input = $('<input type="text" />');
+    obj.editor = editor;
+    obj.input.val($.trim(obj.content.html()));
     obj.input.insertAfter(content);
     obj.content.remove();
     obj.input.focus();

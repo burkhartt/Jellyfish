@@ -61,8 +61,12 @@
     <Compile Include="GoalAddedToGoalEvent.cs" />
     <Compile Include="GoalAddedToGroupEvent.cs" />
     <Compile Include="GoalCreatedEvent.cs" />
+    <Compile Include="GoalCurrentNumberUpdatedDeltaEvent.cs" />
+    <Compile Include="GoalCurrentNumberUpdatedEvent.cs" />
     <Compile Include="GoalDeadlineUpdatedEvent.cs" />
     <Compile Include="GoalDescriptionUpdatedEvent.cs" />
+    <Compile Include="GoalTargetNumberUpdatedDeltaEvent.cs" />
+    <Compile Include="GoalTargetNumberUpdatedEvent.cs" />
     <Compile Include="GoalTypeUpdatedEvent.cs" />
     <Compile Include="GoalUpdatedEvent.cs" />
     <Compile Include="GroupCreatedEvent.cs" />

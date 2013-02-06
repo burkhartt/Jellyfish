@@ -19,7 +19,7 @@
         <script type="text/javascript" src="@Url.Content("~/Content/js/forms.js")"></script>
         <script type="text/javascript" src="../../Content/js/newgroup.js"></script>
         <script type="text/javascript">
-            $(function () {                
+            $(function() {
                 var groupManager = new GroupManager($('#new-group'), $("#groups"));
                 groupManager.LoadGroups();
             });
@@ -64,23 +64,23 @@
                     </div>
                 </div>
             </div>
-            <div class="container">
-                <div class="container-fluid">
-                    <div class="row-fluid">
-                        <div class="span2">
-                            <fieldset id="groupsContainer">
-                                <legend>Groups <input type="button" id="new-group" class="btn-new" /></legend>
-                                <ul id="groups"></ul>
-                            </fieldset>
-                        </div>
-                        <div class="span10">
-                            @Html.DisplayFor(x => TempData["SuccessMessage"])
-                            @Html.DisplayFor(x => TempData["ErrorMessage"])
-                            @RenderBody()
-                        </div>
+        </div>
+        <div class="container">
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <div class="span2">
+                        <fieldset id="groupsContainer">
+                            <legend>Groups <input type="button" id="new-group" class="btn-new" /></legend>
+                            <ul id="groups"></ul>
+                        </fieldset>
                     </div>
-                </div>                            
-            </div>
+                    <div class="span10">
+                        @Html.DisplayFor(x => TempData["SuccessMessage"])
+                        @Html.DisplayFor(x => TempData["ErrorMessage"])
+                        @RenderBody()
+                    </div>
+                </div>
+            </div>                            
         </div>
     </body>
 </html>

@@ -20,7 +20,13 @@ namespace Domain.Repositories {
         }
 
         public Goal GetById(Guid id) {
-            return (Goal)database.GetTheDatabase().Goals.FindById(id);
+            var goal = (Goal)database.GetTheDatabase().Goals.FindById(id);
+
+            if (goal != null && !string.IsNullOrEmpty(goal.Type) && goal.Type.Equals("Quantitative", StringComparison.OrdinalIgnoreCase)) {
+                return (QuantitativeGoal)database.GetTheDatabase().Goals.FindById(id);
+            }
+
+            return goal;
         }
     }
 }

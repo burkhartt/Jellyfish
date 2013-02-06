@@ -11,7 +11,7 @@ namespace Denormalizers {
         }
 
         public void Handle(GoalAddedToGroupEvent @event) {
-            database.GetTheDatabase().GroupGoals.Insert(GroupId: @event.GroupId, GoalId: @event.GoalId);
+            database.GetTheDatabase().GroupGoals.Insert(GroupId: @event.GroupId, GoalId: @event.Id);
         }
     }
 }

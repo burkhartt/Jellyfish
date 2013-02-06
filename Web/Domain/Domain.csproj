@@ -51,6 +51,7 @@
     <Compile Include="Models\Goals\Group.cs" />
     <Compile Include="Models\Goals\GroupGoal.cs" />
     <Compile Include="Models\Goals\GroupMember.cs" />
+    <Compile Include="Models\Goals\QuantitativeGoal.cs" />
     <Compile Include="Models\Goals\Task.cs" />
     <Compile Include="Models\IAccount.cs" />
     <Compile Include="Models\IEntity.cs" />
