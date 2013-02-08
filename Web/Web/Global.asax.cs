@@ -25,6 +25,7 @@ using FluentValidation.Mvc;
 using Simple.Data;
 using Web.FacebookAuthentication;
 using Web.Filters;
+using Web.Hubs;
 using Web.Models;
 using Web.Repositories;
 using Web.Validation;
@@ -64,6 +65,7 @@ namespace Web {
             RegisterIoC();
             AreaRegistration.RegisterAllAreas();
 
+            RouteTable.Routes.MapHubs();
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
         }
@@ -97,7 +99,11 @@ namespace Web {
             builder.RegisterType<GroupRepository>().As<IGroupRepository>();
             builder.RegisterType<TaskRepository>().As<ITaskRepository>();
             builder.RegisterType<GoalTypeRepository>().As<IGoalTypeRepository>();
-            
+
+            builder.RegisterAssemblyTypes(typeof(ChatHub).Assembly)
+                   .Where(t => t.Name.EndsWith("Hub"))
+                   .AsImplementedInterfaces();
+
             builder.Register<IAccount>(c => {
                 var currentId = c.Resolve<IAccountSessionRepository>().GetCurrentId();
                 return c.Resolve<IAccountRepository>().FindById(currentId);
