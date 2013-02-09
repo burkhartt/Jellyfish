@@ -5,7 +5,7 @@ using Domain.Repositories;
 using Web.Extensions;
 
 namespace Web.Filters {
-    public class GoalViewBagFilter : IActionFilter {
+    public class GoalContextFilter : IActionFilter {
         private Guid id;
         public IGoalRepository GoalRepository { get; set; }
         public IGroupGoalRepository GroupGoalRepository { get; set; }

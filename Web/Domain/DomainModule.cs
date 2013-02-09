@@ -10,6 +10,7 @@ namespace Domain {
             builder.RegisterType<GoalTypeRepository>().As<IGoalTypeRepository>();
             builder.RegisterType<GoalLogRepository>().As<IGoalLogRepository>();
             builder.RegisterType<GroupGoalRepository>().As<IGroupGoalRepository>();
+            builder.RegisterType<GroupMemberRepository>().As<IGroupMemberRepository>();
         }
     }
 }

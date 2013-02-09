@@ -1,15 +1,27 @@
-﻿@model Domain.Models.Goals.Group
+﻿@using Web.Helpers
+@model Domain.Models.Goals.Group
 
 @section Head{
     <script type="text/javascript" src="../../Content/js/newgoal.js"></script>    
     <script type="text/javascript">
-        $(function () {
+        $(function() {
             var bucketManager = new GoalManager($('#newGoal'), $("#buckets"), '@Model.Id');
-            bucketManager.LoadGoals();            
+            bucketManager.LoadGoals();
         });
     </script>
 }
 
+@section LeftColumn {
+    @{
+        var groupMembers = Html.GroupMembers();
+    }
+
+    @foreach (var groupMember in groupMembers) {
+        <span class="span3">
+            <img src="@groupMember.Picture" alt="@groupMember.FullName" title="@groupMember.FullName" />
+        </span>
+    }
+}
 
 <h1>@Model.Title <span class="unhighlighted">&gt; Goals</span></h1>
 <ul id="buckets">

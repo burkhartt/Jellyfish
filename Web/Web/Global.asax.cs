@@ -34,7 +34,8 @@ namespace Web {
 
         public static void RegisterGlobalFilters(GlobalFilterCollection filters) {
             filters.Add(new HandleErrorAttribute());
-            filters.Add(DependencyResolver.Current.GetService<GoalViewBagFilter>());
+            filters.Add(DependencyResolver.Current.GetService<GoalContextFilter>());
+            filters.Add(DependencyResolver.Current.GetService<AccountContextFilter>());
         }
 
         protected void Application_AcquireRequestState(object sender, EventArgs e){

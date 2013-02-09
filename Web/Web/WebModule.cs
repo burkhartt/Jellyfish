@@ -28,7 +28,8 @@ namespace Web {
             }).As<IAccount>();
 
             builder.RegisterType<GlobalMessageFilter>().As<IActionFilter>();
-            builder.RegisterType<GoalViewBagFilter>().PropertiesAutowired();
+            builder.RegisterType<GoalContextFilter>().PropertiesAutowired();
+            builder.RegisterType<AccountContextFilter>().PropertiesAutowired();
 
             builder.RegisterAssemblyTypes(ThisAssembly).Where(t => t is LayoutAttribute).PropertiesAutowired();
         }

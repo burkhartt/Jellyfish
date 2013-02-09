@@ -2,6 +2,7 @@
 using System.Web;
 using Domain.Models;
 using Domain.Models.Goals;
+using Entities;
 using Web.Models;
 
 namespace Web.Extensions {
@@ -20,6 +21,10 @@ namespace Web.Extensions {
 
         public static IEnumerable<Goal> Goals(this HttpContextBase httpContextBase) {
             return (IEnumerable<Goal>) httpContextBase.Items["Goals"];
+        }
+
+        public static IEnumerable<Account> GroupMembers(this HttpContextBase httpContextBase) {
+            return (IEnumerable<Account>)httpContextBase.Items["GroupMembers"];
         }
     }
 }
