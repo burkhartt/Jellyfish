@@ -31,6 +31,8 @@ namespace Web.Filters {
 
             if (group == null) {
                 var groupGoal = GroupGoalRepository.GetByGoalId(id);
+                if (groupGoal == null) return;
+
                 group = GroupRepository.GetById(groupGoal.GroupId);
             }
 

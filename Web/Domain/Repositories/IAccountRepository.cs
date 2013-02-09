@@ -6,6 +6,6 @@ namespace Domain.Repositories {
         void AddInvitedAccount(Account account);
         Account GetByEmailAddressAndPassword(string emailAddress, string password);
         IEnumerable<Account> GetAllUnconfirmedAccounts();
-        Account GetByFacebookId(int facebookId);
+        Account GetByFacebookId(long facebookId);
     }
 }

@@ -3,6 +3,7 @@ using Authentication;
 using Autofac;
 using Domain.Repositories;
 using Entities;
+using Events.Bus;
 using Web.Controllers;
 using Web.FacebookAuthentication;
 using Web.Filters;
@@ -18,7 +19,7 @@ namespace Web {
             builder.RegisterType(typeof(FacebookStateRepository)).As(typeof(IFacebookDataRepository));
             builder.RegisterType(typeof(Authenticator)).As<IAuthenticator>();
             builder.RegisterType(typeof(AccountRepository)).Named<IAccountRepository>("BaseAccountRepository");
-            builder.Register(c => new FacebookAccountRepository(c.ResolveNamed<IAccountRepository>("BaseAccountRepository"), c.Resolve<IFacebookDataRepository>())).As(typeof(IAccountRepository));
+            builder.Register(c => new FacebookAccountRepository(c.ResolveNamed<IAccountRepository>("BaseAccountRepository"), c.Resolve<IFacebookDataRepository>(), c.Resolve<IEventBus>())).As(typeof(IAccountRepository));
             builder.RegisterType(typeof(AccountSessionRepository)).As(typeof(IAccountSessionRepository));
 
             builder.Register<IAccount>(c =>

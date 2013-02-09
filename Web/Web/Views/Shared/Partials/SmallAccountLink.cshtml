@@ -1,0 +1,5 @@
+﻿@model Entities.Account
+
+<span class="span3">
+    <a href="@Url.Action("Index", "Accounts", new { id = Model.Id })"><img src="@Model.Picture" alt="@Model.FullName" title="@Model.FullName" /></a>
+</span>

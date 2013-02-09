@@ -17,13 +17,14 @@
     }
 
     @foreach (var groupMember in groupMembers) {
-        <span class="span3">
-            <img src="@groupMember.Picture" alt="@groupMember.FullName" title="@groupMember.FullName" />
-        </span>
+        @Html.Partial("Partials/SmallAccountLink", groupMember)
     }
 }
 
-<h1>@Model.Title <span class="unhighlighted">&gt; Goals</span></h1>
+@section Title {
+    @Model.Title <span class="unhighlighted">&gt; Goals</span>
+}
+
 <ul id="buckets">
     <li class="goal"><a href="#" id="newGoal">New Goal</a></li>
 </ul>

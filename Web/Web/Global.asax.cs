@@ -61,6 +61,10 @@ namespace Web {
                 "{controller}/{action}/{id}", // URL with parameters
                 new {controller = "Home", action = "Index", id = UrlParameter.Optional} // Parameter defaults
                 );
+
+            routes.MapRoute("DefaultIndex",
+                            "{controller}/{id}",
+                            new {action = "Index", id = UrlParameter.Optional});
         }
 
         protected void Application_Start() {

@@ -26,6 +26,8 @@ namespace Web.Filters {
             var goals = GoalRepository.AllByGroupId(id);
             if (!goals.Any()) {
                 var groupGoal = GroupGoalRepository.GetByGoalId(id);
+
+                if (groupGoal == null) return;
                 goals = GoalRepository.AllByGroupId(groupGoal.GroupId);
             }
 

@@ -1,11 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Text;
 using Domain.Repositories;
 using Entities;
+using Events;
+using Events.Bus;
+using Events.Friends;
 using Newtonsoft.Json;
+using ServiceStack.Text;
 using Web.Models;
 using Web.Repositories;
 
@@ -13,11 +18,13 @@ namespace Web.FacebookAuthentication {
     public class FacebookAccountRepository : IAccountRepository {
         private readonly IAccountRepository accountRepository;
         private readonly IFacebookDataRepository facebookDataRepository;
+        private readonly IEventBus eventBus;
 
         public FacebookAccountRepository(IAccountRepository accountRepository,
-                                         IFacebookDataRepository facebookDataRepository) {
+                                         IFacebookDataRepository facebookDataRepository, IEventBus eventBus) {
             this.accountRepository = accountRepository;
             this.facebookDataRepository = facebookDataRepository;
+            this.eventBus = eventBus;
         }
 
         public Account FindById(Guid id) {
@@ -28,11 +35,35 @@ namespace Web.FacebookAuthentication {
                 return account;
             }
 
-            var request = WebRequest.Create("https://graph.facebook.com/me?fields=id,first_name,last_name,picture.width(800).height(800)&access_token=" + facebookDataRepository.GetAccessToken());
+            var request = WebRequest.Create("https://graph.facebook.com/me?fields=friends,id,first_name,last_name,picture.width(800).height(800)&access_token=" + facebookDataRepository.GetAccessToken());
             
-            using (var reader = new StreamReader(request.GetResponse().GetResponseStream(), Encoding.ASCII)) {
+            using (var reader = new StreamReader(request.GetResponse().GetResponseStream(), Encoding.ASCII)) {                
                 var result = reader.ReadToEnd();
-                return JsonConvert.DeserializeObject<FacebookAccount>(result, new FacebookAccountJsonDeserialization(account));
+                var act = JsonConvert.DeserializeObject<dynamic>(result);
+
+                foreach (var friend in act.friends.data) {
+                    var fullName = (string)friend.name;
+                    var firstName = fullName.Substring(0, fullName.IndexOf(" ")).Trim();
+                    var lastName = fullName.Substring(firstName.Length).Trim();
+                    var facebookId = (long) friend.id;
+                    var friendAccount = accountRepository.GetByFacebookId(facebookId);
+                    if (friendAccount == null) {
+                        var friendAccountId = Guid.NewGuid();
+                        eventBus.Send(new FacebookFriendAccountRetrievedEvent { Id = friendAccountId, FacebookId = facebookId, FirstName = firstName, LastName = lastName, Picture = "/Content/img/fb-silhouette.jpg" });
+                        friendAccount = accountRepository.GetByFacebookId(facebookId);
+                    }
+                    
+                    eventBus.Send(new FacebookFriendFoundEvent { AccountId = account.Id, FriendId = friendAccount.Id });
+                }                
+
+                return new FacebookAccount {
+                    FacebookId = act.id,
+                    AccountConfirmed = true,
+                    FirstName = act.first_name,
+                    LastName = act.last_name,
+                    Picture = act.picture.data.url,
+                    Id = account.Id
+                };
             }
         }
 
@@ -64,8 +95,8 @@ namespace Web.FacebookAuthentication {
             return accountRepository.GetAllUnconfirmedAccounts();
         }
 
-        public Account GetByFacebookId(int facebookId) {
+        public Account GetByFacebookId(long facebookId) {
             return accountRepository.GetByFacebookId(facebookId);
         }
-    }
+    }    
 }

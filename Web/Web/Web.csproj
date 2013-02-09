@@ -201,6 +201,7 @@
     <Compile Include="Attributes\PasswordAttribute.cs" />
     <Compile Include="Attributes\TextAreaAttribute.cs" />
     <Compile Include="Config\BasePage.cs" />
+    <Compile Include="Controllers\AccountsController.cs" />
     <Compile Include="Controllers\CrudController.cs" />
     <Compile Include="Controllers\FriendsController.cs" />
     <Compile Include="Controllers\GoalsController.cs" />
@@ -355,6 +356,8 @@
     <Content Include="Views\Groups\Index.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\QuantitativeGoal.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\Goal.cshtml" />
+    <Content Include="Views\Accounts\Index.cshtml" />
+    <Content Include="Views\Shared\Partials\SmallAccountLink.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

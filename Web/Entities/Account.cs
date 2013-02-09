@@ -13,7 +13,7 @@ namespace Entities {
         }
 
         [NotEditable]
-        public virtual int FacebookId { get; set; }
+        public virtual long FacebookId { get; set; }
 
         public virtual string Password { get; set; }
         public virtual string ConfirmPassword { get; set; }

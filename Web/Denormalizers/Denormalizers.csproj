@@ -52,11 +52,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountDenormalizer.cs" />
     <Compile Include="AccountReportDenormalizer.cs" />
     <Compile Include="AddFriendDenormalizer.cs" />
     <Compile Include="AuthenticationDenormalizer.cs" />
     <Compile Include="BucketDenormalizer.cs" />
     <Compile Include="DenormalizerModule.cs" />
+    <Compile Include="FriendDenormalizer.cs" />
     <Compile Include="FriendInvitationDenormalizer.cs" />
     <Compile Include="GoalDenormalizer.cs" />
     <Compile Include="GoalLogDenormalizer.cs" />

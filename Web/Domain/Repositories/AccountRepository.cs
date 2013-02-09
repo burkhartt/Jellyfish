@@ -23,7 +23,7 @@ namespace Domain.Repositories {
             return database.GetTheDatabase().Account.FindAllByAccountConfirmed(AccountConfirmed: false).ToList<Account>();
         }
 
-        public Account GetByFacebookId(int facebookId) {
+        public Account GetByFacebookId(long facebookId) {
             return (Account)database.GetTheDatabase().Account.FindByFacebookId(FacebookId: facebookId);
         }       
     }
