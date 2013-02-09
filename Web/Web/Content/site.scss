@@ -54,10 +54,15 @@ h1 {
 }
 .goal
 {
-	border: 1px solid red;
-	height: 100px;
-	width: 100px;
-	cursor: move;
+	a{
+		background-image: url("/Content/img/gear.png");
+		background-repeat: no-repeat;
+		width: 150px;
+		cursor: pointer;
+		padding-top: 155px;
+		text-align: center;
+		display: block;
+	}
 }
 #orphaned-goals, #buckets{
 	margin: 0px;
@@ -125,3 +130,9 @@ fieldset {
 	text-decoration: line-through;
 }
 
+h1 {
+	.unhighlighted {
+		color: #000;
+		font-size: 0.8em;
+	}
+}

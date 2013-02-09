@@ -43,11 +43,7 @@
     };
 
     var addGoal = function (goalId, goalTitle) {
-        obj.container.prepend('<li class="goal" data-val-id="' + goalId + '">' + goalTitle + '</li>');
-        
-        $(".goal").click(function() {
-            window.location.href = "/Goals/Index/" + $(this).data("val-id");
-        });
+        obj.container.append('<li class="goal"><a href="/Goals/Index/' + goalId + '">' + goalTitle + '</a></li>');
     };
 };
 

@@ -291,7 +291,7 @@ a:hover {
   width: 940px;
 }
 .container {
-    margin-top: 20px;
+    
 }
 
 .span12 {
@@ -723,7 +723,7 @@ h3,
 h4,
 h5,
 h6 {
-  margin: 10px 0;
+  margin: 0px 0;
   font-family: inherit;
   font-weight: bold;
   line-height: 20px;
@@ -3897,7 +3897,7 @@ input[type="submit"].btn.btn-mini {
 }
 
 .nav {
-  margin-bottom: 20px;
+  margin-bottom: 0px;
   margin-left: 0;
   list-style: none;
 }
