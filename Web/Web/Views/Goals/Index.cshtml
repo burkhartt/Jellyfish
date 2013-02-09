@@ -1,4 +1,5 @@
-﻿@model Domain.Models.Goals.Goal
+﻿@using Web.Helpers
+@model Domain.Models.Goals.Goal
 
 @section Head {
     <script type="text/javascript" src="../../Content/js/newtask.js"></script>
@@ -19,14 +20,6 @@
             }            
         });
     </script>
-}
-
-@section LeftMenuTitle {
-    Goals <input type="button" id="new-group" class="btn-new" />
-}
-
-@section LeftMenu {
-    <ul id="goals"></ul>
 }
 
 <h1>@Model.Title</h1>

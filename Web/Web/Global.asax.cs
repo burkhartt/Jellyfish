@@ -34,17 +34,22 @@ namespace Web {
 
         public static void RegisterGlobalFilters(GlobalFilterCollection filters) {
             filters.Add(new HandleErrorAttribute());
-            filters.Add(DependencyResolver.Current.GetService<GroupMenuFilter>());
+            filters.Add(DependencyResolver.Current.GetService<GoalViewBagFilter>());
         }
 
         protected void Application_AcquireRequestState(object sender, EventArgs e){
             if (HttpContext.Current.Session == null) {
                 return;
             }
-            var account = DependencyResolver.Current.GetService<IAccount>();
-            var accountSessionRepository = DependencyResolver.Current.GetService<IAccountSessionRepository>();
+            var dependencyResolver = DependencyResolver.Current;
+            var account = dependencyResolver.GetService<IAccount>();
+            var accountSessionRepository = dependencyResolver.GetService<IAccountSessionRepository>();
+            var groupRepository = dependencyResolver.GetService<IGroupRepository>();
             Context.Items["Account"] = new AccountView { Data = account, IsLoggedIn = accountSessionRepository.GetCurrentId() != Guid.Empty };
             Context.Items["Site"] = new Site {Name = "Goals"};
+            if (account != null) {
+                Context.Items["Groups"] = groupRepository.GetByAccountId(account.Id);
+            }            
         }
 
         public static void RegisterRoutes(RouteCollection routes) {

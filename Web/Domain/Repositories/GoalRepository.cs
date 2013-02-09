@@ -15,10 +15,13 @@ namespace Domain.Repositories {
         }
 
         public IEnumerable<Goal> AllByGroupId(Guid groupId, Guid parentGoalId) {
+            return AllByGroupId(groupId).Where(x => x.BucketId == parentGoalId);
+        }
+
+        public IEnumerable<Goal> AllByGroupId(Guid groupId) {
             IEnumerable<GroupGoal> groupGoals = database.GetTheDatabase().GroupGoals.FindAllByGroupId(groupId).ToList<GroupGoal>();
             var goalIds = groupGoals.Select(@group => @group.GoalId).ToList();
-            IEnumerable<Goal> goals = database.GetTheDatabase().Goals.FindAllById(goalIds).ToList<Goal>();
-            return goals.Where(x => x.BucketId == parentGoalId);
+            return database.GetTheDatabase().Goals.FindAllById(goalIds).ToList<Goal>();
         }
 
         public Goal GetById(Guid id) {

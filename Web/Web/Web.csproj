@@ -222,11 +222,11 @@
     <Compile Include="FacebookAuthentication\IFacebookDataRepository.cs" />
     <Compile Include="Filters\AuthorizedAttribute.cs" />
     <Compile Include="Filters\GlobalMessageFilter.cs" />
-    <Compile Include="Filters\GroupMenuFilter.cs" />
-    <Compile Include="Filters\LayoutComponentActionFilter.cs" />
+    <Compile Include="Filters\GoalViewBagFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\HttpContextHtmlHelpers.cs" />
     <Compile Include="Layouts\LayoutAttribute.cs" />
     <Compile Include="ModelBinders\DecimalModelBInder.cs" />
     <Compile Include="ModelBinders\GuidModelBinder.cs" />

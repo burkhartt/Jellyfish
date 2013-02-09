@@ -1,5 +1,7 @@
-﻿using System.Web;
+﻿using System.Collections.Generic;
+using System.Web;
 using Domain.Models;
+using Domain.Models.Goals;
 using Web.Models;
 
 namespace Web.Extensions {
@@ -10,6 +12,14 @@ namespace Web.Extensions {
 
         public static Site Site(this HttpContextBase httpContextBase) {
             return (Site) httpContextBase.Items["Site"];
+        }
+
+        public static IEnumerable<Group> Groups(this HttpContextBase httpContextBase) {
+            return (IEnumerable<Group>) httpContextBase.Items["Groups"];
+        }
+
+        public static IEnumerable<Goal> Goals(this HttpContextBase httpContextBase) {
+            return (IEnumerable<Goal>) httpContextBase.Items["Goals"];
         }
     }
 }

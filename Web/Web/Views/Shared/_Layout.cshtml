@@ -1,6 +1,7 @@
 ﻿@using System.Web.Mvc.Html
 @using Web
 @using Web.Extensions
+@using Web.Helpers
 <!DOCTYPE html>
 <html>
     <head>
@@ -72,17 +73,40 @@
         </div>
         <div class="container">
             <div class="container-fluid">
-                <br style="clear:both" />
+                <br style="clear: both" />
                 <div class="row-fluid">
-                    <div class="span2">                        
-                        <fieldset id="leftMenuContainer">
-                            <legend>@RenderSection("LeftMenuTitle", true)</legend>
-                            @if (IsSectionDefined("LeftMenu")) {                            
-                                @RenderSection("LeftMenu", true)
+                    <div class="span12">                        
+                        @{
+                            var groups = Html.Groups();
+                            var goals = Html.Goals();
+                        }    
+                        <ul class="nav nav-tabs">
+                            @if (groups.Any()) {
+                                <li class="dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Groups <b class="caret"></b></a>
+                                    <ul id="groups" class="dropdown-menu">
+                                        @foreach (var group in groups)
+                                        {
+                                            <li>@Html.ActionLink(group.Title, "Index", "Groups", new { group.Id }, null)</li>
+                                        }
+                                    </ul>
+                                </li>
                             }                            
-                        </fieldset>
+                            @if (goals != null)
+                            {
+                                <li class="dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Goals <b class="caret"></b></a>
+                                    <ul id="goals" class="dropdown-menu">
+                                        @foreach (var goal in goals)
+                                        {
+                                            <li>@Html.ActionLink(goal.Title, "Index", "Goals", new { goal.Id }, null)</li>
+                                        }
+                                    </ul>
+                                </li>
+                            }
+                        </ul>
                     </div>
-                    <div class="span10">
+                    <div class="span12">
                         @Html.DisplayFor(x => TempData["SuccessMessage"])
                         @Html.DisplayFor(x => TempData["ErrorMessage"])
                         @RenderBody()
