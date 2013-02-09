@@ -225,7 +225,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Hubs\GoalHistoryHub.cs" />
     <Compile Include="ModelBinders\DecimalModelBInder.cs" />
     <Compile Include="ModelBinders\GuidModelBinder.cs" />
     <Compile Include="ModelBinders\ModelBinderHelper.cs" />
@@ -262,6 +261,7 @@
     <Content Include="Content\js\bootstrap.js" />
     <Content Include="Content\js\bootstrap.min.js" />
     <Content Include="Content\js\editContent.js" />
+    <Content Include="Content\js\goalhistory.js" />
     <Content Include="Content\js\goaltypes.js" />
     <Content Include="Content\js\newgroup.js" />
     <Content Include="Content\js\forms.js" />
@@ -386,6 +386,10 @@
     <ProjectReference Include="..\Events\Events.csproj">
       <Project>{4a1ec6a5-eaf5-4f79-8f28-6a77741d53d1}</Project>
       <Name>Events</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hubs\Hubs.csproj">
+      <Project>{ff2d04f8-3bbf-4f76-b36c-99327be92ec8}</Project>
+      <Name>Hubs</Name>
     </ProjectReference>
     <ProjectReference Include="..\Utilities\Utilities.csproj">
       <Project>{97887799-b126-44d6-8240-191097f4be44}</Project>

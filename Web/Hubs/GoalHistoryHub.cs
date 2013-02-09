@@ -5,7 +5,7 @@ using Events.Handler;
 using Microsoft.AspNet.SignalR;
 using ServiceStack.Text;
 
-namespace Web.Hubs {
+namespace Hubs {
     public class GoalHistoryHub : Hub, IHandleDomainEvents<GoalCreatedEvent>,
                                   IHandleDomainEvents<GoalAddedToGoalEvent>,
                                   IHandleDomainEvents<GoalDescriptionUpdatedEvent>,
@@ -13,9 +13,10 @@ namespace Web.Hubs {
                                   IHandleDomainEvents<GoalTypeUpdatedEvent>,
                                   IHandleDomainEvents<GoalCurrentNumberUpdatedEvent>,
                                   IHandleDomainEvents<GoalTargetNumberUpdatedEvent>,
-    IHandleDomainEvents<TaskCreatedEvent>, IHandleDomainEvents<TaskStatusUpdatedEvent>, IHandleDomainEvents<TaskTitleUpdatedEvent>
-    {
+                                  IHandleDomainEvents<TaskCreatedEvent>, IHandleDomainEvents<TaskStatusUpdatedEvent>,
+                                  IHandleDomainEvents<TaskTitleUpdatedEvent> {
         private readonly IGoalRepository goalRepository;
+        public GoalHistoryHub() {}
 
         public GoalHistoryHub(IGoalRepository goalRepository) {
             this.goalRepository = goalRepository;
@@ -49,20 +50,22 @@ namespace Web.Hubs {
             SendHistoryToClient(@event.Id);
         }
 
-        private void SendHistoryToClient(Guid goalId) {
-            var goal = goalRepository.GetById(goalId);
-            var context = GlobalHost.ConnectionManager.GetHubContext<GoalHistoryHub>();
-            context.Clients.All.addGoalHistory(goal.Logs.ToJson());
-        }
-
         public void Handle(TaskCreatedEvent @event) {
             SendHistoryToClient(@event.GoalId);
         }
+
         public void Handle(TaskStatusUpdatedEvent @event) {
             SendHistoryToClient(@event.GoalId);
         }
+
         public void Handle(TaskTitleUpdatedEvent @event) {
             SendHistoryToClient(@event.GoalId);
+        }
+
+        private void SendHistoryToClient(Guid goalId) {
+            var goal = goalRepository.GetById(goalId);
+            var context = GlobalHost.ConnectionManager.GetHubContext<GoalHistoryHub>();
+            context.Clients.All.setGoalHistory(goal.Logs.ToJson());
         }
     }
 }

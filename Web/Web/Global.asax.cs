@@ -2,31 +2,24 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
-using System.Web.Script.Serialization;
-using System.Web.Security;
 using Authentication;
 using Autofac;
-using Autofac.Core;
-using Autofac.Core.Lifetime;
 using Autofac.Integration.Mvc;
 using Database;
 using Denormalizers;
 using Domain;
-using Domain.Models;
 using Domain.Repositories;
 using Email;
 using Entities;
 using Events;
 using FluentValidation;
 using FluentValidation.Mvc;
-using Simple.Data;
+using Hubs;
 using Web.FacebookAuthentication;
 using Web.Filters;
-using Web.Hubs;
 using Web.Models;
 using Web.Repositories;
 using Web.Validation;
@@ -83,6 +76,7 @@ namespace Web {
             builder.RegisterModule(new DenormalizerModule());
             builder.RegisterModule(new EventModule());
             builder.RegisterModule(new DomainModule());
+            builder.RegisterModule(new HubsModule());
 
             builder.RegisterModelBinders(Assembly.GetExecutingAssembly());
             builder.RegisterModelBinderProvider();
@@ -96,11 +90,7 @@ namespace Web {
             builder.RegisterType(typeof(Authenticator)).As<IAuthenticator>();            
             builder.RegisterType(typeof(AccountRepository)).Named<IAccountRepository>("BaseAccountRepository");
             builder.Register(c => new FacebookAccountRepository(c.ResolveNamed<IAccountRepository>("BaseAccountRepository"), c.Resolve<IFacebookDataRepository>())).As(typeof(IAccountRepository));
-            builder.RegisterType(typeof (AccountSessionRepository)).As(typeof (IAccountSessionRepository));            
-
-            builder.RegisterAssemblyTypes(typeof(GoalHistoryHub).Assembly)
-                   .Where(t => t.Name.EndsWith("Hub"))
-                   .AsImplementedInterfaces();
+            builder.RegisterType(typeof (AccountSessionRepository)).As(typeof (IAccountSessionRepository));                        
 
             builder.Register<IAccount>(c => {
                 var currentId = c.Resolve<IAccountSessionRepository>().GetCurrentId();

@@ -20,26 +20,7 @@
         <script type="text/javascript" src="@Url.Content("~/Content/js/forms.js")"></script>
         <script type="text/javascript" src="../../Content/js/newgroup.js"></script>
         <script src="~/signalr/hubs" type="text/javascript"></script>
-        <script type="text/javascript">
-            $(function () {
-                // Proxy created on the fly          
-                var goalHistoryHub = $.connection.goalHistoryHub;
-
-                // Declare a function on the chat hub so the server can invoke it          
-                goalHistoryHub.client.addGoalHistory = function (message) {
-                    $("#history").html("");
-                    var result = $.parseJSON(message);
-                    $.each(result, function(key, val) {
-                        $("#history").prepend("<li>" + val + "</li>");
-                    });
-                };
-
-                // Start the connection
-                $.connection.hub.start().done(function () {
-                    
-                });
-            });
-        </script>
+        <script type="text/javascript" src="../../Content/js/goalhistory.js"></script>
 
         <script type="text/javascript">
             $(function() {

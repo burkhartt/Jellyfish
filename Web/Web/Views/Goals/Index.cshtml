@@ -12,6 +12,11 @@
             taskManager.LoadTasks();
             var goalTypes = new GoalTypes('@Model.Id', '@Model.Type');
             goalTypes.Load($("#goal-types"));
+
+            var goalHistory = new GoalHistory();
+            @foreach (var log in Model.Logs) {
+                @:goalHistory.AddGoalHistory('@log');
+            }            
         });
     </script>
 }
@@ -45,7 +50,7 @@
 
 <fieldset>
     <legend>Tasks <input type="button" name="create-task" class="btn-new"/></legend>
-    <ul id="tasks"></ul>    
+    <ul id="tasks"></ul>
 </fieldset>
 
 <fieldset>
