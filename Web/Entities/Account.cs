@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using Attributes;
-using Events;
 
-namespace Domain.Models.Accounts {
+namespace Entities {
     public class Account : IAccount {
         public Account(Guid id) {
             Id = id;

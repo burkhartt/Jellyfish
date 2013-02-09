@@ -19,6 +19,7 @@ using Domain;
 using Domain.Models;
 using Domain.Repositories;
 using Email;
+using Entities;
 using Events;
 using FluentValidation;
 using FluentValidation.Mvc;
@@ -81,6 +82,7 @@ namespace Web {
             builder.RegisterModule(new EmailModule());
             builder.RegisterModule(new DenormalizerModule());
             builder.RegisterModule(new EventModule());
+            builder.RegisterModule(new DomainModule());
 
             builder.RegisterModelBinders(Assembly.GetExecutingAssembly());
             builder.RegisterModelBinderProvider();
@@ -94,13 +96,9 @@ namespace Web {
             builder.RegisterType(typeof(Authenticator)).As<IAuthenticator>();            
             builder.RegisterType(typeof(AccountRepository)).Named<IAccountRepository>("BaseAccountRepository");
             builder.Register(c => new FacebookAccountRepository(c.ResolveNamed<IAccountRepository>("BaseAccountRepository"), c.Resolve<IFacebookDataRepository>())).As(typeof(IAccountRepository));
-            builder.RegisterType(typeof (AccountSessionRepository)).As(typeof (IAccountSessionRepository));
-            builder.RegisterType<GoalRepository>().As<IGoalRepository>();
-            builder.RegisterType<GroupRepository>().As<IGroupRepository>();
-            builder.RegisterType<TaskRepository>().As<ITaskRepository>();
-            builder.RegisterType<GoalTypeRepository>().As<IGoalTypeRepository>();
+            builder.RegisterType(typeof (AccountSessionRepository)).As(typeof (IAccountSessionRepository));            
 
-            builder.RegisterAssemblyTypes(typeof(ChatHub).Assembly)
+            builder.RegisterAssemblyTypes(typeof(GoalHistoryHub).Assembly)
                    .Where(t => t.Name.EndsWith("Hub"))
                    .AsImplementedInterfaces();
 

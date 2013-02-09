@@ -1,4 +1,5 @@
 ﻿using Domain.Models;
+using Entities;
 
 namespace Web.Models {
     public class AccountView {

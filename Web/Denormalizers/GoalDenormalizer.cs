@@ -4,7 +4,6 @@ using Events.Handler;
 
 namespace Denormalizers {
     public class GoalDenormalizer : IHandleDomainEvents<GoalCreatedEvent>, 
-                                    IHandleDomainEvents<GoalUpdatedEvent>,
                                     IHandleDomainEvents<GoalAddedToGoalEvent>,
                                     IHandleDomainEvents<GoalDescriptionUpdatedEvent>,
                                     IHandleDomainEvents<GoalDeadlineUpdatedEvent>,
@@ -45,11 +44,6 @@ namespace Denormalizers {
 
         public void Handle(GoalTypeUpdatedEvent @event) {
             database.GetTheDatabase().Goals.UpdateById(Id: @event.Id, Type: @event.Type);
-        }
-
-        public void Handle(GoalUpdatedEvent @event) {
-            database.GetTheDatabase()
-                    .Goals.UpdateById(Id: @event.Id, Description: @event.Description, Deadline: @event.Deadline);
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Domain.Models.Accounts;
+using Entities;
 
 namespace Domain.Repositories {
     public interface IFriendRepository {

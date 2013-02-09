@@ -79,6 +79,10 @@
       <Project>{1fa41132-221c-47a3-a0a7-8ede598b49f1}</Project>
       <Name>Email</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Entities\Entities.csproj">
+      <Project>{ace16852-cc69-4e73-9304-13973978ed9f}</Project>
+      <Name>Entities</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Events\Events.csproj">
       <Project>{4a1ec6a5-eaf5-4f79-8f28-6a77741d53d1}</Project>
       <Name>Events</Name>

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Domain.Models.Accounts {
+﻿namespace Entities {
     public class FacebookAccount : Account {
         public FacebookAccount(int id) : base() {
             this.FacebookId = id;

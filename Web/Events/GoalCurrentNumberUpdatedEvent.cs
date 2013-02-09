@@ -1,8 +1,11 @@
-﻿using System;
+﻿using Entities;
 
 namespace Events {
-    public class GoalCurrentNumberUpdatedEvent : DomainEvent {
+    public class GoalCurrentNumberUpdatedEvent : GoalDomainEvent {
         public decimal Number { get; set; }
-        public Guid AccountId { get; set; }
+
+        public override string GetMessage(Account account) {
+            return account.FullName + " changed the current number to " + Number + " at " + EventDate.ToString("MMMM d, yyyy H:mm tt");
+        }
     }
 }

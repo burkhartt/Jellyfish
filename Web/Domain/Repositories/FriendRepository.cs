@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Database;
 using Domain.Models;
-using Domain.Models.Accounts;
+using Entities;
 
 namespace Domain.Repositories {
     public class FriendRepository : IFriendRepository {

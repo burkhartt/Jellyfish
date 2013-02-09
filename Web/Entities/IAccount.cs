@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Domain.Models {
+namespace Entities {
     public interface IAccount {
         Guid Id { get; }
         string FirstName { get; }

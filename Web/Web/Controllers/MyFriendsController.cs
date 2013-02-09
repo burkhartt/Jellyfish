@@ -2,6 +2,7 @@
 using Domain;
 using Domain.Models;
 using Domain.Repositories;
+using Entities;
 using Web.Filters;
 using Web.Models;
 using Web.Repositories;

@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using Domain.Models;
 using Domain.Repositories;
+using Entities;
 using Events;
 using Events.Bus;
 using Web.Filters;

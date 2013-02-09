@@ -23,18 +23,19 @@
         <script type="text/javascript">
             $(function () {
                 // Proxy created on the fly          
-                var chathub = $.connection.chatHub;
+                var goalHistoryHub = $.connection.goalHistoryHub;
 
                 // Declare a function on the chat hub so the server can invoke it          
-                chathub.client.addMessage = function (message) {
-                    console.log(message);
+                goalHistoryHub.client.addGoalHistory = function (message) {
+                    $("#history").html("");
+                    var result = $.parseJSON(message);
+                    $.each(result, function(key, val) {
+                        $("#history").append("<li>" + val.Message + "</li>");
+                    });
                 };
 
                 // Start the connection
                 $.connection.hub.start().done(function () {
-                    
-                        // Call the chat method on the server
-                        chathub.server.send($('#msg').val());
                     
                 });
             });

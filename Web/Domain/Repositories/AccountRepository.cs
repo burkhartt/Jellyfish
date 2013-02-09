@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Database;
-using Domain.Models.Accounts;
+using Entities;
 
 namespace Domain.Repositories {
     public class AccountRepository : Repository<Account>, IAccountRepository {
@@ -24,6 +25,6 @@ namespace Domain.Repositories {
 
         public Account GetByFacebookId(int facebookId) {
             return (Account)database.GetTheDatabase().Account.FindByFacebookId(FacebookId: facebookId);
-        }
+        }       
     }
 }
