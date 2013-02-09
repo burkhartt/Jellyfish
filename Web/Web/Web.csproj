@@ -222,9 +222,12 @@
     <Compile Include="FacebookAuthentication\IFacebookDataRepository.cs" />
     <Compile Include="Filters\AuthorizedAttribute.cs" />
     <Compile Include="Filters\GlobalMessageFilter.cs" />
+    <Compile Include="Filters\GroupMenuFilter.cs" />
+    <Compile Include="Filters\LayoutComponentActionFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Layouts\LayoutAttribute.cs" />
     <Compile Include="ModelBinders\DecimalModelBInder.cs" />
     <Compile Include="ModelBinders\GuidModelBinder.cs" />
     <Compile Include="ModelBinders\ModelBinderHelper.cs" />
@@ -241,6 +244,7 @@
     <Compile Include="Validation\GoalFormValidator.cs" />
     <Compile Include="Validation\LoginModelValidator.cs" />
     <Compile Include="Validation\ServiceLocatorValidatorFactory.cs" />
+    <Compile Include="WebModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -262,6 +266,7 @@
     <Content Include="Content\js\bootstrap.min.js" />
     <Content Include="Content\js\editContent.js" />
     <Content Include="Content\js\goalhistory.js" />
+    <Content Include="Content\js\goalmenu.js" />
     <Content Include="Content\js\goaltypes.js" />
     <Content Include="Content\js\newgroup.js" />
     <Content Include="Content\js\forms.js" />

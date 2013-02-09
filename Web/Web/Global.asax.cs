@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using Authentication;
 using Autofac;
+using Autofac.Core;
 using Autofac.Integration.Mvc;
 using Database;
 using Denormalizers;
@@ -33,6 +34,7 @@ namespace Web {
 
         public static void RegisterGlobalFilters(GlobalFilterCollection filters) {
             filters.Add(new HandleErrorAttribute());
+            filters.Add(DependencyResolver.Current.GetService<GroupMenuFilter>());
         }
 
         protected void Application_AcquireRequestState(object sender, EventArgs e){
@@ -77,27 +79,13 @@ namespace Web {
             builder.RegisterModule(new EventModule());
             builder.RegisterModule(new DomainModule());
             builder.RegisterModule(new HubsModule());
+            builder.RegisterModule(new WebModule());
 
             builder.RegisterModelBinders(Assembly.GetExecutingAssembly());
             builder.RegisterModelBinderProvider();
             builder.RegisterType<ExtensibleActionInvoker>().As<IActionInvoker>();
             builder.RegisterControllers(Assembly.GetExecutingAssembly()).InjectActionInvoker();
-            builder.RegisterFilterProvider();
-
-            builder.RegisterGeneric(typeof (Repository<>)).As(typeof (IRepository<>)).SingleInstance();            
-            builder.RegisterType(typeof (FriendRepository)).As(typeof (IFriendRepository));
-            builder.RegisterType(typeof(FacebookStateRepository)).As(typeof(IFacebookDataRepository));
-            builder.RegisterType(typeof(Authenticator)).As<IAuthenticator>();            
-            builder.RegisterType(typeof(AccountRepository)).Named<IAccountRepository>("BaseAccountRepository");
-            builder.Register(c => new FacebookAccountRepository(c.ResolveNamed<IAccountRepository>("BaseAccountRepository"), c.Resolve<IFacebookDataRepository>())).As(typeof(IAccountRepository));
-            builder.RegisterType(typeof (AccountSessionRepository)).As(typeof (IAccountSessionRepository));                        
-
-            builder.Register<IAccount>(c => {
-                var currentId = c.Resolve<IAccountSessionRepository>().GetCurrentId();
-                return c.Resolve<IAccountRepository>().FindById(currentId);
-            }).As<IAccount>();
-
-            builder.RegisterType<GlobalMessageFilter>().As<IActionFilter>();
+            builder.RegisterFilterProvider();           
 
             builder.RegisterType<ServiceLocatorValidatorFactory>().As<IValidatorFactory>();
             var findValidatorsInAssembly = AssemblyScanner.FindValidatorsInAssembly(Assembly.GetExecutingAssembly());
@@ -112,7 +100,7 @@ namespace Web {
             ModelMetadataProviders.Current = Container.Resolve<DataAnnotationsModelMetadataProvider>();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(Container));
         }
-    }    
+    }
 
     public static class ActionFilterInjection {
         /// <summary>

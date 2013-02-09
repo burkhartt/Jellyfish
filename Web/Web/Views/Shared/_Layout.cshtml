@@ -21,6 +21,7 @@
         <script type="text/javascript" src="../../Content/js/newgroup.js"></script>
         <script src="~/signalr/hubs" type="text/javascript"></script>
         <script type="text/javascript" src="../../Content/js/goalhistory.js"></script>
+        <script type="text/javascript" src="../../Content/js/goalmenu.js"></script>
 
         <script type="text/javascript">
             $(function() {
@@ -71,11 +72,14 @@
         </div>
         <div class="container">
             <div class="container-fluid">
+                <br style="clear:both" />
                 <div class="row-fluid">
-                    <div class="span2">
-                        <fieldset id="groupsContainer">
-                            <legend>Groups <input type="button" id="new-group" class="btn-new" /></legend>
-                            <ul id="groups"></ul>
+                    <div class="span2">                        
+                        <fieldset id="leftMenuContainer">
+                            <legend>@RenderSection("LeftMenuTitle", true)</legend>
+                            @if (IsSectionDefined("LeftMenu")) {                            
+                                @RenderSection("LeftMenu", true)
+                            }                            
                         </fieldset>
                     </div>
                     <div class="span10">

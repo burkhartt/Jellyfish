@@ -5,11 +5,6 @@
         var goalHistory = new GoalHistory();
         goalHistory.SetGoalHistory($.parseJSON(message));
     };
-
-    // Start the connection
-    $.connection.hub.start().done(function () {
-        
-    });
 });
 
 var GoalHistory = function () {

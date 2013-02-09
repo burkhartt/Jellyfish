@@ -9,6 +9,7 @@ namespace Domain {
             builder.RegisterType<TaskRepository>().As<ITaskRepository>();
             builder.RegisterType<GoalTypeRepository>().As<IGoalTypeRepository>();
             builder.RegisterType<GoalLogRepository>().As<IGoalLogRepository>();
+            builder.RegisterType<GroupGoalRepository>().As<IGroupGoalRepository>();
         }
     }
 }

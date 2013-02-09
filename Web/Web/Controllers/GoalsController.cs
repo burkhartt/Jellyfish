@@ -7,6 +7,7 @@ using Entities;
 using Events;
 using Events.Bus;
 using Web.Filters;
+using Web.Layouts;
 
 namespace Web.Controllers {
     [Authorized]
@@ -77,5 +78,5 @@ namespace Web.Controllers {
             eventBus.Send(new GoalTargetNumberUpdatedEvent { Id = id, Number = number, AccountId = account.Id});
             eventBus.Send(new GoalTargetNumberUpdatedDeltaEvent { Id = id, Delta = difference, AccountId = account.Id });
         }
-    }    
+    }
 }
