@@ -28,6 +28,7 @@ namespace Domain.Repositories {
             if (goal != null && !string.IsNullOrEmpty(goal.Type) && goal.Type.Equals("Quantitative", StringComparison.OrdinalIgnoreCase)) {
                 var quantitiativeGoal = (QuantitativeGoal)database.GetTheDatabase().Goals.FindById(id);
                 quantitiativeGoal.Logs = logs;
+                return quantitiativeGoal;
             }
 
             if (goal != null) {

@@ -30,7 +30,7 @@
                     $("#history").html("");
                     var result = $.parseJSON(message);
                     $.each(result, function(key, val) {
-                        $("#history").append("<li>" + val.Message + "</li>");
+                        $("#history").prepend("<li>" + val + "</li>");
                     });
                 };
 

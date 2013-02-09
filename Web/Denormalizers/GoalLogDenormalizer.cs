@@ -3,6 +3,7 @@ using Database;
 using Domain.Repositories;
 using Events;
 using Events.Handler;
+using Newtonsoft.Json;
 using ServiceStack.Text;
 
 namespace Denormalizers {
@@ -55,27 +56,27 @@ namespace Denormalizers {
         public void Handle(TaskCreatedEvent @event) {
             database.GetTheDatabase()
                     .GoalLog.Insert(Id: Guid.NewGuid(), GoalId: @event.GoalId, EventDate: @event.EventDate,
-                                    Event: @event.GetType().AssemblyQualifiedName, Data: @event.ToJson());
+                                    Event: @event.GetType().AssemblyQualifiedName, Data: JsonConvert.SerializeObject(@event));
         }
 
         public void Handle(TaskStatusUpdatedEvent @event) {
             var task = taskRepository.GetById(@event.Id);
             database.GetTheDatabase()
                     .GoalLog.Insert(Id: Guid.NewGuid(), GoalId: task.GoalId, EventDate: @event.EventDate,
-                                    Event: @event.GetType().AssemblyQualifiedName, Data: @event.ToJson());
+                                    Event: @event.GetType().AssemblyQualifiedName, Data: JsonConvert.SerializeObject(@event));
         }
 
         public void Handle(TaskTitleUpdatedEvent @event) {
             var task = taskRepository.GetById(@event.Id);
             database.GetTheDatabase()
                     .GoalLog.Insert(Id: Guid.NewGuid(), GoalId: task.GoalId, EventDate: @event.EventDate,
-                                    Event: @event.GetType().AssemblyQualifiedName, Data: @event.ToJson());
+                                    Event: @event.GetType().AssemblyQualifiedName, Data: JsonConvert.SerializeObject(@event));
         }
 
         public void InsertGoal(GoalDomainEvent @event) {
             database.GetTheDatabase()
                     .GoalLog.Insert(Id: Guid.NewGuid(), GoalId: @event.Id, EventDate: @event.EventDate,
-                                    Event: @event.GetType().AssemblyQualifiedName, Data: @event.ToJson());
+                                    Event: @event.GetType().AssemblyQualifiedName, Data: JsonConvert.SerializeObject(@event));
         }
     }
 }
