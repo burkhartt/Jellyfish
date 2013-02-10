@@ -26,8 +26,10 @@
 
         <script type="text/javascript">
             $(function() {
-                var groupManager = new GroupManager($('#new-group'), $("#groups"));
+                var groupManager = new GroupManager($('#new-group'), $("#grouplisting"));
                 groupManager.LoadGroups();
+                
+                filepicker.setKey('AFA8QI2wRqqM7dJYQVeCWz');
             });
         </script>
 
@@ -71,6 +73,7 @@
                             var goals = Html.Goals();
                         }    
                         <ul class="nav nav-tabs">
+                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
                             @if (groups.Any()) {
                                 <li class="dropdown">
                                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">Groups <b class="caret"></b></a>
@@ -107,5 +110,6 @@
                 </div>
             </div>                            
         </div>
+        <script type="text/javascript" src="//api.filepicker.io/v1/filepicker.js"></script>
     </body>
 </html>

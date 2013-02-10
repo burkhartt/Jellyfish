@@ -261,10 +261,12 @@
     <Content Include="Content\icons\add.png" />
     <Content Include="Content\icons\pencil.png" />
     <Content Include="Content\img\fb-connect.png" />
+    <Content Include="Content\img\fb-silhouette.jpg" />
     <Content Include="Content\img\gear.png" />
     <Content Include="Content\img\glyphicons-halflings-white.png" />
     <Content Include="Content\img\glyphicons-halflings.png" />
     <Content Include="Content\img\group-generic.jpg" />
+    <Content Include="Content\img\logo.jpg" />
     <Content Include="Content\jquery-1.7.2.min.js" />
     <Content Include="Content\js\bootstrap-datepicker.js" />
     <Content Include="Content\js\bootstrap.js" />

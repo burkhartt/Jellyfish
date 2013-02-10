@@ -13,11 +13,11 @@
     };
 
     this.LoadGroups = function () {
-        //$.getJSON("/Groups/Get", null, function (result) {
-        //    $.each(result, function (key, group) {
-        //        addGroup(group.Id, group.Title);
-        //    });
-        //});
+        $.getJSON("/Groups/Get", null, function (result) {
+            $.each(result, function (key, group) {
+                addGroup(group.Id, group.Title);
+            });
+        });
     };
 
     var saveGroup = function (groupTitle) {
@@ -26,18 +26,14 @@
             url: "/Groups/Create",
             data: { title: groupTitle },
             dataType: "json",
-            success: function (group) {
-                addGroup(group.Id, groupTitle);
+            success: function (groupId) {
+                addGroup(groupId, groupTitle);
             }
         });        
     };
 
     var addGroup = function (groupId, groupTitle) {
-        obj.container.prepend('<li class="group" data-val-id="' + groupId + '"><a href="/Groups/Index/' + groupId + '">' + groupTitle + '</a></li>');
-
-        $(".group").click(function() {
-            window.location.href = "/Groups/Index/" + $(this).data("val-id");
-        });
+        obj.container.append('<li class="group"><a href="/Groups/Index/' + groupId + '">' + groupTitle + '</a></li>');
     };
 };
 

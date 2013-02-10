@@ -64,11 +64,23 @@ h1 {
 		display: block;
 	}
 }
-#orphaned-goals, #buckets{
+.group
+{
+	a{
+		background-image: url("/Content/img/group-generic.jpg");
+		background-repeat: no-repeat;
+		width: 200px;
+		cursor: pointer;
+		padding-top: 205px;
+		text-align: center;
+		display: block;
+	}
+}
+#orphaned-goals, #buckets, #grouplisting{
 	margin: 0px;
 	padding: 0px;
 }
-#buckets li, #orphaned-goals li
+#buckets li, #orphaned-goals li, #grouplisting li
 {
 	float: left;
 	margin-right: 15px;

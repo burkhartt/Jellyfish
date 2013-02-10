@@ -1,10 +1,15 @@
 ﻿$(function () {
     var goalHistoryHub = $.connection.goalHistoryHub;
-
+    
     goalHistoryHub.client.setGoalHistory = function (message) {
+        console.log(message);
         var goalHistory = new GoalHistory();
         goalHistory.SetGoalHistory($.parseJSON(message));
     };
+
+    $.connection.hub.start().done(function() {
+
+    });
 });
 
 var GoalHistory = function () {
