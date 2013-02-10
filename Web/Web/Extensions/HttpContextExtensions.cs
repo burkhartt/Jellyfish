@@ -26,5 +26,9 @@ namespace Web.Extensions {
         public static IEnumerable<Account> GroupMembers(this HttpContextBase httpContextBase) {
             return (IEnumerable<Account>)httpContextBase.Items["GroupMembers"];
         }
+
+        public static Group CurrentGroup(this HttpContextBase httpContextBase) {
+            return (Group) httpContextBase.Items["CurrentGroup"];
+        }
     }
 }

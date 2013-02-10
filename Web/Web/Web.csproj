@@ -223,6 +223,7 @@
     <Compile Include="FacebookAuthentication\IFacebookDataRepository.cs" />
     <Compile Include="Filters\AccountContextFilter.cs" />
     <Compile Include="Filters\AuthorizedAttribute.cs" />
+    <Compile Include="Filters\CurrentGroupContextFilter.cs" />
     <Compile Include="Filters\GlobalMessageFilter.cs" />
     <Compile Include="Filters\GoalContextFilter.cs" />
     <Compile Include="Global.asax.cs">

@@ -26,6 +26,17 @@
     @Model.Title
 }
 
+@section Subtitle {
+    @{
+        var group = Html.CurrentGroup();
+    }
+    @Html.ActionLink(group.Title, "Index", "Groups", new { id = group.Id}, null)
+}
+
+@section Picture {
+    <img src="/Content/img/gear.png" />
+}
+
 
 <fieldset>
     <legend>Goal Type</legend>

@@ -31,6 +31,7 @@ namespace Web {
             builder.RegisterType<GlobalMessageFilter>().As<IActionFilter>();
             builder.RegisterType<GoalContextFilter>().PropertiesAutowired();
             builder.RegisterType<AccountContextFilter>().PropertiesAutowired();
+            builder.RegisterType<CurrentGroupContextFilter>().PropertiesAutowired();
 
             builder.RegisterAssemblyTypes(ThisAssembly).Where(t => t is LayoutAttribute).PropertiesAutowired();
         }

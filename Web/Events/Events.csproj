@@ -47,7 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountAddedToGroupEvent.cs" />
-    <Compile Include="AccountCreatedEvent.cs" />
+    <Compile Include="FacebookAccountCreatedEvent.cs" />
     <Compile Include="AccountNameSetEvent.cs" />
     <Compile Include="Accounts\AccountSuccessfullyAuthenticatedEvent.cs" />
     <Compile Include="Accounts\VerifyAccountEvent.cs" />

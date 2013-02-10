@@ -12,6 +12,9 @@
 }
 
 @section LeftColumn {
+    @if (Model.IsAlone) {
+        return;
+    }
     @{
         var groupMembers = Html.GroupMembers();
     }
@@ -19,6 +22,15 @@
     @foreach (var groupMember in groupMembers) {
         @Html.Partial("Partials/SmallAccountLink", groupMember)
     }
+}
+
+@section Picture {
+    @if (Model.IsAlone) {
+        <img src="@Html.Account().Data.Picture" />
+    }
+    else {
+        <img src="/Content/img/group-generic.jpg" />
+    }    
 }
 
 @section Title {

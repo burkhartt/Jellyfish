@@ -36,6 +36,7 @@ namespace Web {
             filters.Add(new HandleErrorAttribute());
             filters.Add(DependencyResolver.Current.GetService<GoalContextFilter>());
             filters.Add(DependencyResolver.Current.GetService<AccountContextFilter>());
+            filters.Add(DependencyResolver.Current.GetService<CurrentGroupContextFilter>());
         }
 
         protected void Application_AcquireRequestState(object sender, EventArgs e){
@@ -47,7 +48,7 @@ namespace Web {
             var accountSessionRepository = dependencyResolver.GetService<IAccountSessionRepository>();
             var groupRepository = dependencyResolver.GetService<IGroupRepository>();
             Context.Items["Account"] = new AccountView { Data = account, IsLoggedIn = accountSessionRepository.GetCurrentId() != Guid.Empty };
-            Context.Items["Site"] = new Site {Name = "Goals"};
+            Context.Items["Site"] = new Site {Name = "SocialGoals"};
             if (account != null) {
                 Context.Items["Groups"] = groupRepository.GetByAccountId(account.Id);
             }            

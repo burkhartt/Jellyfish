@@ -97,6 +97,9 @@
                                 @Html.DisplayFor(x => TempData["SuccessMessage"])
                                 @Html.DisplayFor(x => TempData["ErrorMessage"])
                                 <h1>@RenderSection("Title", true)</h1>
+                                @if (IsSectionDefined("Subtitle")) {
+                                    <h3>@RenderSection("Subtitle", false)</h3>
+                                }
                                 @RenderBody()
                             </div>
                         </div>

@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Web;
 using Domain.Repositories;
 using Entities;
 using Events;
@@ -41,20 +42,29 @@ namespace Web.FacebookAuthentication {
                 var result = reader.ReadToEnd();
                 var act = JsonConvert.DeserializeObject<dynamic>(result);
 
-                foreach (var friend in act.friends.data) {
-                    var fullName = (string)friend.name;
-                    var firstName = fullName.Substring(0, fullName.IndexOf(" ")).Trim();
-                    var lastName = fullName.Substring(firstName.Length).Trim();
-                    var facebookId = (long) friend.id;
-                    var friendAccount = accountRepository.GetByFacebookId(facebookId);
-                    if (friendAccount == null) {
-                        var friendAccountId = Guid.NewGuid();
-                        eventBus.Send(new FacebookFriendAccountRetrievedEvent { Id = friendAccountId, FacebookId = facebookId, FirstName = firstName, LastName = lastName, Picture = "/Content/img/fb-silhouette.jpg" });
-                        friendAccount = accountRepository.GetByFacebookId(facebookId);
+                if (HttpContext.Current.Session["FBFriends"] != null) {
+                    foreach (var friend in act.friends.data) {
+                        var fullName = (string) friend.name;
+                        var firstName = fullName.Substring(0, fullName.IndexOf(" ")).Trim();
+                        var lastName = fullName.Substring(firstName.Length).Trim();
+                        var facebookId = (long) friend.id;
+                        var friendAccount = accountRepository.GetByFacebookId(facebookId);
+                        if (friendAccount == null) {
+                            var friendAccountId = Guid.NewGuid();
+                            eventBus.Send(new FacebookFriendAccountRetrievedEvent {
+                                Id = friendAccountId,
+                                FacebookId = facebookId,
+                                FirstName = firstName,
+                                LastName = lastName,
+                                Picture = "/Content/img/fb-silhouette.jpg"
+                            });
+                            friendAccount = accountRepository.GetByFacebookId(facebookId);
+                        }
+
+                        eventBus.Send(new FacebookFriendFoundEvent {AccountId = account.Id, FriendId = friendAccount.Id});
                     }
-                    
-                    eventBus.Send(new FacebookFriendFoundEvent { AccountId = account.Id, FriendId = friendAccount.Id });
-                }                
+                    HttpContext.Current.Session["FBFriends"] = true;
+                }
 
                 return new FacebookAccount {
                     FacebookId = act.id,

@@ -27,7 +27,7 @@ namespace Web.Controllers {
         public JsonResult Create(string task, Guid goalId) {
             var taskId = Guid.NewGuid();
             eventBus.Send(new TaskCreatedEvent { Id = taskId, GoalId = goalId, AccountId = account.Id});
-            eventBus.Send(new TaskTitleUpdatedEvent { Id = taskId, Title = task, AccountId = account.Id});
+            eventBus.Send(new TaskTitleUpdatedEvent { Id = taskId, GoalId = goalId, Title = task, AccountId = account.Id});
             return Json(taskId);
         }
 

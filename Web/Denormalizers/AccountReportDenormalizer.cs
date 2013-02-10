@@ -4,7 +4,7 @@ using Events;
 using Events.Handler;
 
 namespace Denormalizers {
-    public class AccountReportDenormalizer : IHandleDomainEvents<AccountCreatedEvent>,
+    public class AccountReportDenormalizer : IHandleDomainEvents<FacebookAccountCreatedEvent>,
     IHandleDomainEvents<AccountNameSetEvent> {
         private readonly Dictionary<Guid, string> dictionary;
 
@@ -12,7 +12,7 @@ namespace Denormalizers {
             dictionary = new Dictionary<Guid, string>();
         }
 
-        public void Handle(AccountCreatedEvent @event) {
+        public void Handle(FacebookAccountCreatedEvent @event) {
             dictionary[@event.Id] = "";
         }
 
