@@ -6,7 +6,6 @@
     <script type="text/javascript">
         $(function() {
             var bucketManager = new GoalManager($('#newGoal'), $("#buckets"), '@Model.Id');
-            bucketManager.LoadGoals();
         });
     </script>
 }
@@ -39,4 +38,7 @@
 
 <ul id="buckets">
     <li class="goal"><a href="#" id="newGoal">New Goal</a></li>
+    @foreach (var goal in Html.Goals()) {
+        <li class="goal">@Html.ActionLink(goal.Title, "Index", "Goals", new { id = goal.Id }, null)</li>
+    }
 </ul>

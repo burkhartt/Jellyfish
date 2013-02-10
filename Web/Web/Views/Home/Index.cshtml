@@ -11,4 +11,7 @@
 
 <ul id="grouplisting">
     <li class="group"><a href="#" id="new-group">New Group</a></li>
+    @foreach (var group in Html.Groups()) {
+        <li class="group">@Html.ActionLink(group.Title, "Index", "Groups", new { id = group.Id}, null)</li>
+    }
 </ul>

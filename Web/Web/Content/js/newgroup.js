@@ -12,14 +12,6 @@
         saveGroup(groupTitle);
     };
 
-    this.LoadGroups = function () {
-        $.getJSON("/Groups/Get", null, function (result) {
-            $.each(result, function (key, group) {
-                addGroup(group.Id, group.Title);
-            });
-        });
-    };
-
     var saveGroup = function (groupTitle) {
         $.ajax({
             type: "POST",
