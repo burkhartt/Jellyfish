@@ -1,0 +1,20 @@
+﻿@using Web.Helpers
+
+@section Title {
+    Friends
+}
+
+@{
+    var facebookFriends = Html.Friends().Where(x => x.IsAFacebookAccount).ToList();
+}
+
+@if (facebookFriends.Any()) {
+    <fieldset>
+        <legend>Facebook Friends</legend>
+        <ul>
+            @foreach (var facebookFriend in facebookFriends) {
+                <li><img src="@facebookFriend.Picture"/> @facebookFriend.FullName</li>
+            }
+        </ul>
+    </fieldset>
+}

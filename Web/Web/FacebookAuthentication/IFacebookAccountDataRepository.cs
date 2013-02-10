@@ -30,7 +30,7 @@ namespace Web.FacebookAuthentication {
 
         public Account FindById(Guid id) {
             var account = accountRepository.FindById(id);
-            if (account == null) return new Account(Guid.NewGuid());
+            if (account == null) return new NullAccount();
 
             if (!account.IsAFacebookAccount) {
                 return account;
@@ -42,7 +42,7 @@ namespace Web.FacebookAuthentication {
                 var result = reader.ReadToEnd();
                 var act = JsonConvert.DeserializeObject<dynamic>(result);
 
-                if (HttpContext.Current.Session["FBFriends"] != null) {
+                if (!account.FacebookFriendListImported.HasValue) {
                     foreach (var friend in act.friends.data) {
                         var fullName = (string) friend.name;
                         var firstName = fullName.Substring(0, fullName.IndexOf(" ")).Trim();
@@ -51,19 +51,21 @@ namespace Web.FacebookAuthentication {
                         var friendAccount = accountRepository.GetByFacebookId(facebookId);
                         if (friendAccount == null) {
                             var friendAccountId = Guid.NewGuid();
+
                             eventBus.Send(new FacebookFriendAccountRetrievedEvent {
                                 Id = friendAccountId,
                                 FacebookId = facebookId,
                                 FirstName = firstName,
                                 LastName = lastName,
-                                Picture = "/Content/img/fb-silhouette.jpg"
+                                Picture = "https://graph.facebook.com/" + facebookId + "/picture"
                             });
                             friendAccount = accountRepository.GetByFacebookId(facebookId);
                         }
 
                         eventBus.Send(new FacebookFriendFoundEvent {AccountId = account.Id, FriendId = friendAccount.Id});
                     }
-                    HttpContext.Current.Session["FBFriends"] = true;
+
+                    eventBus.Send(new FacebookFriendListImportedEvent { Id = account.Id });
                 }
 
                 return new FacebookAccount {

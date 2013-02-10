@@ -58,6 +58,7 @@
     <Compile Include="EventModule.cs" />
     <Compile Include="Events\FacebookLoginEvent.cs" />
     <Compile Include="FacebookFriendAccountRetrievedEvent.cs" />
+    <Compile Include="FacebookFriendListImportedEvent.cs" />
     <Compile Include="Friends\FacebookFriendFoundEvent.cs" />
     <Compile Include="Friends\InviteFriendEvent.cs" />
     <Compile Include="GoalAddedToGoalEvent.cs" />

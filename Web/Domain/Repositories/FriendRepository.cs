@@ -22,7 +22,7 @@ namespace Domain.Repositories {
 
         public IEnumerable<Account> GetFriends(Guid accountId) {
             List<Friend> friends = database.GetTheDatabase().Friends.FindAllByAccountId(accountId).ToList<Friend>();
-            return friends.Select(x => accountRepository.FindById(x.FriendId));
+            return friends.Select(x => accountRepository.FindById(x.FriendId)).ToList();
         }
     }
 }

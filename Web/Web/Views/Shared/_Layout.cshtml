@@ -50,11 +50,12 @@
         <div class="container">
             <div class="container-fluid">
                 <div class="row-fluid">
-                    <ul class="nav pull-right">
-                        @if (!Context.Account().IsLoggedIn) {
+                    <ul class="nav pull-right nav-tabs">
+                        @if (!Context.Account().IsLoggedIn) {                            
                             <li><a href="@Url.Action("Index", "Login")" class="ajax-button">Sign In</a></li>
                         }
                         else {
+                            <li>@Html.ActionLink("Friends", "Index", "Friends")</li>
                             <li><a href="@Url.Action("Index", "Logout")">Sign Out</a></li>
                         }
                     </ul>                            

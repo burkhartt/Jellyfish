@@ -47,9 +47,11 @@ namespace Web {
             var account = dependencyResolver.GetService<IAccount>();
             var accountSessionRepository = dependencyResolver.GetService<IAccountSessionRepository>();
             var groupRepository = dependencyResolver.GetService<IGroupRepository>();
-            Context.Items["Account"] = new AccountView { Data = account, IsLoggedIn = accountSessionRepository.GetCurrentId() != Guid.Empty };
+            var friendRepository = dependencyResolver.GetService<IFriendRepository>();
+            Context.Items["Account"] = new AccountView { Data = account, IsLoggedIn = accountSessionRepository.GetCurrentId() != Guid.Empty };            
             Context.Items["Site"] = new Site {Name = "SocialGoals"};
-            if (account != null) {
+            if (account.Id != Guid.Empty) {
+                Context.Items["Friends"] = friendRepository.GetFriends(account.Id);
                 Context.Items["Groups"] = groupRepository.GetByAccountId(account.Id);
             }            
         }

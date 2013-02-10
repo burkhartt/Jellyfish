@@ -1,6 +1,7 @@
 ﻿using System.Web.Mvc;
 using Authentication;
 using Autofac;
+using Database;
 using Domain.Repositories;
 using Entities;
 using Events.Bus;
@@ -15,7 +16,7 @@ namespace Web {
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterGeneric(typeof(Repository<>)).As(typeof(IRepository<>)).SingleInstance();
-            builder.RegisterType(typeof(FriendRepository)).As(typeof(IFriendRepository));
+            builder.Register(c => new CachedFriendRepository(new FriendRepository(c.Resolve<IDatabase>(), c.ResolveNamed<IAccountRepository>("BaseAccountRepository")))).As(typeof(IFriendRepository));
             builder.RegisterType(typeof(FacebookStateRepository)).As(typeof(IFacebookDataRepository));
             builder.RegisterType(typeof(Authenticator)).As<IAuthenticator>();
             builder.RegisterType(typeof(AccountRepository)).Named<IAccountRepository>("BaseAccountRepository");

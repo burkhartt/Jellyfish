@@ -66,22 +66,14 @@ namespace Web.Controllers {
 
         public ActionResult FacebookLoginCallback(string code) {
             facebookDataRepository.SaveUserAuthenticationCode(code);
-            var request =
-                WebRequest.Create("https://graph.facebook.com/oauth/access_token?client_id=" +
-                                  WebConfigurationManager.AppSettings["FacebookAppId"] + "&redirect_uri=" +
-                                  Url.Action("FacebookLoginCallback", "Login", null, "http") + "&client_secret=" +
-                                  WebConfigurationManager.AppSettings["FacebookSecret"] + "&code=" +
-                                  facebookDataRepository.GetUserAuthenticationCode());
-
+            var request = WebRequest.Create("https://graph.facebook.com/oauth/access_token?client_id=" + WebConfigurationManager.AppSettings["FacebookAppId"] + "&redirect_uri=" + Url.Action("FacebookLoginCallback", "Login", null, "http") + "&client_secret=" + WebConfigurationManager.AppSettings["FacebookSecret"] + "&code=" + facebookDataRepository.GetUserAuthenticationCode());
             using (var reader = new StreamReader(request.GetResponse().GetResponseStream(), Encoding.ASCII)) {
                 var result = reader.ReadToEnd();
                 var queryStringParameters = HttpUtility.ParseQueryString(result);
                 facebookDataRepository.SaveAccessToken(queryStringParameters["access_token"]);
             }
 
-            var request2 =
-                WebRequest.Create("https://graph.facebook.com/me?access_token=" +
-                                  facebookDataRepository.GetAccessToken());
+            var request2 = WebRequest.Create("https://graph.facebook.com/me?access_token=" + facebookDataRepository.GetAccessToken());
 
             using (var reader = new StreamReader(request2.GetResponse().GetResponseStream(), Encoding.ASCII)) {
                 var result = reader.ReadToEnd();

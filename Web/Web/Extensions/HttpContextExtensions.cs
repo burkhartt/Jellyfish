@@ -30,5 +30,9 @@ namespace Web.Extensions {
         public static Group CurrentGroup(this HttpContextBase httpContextBase) {
             return (Group) httpContextBase.Items["CurrentGroup"];
         }
+
+        public static IEnumerable<Account> Friends(this HttpContextBase httpContextBase) {
+            return (IEnumerable<Account>) httpContextBase.Items["Friends"];
+        }
     }
 }

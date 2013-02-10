@@ -46,6 +46,12 @@ namespace Entities {
         public virtual Guid Id { get; set; }
 
         [NotEditable]
-        public virtual string Picture { get; set; }        
+        public virtual string Picture { get; set; }
+
+        public DateTime? FacebookFriendListImported { get; set; }
+
+        public virtual bool IsNull() {
+            return false;
+        }
     }
 }

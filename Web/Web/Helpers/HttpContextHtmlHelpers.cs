@@ -29,6 +29,10 @@ namespace Web.Helpers {
             return GetHttpContext().Account();
         }
 
+        public static IEnumerable<Account> Friends(this HtmlHelper helper) {
+            return GetHttpContext().Friends();
+        }
+
         public static Group CurrentGroup(this HtmlHelper helper) {
             return GetHttpContext().CurrentGroup();
         }
